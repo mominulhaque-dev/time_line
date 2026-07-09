@@ -12,6 +12,7 @@
   --neutral-400: #0000007A;
   --neutral-800: #2b2b2b;
   --neutral-900: #121212;
+  --new-color:#000;
 
   /* --- Shopify Customizer Placeholders (Theme Editor Ready) --- */
   --color-base-text: var(--neutral-900);

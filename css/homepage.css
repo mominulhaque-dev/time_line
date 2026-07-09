@@ -97,6 +97,16 @@
   font-weight: 500;
 }
 
+/* footer css */
+
+
+
+
+
+
+
+
+
 /* ============================
    RESPONSIVE DESIGN
    ============================ */
@@ -111,161 +121,6 @@
   }
   .texan_nav__brand_links {
     width: auto;
-  }
-}
-
-/* footer style comment */
-.rq7k-footer {
-  background: #f3f1ea;
-  color: #2b2a25;
-  padding: 80px 60px 30px;
-  font-family: Arial, Helvetica, sans-serif;
-  box-sizing: border-box;
-}
-.rq7k-footer * {
-  box-sizing: border-box;
-}
-.rq7k-footer-tagline {
-  text-align: center;
-  font-size: 42px;
-  font-weight: 700;
-  letter-spacing: -0.5px;
-  margin: 0 0 80px;
-}
-.rq7k-footer-tagline sup {
-  font-size: 16px;
-  vertical-align: super;
-}
-.rq7k-footer-columns {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr) 1.3fr;
-  gap: 30px;
-  max-width: 1400px;
-  margin: 0 auto 50px;
-}
-.rq7k-footer-col h4 {
-  font-size: 13px;
-  letter-spacing: 1px;
-  margin: 0 0 10px;
-  font-weight: 700;
-}
-.rq7k-footer-col hr {
-  border: none;
-  border-top: 1px dotted #c9c6b8;
-  margin: 0 0 16px;
-}
-.rq7k-footer-col ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.rq7k-footer-col a {
-  color: #2b2a25;
-  text-decoration: none;
-  font-size: 13px;
-  letter-spacing: 0.5px;
-  font-weight: 600;
-}
-.rq7k-footer-col a:hover {
-  text-decoration: underline;
-}
-
-.rq7k-footer-newsletter-input {
-  position: relative;
-  border-bottom: 1px solid #2b2a25;
-  padding-bottom: 8px;
-  margin-bottom: 8px;
-}
-.rq7k-footer-newsletter-input input {
-  border: none;
-  background: transparent;
-  width: 100%;
-  font-size: 15px;
-  padding: 4px 24px 4px 0;
-  outline: none;
-  color: #2b2a25;
-}
-.rq7k-footer-newsletter-input button {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  color: #2b2a25;
-}
-.rq7k-footer-newsletter-note {
-  font-size: 11px;
-  color: #6f6d63;
-  margin: 0;
-}
-
-.rq7k-footer-social {
-  display: flex;
-  gap: 18px;
-  max-width: 1400px;
-  margin: 0 auto 30px;
-}
-.rq7k-footer-social a {
-  color: #2b2a25;
-  display: flex;
-}
-.rq7k-footer-social svg {
-  width: 20px;
-  height: 20px;
-}
-
-.rq7k-footer-disclaimer {
-  max-width: 1400px;
-  margin: 0 auto 12px;
-  border: 1px solid #c9c6b8;
-  border-radius: 8px;
-  padding: 14px 18px;
-  font-size: 12px;
-  color: #6f6d63;
-}
-
-.rq7k-footer-bottom {
-  max-width: 1400px;
-  margin: 20px auto 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-.rq7k-footer-bottom-links {
-  display: flex;
-  gap: 24px;
-  font-size: 12px;
-  color: #6f6d63;
-}
-.rq7k-footer-bottom-links a {
-  color: #6f6d63;
-  text-decoration: none;
-}
-.rq7k-footer-payment-icons {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  font-size: 13px;
-  color: #6f6d63;
-  font-weight: 700;
-}
-
-@media (max-width: 900px) {
-  .rq7k-footer-columns {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .rq7k-footer-tagline {
-    font-size: 28px;
-  }
-  .rq7k-footer {
-    padding: 50px 24px 24px;
+    color: var(--new-color);
   }
 }
