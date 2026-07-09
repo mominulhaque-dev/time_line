@@ -1,6 +1,9 @@
 /* ==========================================================================
    1. SHOPIFY DESIGN TOKENS & LIQUID INTERACTIVE VARIABLES
    ========================================================================== */
+
+
+   /* comment */
 :root {
   /* --- Primitive Color Palette (To be linked to Shopify Schema settings) --- */
   --neutral-100: #f4f4f4;
