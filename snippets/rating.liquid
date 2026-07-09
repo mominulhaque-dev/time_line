@@ -1,0 +1,44 @@
+{%- comment -%}
+  Star rating. Reads product.metafields.reviews.rating (Shopify Product Reviews
+  standard metafield). Falls back to a demo rating for onboarding.
+  Params: product, show_count (bool)
+{%- endcomment -%}
+{%- liquid
+  assign rating_value = 0
+  assign rating_count = 0
+
+  if product.metafields.reviews.rating.value != blank
+    assign rating_value = product.metafields.reviews.rating.value.rating | plus: 0.0
+    assign rating_count = product.metafields.reviews.rating_count.value | plus: 0
+  endif
+
+  if rating_value == 0
+    assign rating_value = 4.6
+    assign rating_count = 0
+  endif
+
+  assign full = rating_value | floor
+  assign remainder = rating_value | minus: full
+  assign half_star = false
+  if remainder >= 0.25
+    assign half_star = true
+  endif
+  assign half_pos = full | plus: 1
+-%}
+<div class="texan_rating" role="img" aria-label="{{ rating_value }} out of 5 stars">
+  <span class="texan_rating_stars" aria-hidden="true">
+    {%- for i in (1..5) -%}
+      {%- if i <= full -%}
+        {% render 'icon', name: 'star', class: 'texan_star_full' %}
+      {%- elsif half_star and i == half_pos -%}
+        {% render 'icon', name: 'star_half', class: 'texan_star_full' %}
+      {%- else -%}
+        {% render 'icon', name: 'star', class: 'texan_star_empty' %}
+      {%- endif -%}
+    {%- endfor -%}
+  </span>
+  <span class="texan_rating_value">{{ rating_value }}</span>
+  {%- if show_count and rating_count > 0 -%}
+    <span class="texan_rating_count">({{ rating_count }})</span>
+  {%- endif -%}
+</div>

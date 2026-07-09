@@ -1,0 +1,53 @@
+{%- comment -%} Expert / scientific-advisor testimonial. {%- endcomment -%}
+<section class="texan_expert texan_container" aria-labelledby="texan_expert_title_{{ section.id }}">
+  {%- if section.settings.heading != blank -%}
+    <h2 id="texan_expert_title_{{ section.id }}">{{ section.settings.heading }}</h2>
+  {%- endif -%}
+  <div class="texan_expert_grid">
+    <div data_texan_reveal>
+      {%- if section.settings.image != blank -%}
+        {%- assign expert_alt = section.settings.author | default: section.settings.heading | escape -%}
+        {{ section.settings.image | image_url: width: 920 | image_tag: loading: 'lazy', widths: '320, 480, 640, 920', sizes: '(min-width: 760px) 23rem, 100vw', alt: expert_alt }}
+      {%- else -%}
+        <img src="{{ 'image_time_line2.png' | asset_url }}" alt="{{ section.settings.author | escape }}" width="920" height="920" loading="lazy">
+      {%- endif -%}
+    </div>
+    <blockquote data_texan_reveal>
+      {%- if section.blocks.size > 0 -%}
+        <div class="texan_avatar_row" aria-hidden="true">
+          {%- for block in section.blocks -%}
+            {%- if block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 84 | image_tag: loading: 'lazy', alt: '' }}
+            {%- else -%}
+              <span></span>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+      {{ section.settings.quote }}
+      {%- if section.settings.author != blank -%}
+        <footer>{{ section.settings.author }}{% if section.settings.author_role != blank %}<br>{{ section.settings.author_role }}{% endif %}</footer>
+      {%- endif -%}
+    </blockquote>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.expert.name",
+  "max_blocks": 6,
+  "settings": [
+    { "type": "text", "id": "heading", "label": "t:sections.all.heading", "default": "Find out why the experts trust Urolithin A from Timeline" },
+    { "type": "image_picker", "id": "image", "label": "t:sections.all.image" },
+    { "type": "richtext", "id": "quote", "label": "Quote", "default": "<p>“The latest clinical studies crystallize how Mitopure can be a real game-changer for human health.”</p>" },
+    { "type": "text", "id": "author", "label": "Author", "default": "Dr. Johan Auwerx MD, PhD" },
+    { "type": "text", "id": "author_role", "label": "Author role", "default": "Scientific Advisor" }
+  ],
+  "blocks": [
+    { "type": "avatar", "name": "Avatar", "settings": [ { "type": "image_picker", "id": "image", "label": "t:sections.all.image" } ] }
+  ],
+  "presets": [
+    { "name": "t:sections.expert.name", "blocks": [ { "type": "avatar" }, { "type": "avatar" }, { "type": "avatar" }, { "type": "avatar" } ] }
+  ]
+}
+{% endschema %}

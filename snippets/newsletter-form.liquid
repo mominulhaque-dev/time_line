@@ -1,0 +1,30 @@
+{%- comment -%}
+  Reusable newsletter (customer) form.
+  Optional: heading, placeholder, note.
+{%- endcomment -%}
+{%- form 'customer', class: 'texan_newsletter', id: 'texan_newsletter_form' -%}
+  <input type="hidden" name="contact[tags]" value="newsletter">
+  {%- if heading != blank -%}<h3>{{ heading }}</h3>{%- endif -%}
+  {%- if form.posted_successfully? -%}
+    <p class="texan_form_success">{{ 'general.newsletter.success' | t }}</p>
+  {%- else -%}
+    <label class="texan_screen_reader" for="texan_newsletter_email">{{ 'general.newsletter.placeholder' | t }}</label>
+    <div>
+      <input
+        id="texan_newsletter_email"
+        type="email"
+        name="contact[email]"
+        placeholder="{{ placeholder | default: 'general.newsletter.placeholder' | t }}"
+        autocomplete="email"
+        required
+      >
+      <button type="submit" aria-label="{{ 'general.newsletter.submit' | t }}">
+        {% render 'icon', name: 'arrow_right' %}
+      </button>
+    </div>
+    {%- if note != blank -%}<p>{{ note }}</p>{%- endif -%}
+    {%- if form.errors -%}
+      <p class="texan_form_error">{{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}</p>
+    {%- endif -%}
+  {%- endif -%}
+{%- endform -%}

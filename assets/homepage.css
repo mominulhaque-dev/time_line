@@ -1,0 +1,701 @@
+/* ============================================================
+   HOMEPAGE SECTIONS — loaded only on the index template.
+   Chrome (header/footer/cards/components) lives in theme.css.
+   ============================================================ */
+
+/* ---------- Shared brand pill ---------- */
+.texan_powered span,
+.texan_mitopure,
+.texan_intro h2 span,
+.texan_intro h2 em,
+.texan_skin_card p {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1rem;
+  padding-inline: 0.35rem;
+  border-radius: 999px;
+  color: var(--color_white);
+  background: var(--color_red);
+  font-size: 0.58rem;
+  font-family: var(--font_body);
+  font-weight: 800;
+  line-height: 1;
+}
+
+/* ---------- Hero ---------- */
+.texan_hero {
+  position: relative;
+  width: calc(100% - 1rem);
+  min-height: 33rem;
+  margin: 0.5rem auto 0;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--color_panel);
+}
+
+.texan_hero > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.texan_hero_overlay {
+  position: relative;
+  min-height: inherit;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: clamp(2rem, 8vw, 8.1rem) clamp(1.3rem, 12vw, 14rem) clamp(2rem, 8vw, 8.6rem);
+  color: var(--color_white);
+  background: linear-gradient(90deg, rgba(29, 30, 26, var(--overlay, 0.42)), rgba(29, 30, 26, calc(var(--overlay, 0.42) * 0.2)) 70%);
+}
+
+.texan_hero_content {
+  max-width: 36rem;
+}
+
+.texan_powered {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 0.65rem;
+  font-size: 0.62rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.texan_hero h1 {
+  max-width: 10ch;
+  font-size: clamp(3.25rem, 7vw, 5.95rem);
+  line-height: 0.9;
+  letter-spacing: -0.08em;
+}
+
+.texan_hero_content > p:not(.texan_powered) {
+  max-width: 25rem;
+  margin: 1.1rem 0 1rem;
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.texan_hero_badge {
+  display: none;
+  align-items: center;
+  width: 13.6rem;
+  min-height: 3.2rem;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--color_ink);
+  font-size: 0.58rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.texan_hero_badge strong {
+  display: grid;
+  width: 3rem;
+  align-self: stretch;
+  place-items: center;
+  color: var(--color_red);
+  border-right: 1px solid var(--color_line);
+  font-size: 0.9rem;
+}
+
+.texan_hero_badge span {
+  padding-inline: 0.75rem;
+}
+
+/* ---------- Press / quote ticker ---------- */
+.texan_quote_ticker {
+  overflow: hidden;
+  padding: 1rem 0 0.5rem;
+  background: var(--color_page_bg);
+  color: var(--color_muted);
+  white-space: nowrap;
+}
+
+.texan_quote_ticker .texan_marquee_track {
+  gap: 1.35rem;
+  font-size: 0.58rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.texan_quote_ticker .texan_marquee_track span {
+  padding-inline: 0.675rem;
+}
+
+/* ---------- Intro + metrics ---------- */
+.texan_intro {
+  padding-block: clamp(2.5rem, 6vw, 4.6rem) 3rem;
+}
+
+.texan_intro_copy {
+  max-width: 46rem;
+  margin-inline: auto;
+}
+
+.texan_intro h2 {
+  font-family: var(--font_serif);
+  font-size: clamp(1.75rem, 3.2vw, 3.1rem);
+  font-weight: 400;
+  line-height: 1.09;
+  letter-spacing: -0.035em;
+}
+
+.texan_intro h2 span,
+.texan_intro h2 em {
+  font-style: normal;
+  transform: translateY(-0.16rem);
+}
+
+.texan_intro .texan_outline_link {
+  margin-top: 1.85rem;
+}
+
+.texan_metric_grid {
+  display: grid;
+  gap: 1.2rem;
+  margin-top: clamp(2.3rem, 5vw, 4rem);
+}
+
+.texan_metric_grid article {
+  border-top: 1px solid var(--color_line);
+  padding-top: 1rem;
+}
+
+.texan_metric_grid strong {
+  display: block;
+  margin-bottom: 1rem;
+  font-size: clamp(2.2rem, 4vw, 3.1rem);
+  font-weight: 500;
+  letter-spacing: -0.08em;
+}
+
+.texan_metric_grid h3 {
+  margin-bottom: 0.4rem;
+  font-size: 0.72rem;
+}
+
+.texan_metric_grid p {
+  color: var(--color_muted);
+  font-size: 0.64rem;
+  line-height: 1.4;
+}
+
+/* ---------- Panel (science / generic) ---------- */
+.texan_panel {
+  width: calc(100% - 1rem);
+  margin: 0.5rem auto;
+  border-radius: var(--radius);
+  background: var(--color_panel);
+}
+
+.texan_science_panel {
+  display: grid;
+  gap: 2rem;
+  padding: clamp(1.6rem, 6vw, 4.5rem) clamp(1rem, 12vw, 14rem);
+}
+
+.texan_mitopure {
+  gap: 0.45rem;
+  margin-bottom: 0.8rem;
+}
+
+.texan_mitopure span {
+  color: var(--color_ink);
+  font-size: 0.58rem;
+  background: transparent;
+}
+
+.texan_tab_list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 3.8rem;
+}
+
+.texan_tab_list button {
+  padding: 0.45rem 0.65rem;
+  background: var(--color_page_bg);
+  color: #96948c;
+  font-size: clamp(1.1rem, 2.4vw, 2rem);
+  line-height: 1;
+  border: 0;
+  border-radius: 2px;
+}
+
+.texan_tab_list button[aria-selected="true"] {
+  color: var(--color_ink);
+}
+
+.texan_panel_copy h2 {
+  max-width: 27rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.texan_panel_copy .texan_panel_note {
+  margin-top: 0.9rem;
+  font-size: 0.62rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.texan_micro_card {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  gap: 0.8rem;
+  width: min(100%, 24rem);
+  margin-top: 2rem;
+  padding: 0.65rem;
+  background: var(--color_page_bg);
+  border-radius: 2px;
+}
+
+.texan_micro_card img {
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.texan_micro_card h3 {
+  margin-bottom: 0.2rem;
+  font-size: 0.72rem;
+}
+
+.texan_micro_card p,
+.texan_micro_card a {
+  color: var(--color_muted);
+  font-size: 0.58rem;
+}
+
+.texan_chart {
+  position: relative;
+  min-height: 28rem;
+  display: grid;
+  align-items: end;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.texan_chart figcaption {
+  position: absolute;
+  top: 1.2rem;
+  left: 50%;
+  transform: translateX(-20%);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.08em;
+}
+
+.texan_chart_axis {
+  position: absolute;
+  inset: 5rem 2rem 4rem;
+  background:
+    linear-gradient(var(--color_line), var(--color_line)) 0 25% / 100% 1px no-repeat,
+    linear-gradient(var(--color_line), var(--color_line)) 0 50% / 100% 1px no-repeat,
+    linear-gradient(var(--color_line), var(--color_line)) 0 75% / 100% 1px no-repeat;
+}
+
+.texan_chart_bars {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  gap: 0.18rem;
+  min-width: 14rem;
+  height: 21rem;
+  border-bottom: 2px solid #a9a79f;
+}
+
+.texan_chart_bars span {
+  display: block;
+  width: 5.7rem;
+}
+
+.texan_bar_placebo {
+  height: var(--placebo_h, 7rem);
+  background: var(--color_page_bg);
+  border: 2px solid #b8b6ae;
+  border-bottom: 0;
+  transition: height 420ms ease;
+}
+
+.texan_bar_mitopure {
+  height: var(--mitopure_h, 18.4rem);
+  background: #c84b42;
+  transition: height 420ms ease;
+}
+
+.texan_chart_legend {
+  display: flex;
+  gap: 0.4rem;
+  justify-content: center;
+  color: var(--color_muted);
+  font-size: 0.58rem;
+  text-transform: uppercase;
+}
+
+.texan_chart_legend span,
+.texan_chart_legend b {
+  width: 0.7rem;
+  height: 0.7rem;
+  border: 1px solid #aaa8a0;
+}
+
+.texan_chart_legend b {
+  background: var(--color_red);
+  border-color: var(--color_red);
+}
+
+/* ---------- Comparison table ---------- */
+.texan_compare {
+  padding: clamp(1.6rem, 4vw, 3rem) 1rem;
+  overflow-x: auto;
+  text-align: center;
+}
+
+.texan_compare_label {
+  margin-bottom: 0.55rem;
+  font-size: 0.58rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.texan_compare_label span {
+  padding: 0.3rem 0.42rem;
+  background: var(--color_white);
+}
+
+.texan_compare h2,
+.texan_expert h2,
+.texan_news h2 {
+  font-size: clamp(1.55rem, 3vw, 3rem);
+  line-height: 1;
+  letter-spacing: -0.065em;
+}
+
+.texan_compare_table {
+  min-width: 58rem;
+  width: min(100%, 90rem);
+  margin: 2rem auto 0;
+  text-align: left;
+}
+
+.texan_compare_table [role="row"] {
+  display: grid;
+  grid-template-columns: 2.1fr repeat(var(--compare_cols, 5), 1fr);
+  align-items: center;
+  border-bottom: 1px solid var(--color_line);
+}
+
+.texan_compare_table [role="row"] > * {
+  padding: 0.65rem 0.6rem;
+  color: var(--color_muted);
+  font-size: 0.68rem;
+  font-weight: 400;
+  text-align: center;
+}
+
+.texan_compare_table [role="row"] > span:first-child {
+  text-align: left;
+}
+
+.texan_compare_head span {
+  font-weight: 800;
+}
+
+.texan_compare_head span:nth-child(2) {
+  transform: translateY(-1.5rem);
+  border-radius: var(--radius);
+  background: var(--color_white);
+  box-shadow: 0 16px 24px rgba(48, 48, 44, 0.08);
+}
+
+.texan_compare_head img {
+  width: 4.3rem;
+  height: 5.2rem;
+  margin: 0 auto 0.4rem;
+  object-fit: cover;
+}
+
+.texan_compare_table b {
+  color: var(--color_ink);
+  font-weight: 600;
+}
+
+/* ---------- Featured products ---------- */
+.texan_products {
+  padding-block: clamp(3rem, 7vw, 5rem);
+}
+
+.texan_product_grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.texan_skin_card {
+  min-height: 18rem;
+  display: grid;
+  align-content: start;
+  justify-items: center;
+  gap: 0.45rem;
+  padding-top: 4rem;
+  border-radius: var(--radius);
+  background:
+    radial-gradient(ellipse at 50% 78%, rgba(188, 180, 132, 0.35), transparent 34%),
+    var(--color_panel);
+  text-align: center;
+}
+
+.texan_skin_card h3 {
+  max-width: 13rem;
+  font-size: clamp(1.1rem, 2vw, 1.8rem);
+  line-height: 1;
+  letter-spacing: -0.06em;
+}
+
+.texan_skin_card a {
+  font-size: 0.58rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+/* ---------- Logo marquee ---------- */
+.texan_logo_marquee {
+  overflow: hidden;
+  padding: 1.4rem 0;
+  border-block: 1px solid #ecebe4;
+  background: var(--color_page_bg);
+}
+
+.texan_logo_marquee .texan_marquee_track {
+  gap: clamp(2rem, 5vw, 5rem);
+  padding-inline: clamp(1rem, 2.5vw, 2.5rem);
+  font-family: var(--font_serif);
+  font-size: clamp(1.05rem, 2vw, 1.45rem);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.texan_logo_marquee .texan_marquee_track img {
+  width: auto;
+  max-height: 1.6rem;
+}
+
+/* ---------- Reviews strip ---------- */
+.texan_review_strip {
+  padding-block: 2rem 3rem;
+  overflow: hidden;
+  text-align: center;
+}
+
+.texan_review_strip h2 {
+  margin-bottom: 1.25rem;
+  font-size: 0.74rem;
+  font-weight: 600;
+}
+
+.texan_review_cards {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(12.5rem, 17.5rem);
+  gap: 1rem;
+  width: 100%;
+  overflow-x: auto;
+  padding: 0 0.5rem 1.7rem;
+  scroll-snap-type: x mandatory;
+}
+
+.texan_review_cards article {
+  position: relative;
+  min-height: 16.4rem;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  scroll-snap-align: start;
+  background: var(--color_panel);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.texan_review_cards img {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  object-fit: cover;
+}
+
+.texan_review_cards button {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 3rem;
+  height: 3rem;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: var(--color_white);
+}
+
+.texan_review_cards button svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  color: var(--color_ink);
+}
+
+.texan_review_cards blockquote {
+  font-family: var(--font_serif);
+  font-size: 1.55rem;
+  line-height: 1.05;
+}
+
+.texan_review_cards .texan_rating_stars {
+  font-size: 1rem;
+}
+
+.texan_review_cards cite {
+  color: var(--color_muted);
+  font-size: 0.58rem;
+  font-weight: 800;
+  font-style: normal;
+  text-transform: uppercase;
+}
+
+/* ---------- Expert quote ---------- */
+.texan_expert {
+  padding-block: clamp(3rem, 7vw, 5rem);
+}
+
+.texan_expert h2 {
+  max-width: 41rem;
+  margin-bottom: 2rem;
+}
+
+.texan_expert_grid {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+}
+
+.texan_expert_grid > img {
+  aspect-ratio: 1;
+  object-fit: cover;
+  background: var(--color_panel);
+  border-radius: var(--radius);
+}
+
+.texan_expert blockquote {
+  max-width: 49rem;
+  font-family: var(--font_serif);
+  font-size: clamp(1.45rem, 3vw, 2.65rem);
+  line-height: 1.1;
+}
+
+.texan_expert footer {
+  margin-top: 1.4rem;
+  font-family: var(--font_body);
+  font-size: 0.75rem;
+}
+
+.texan_avatar_row {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.texan_avatar_row span,
+.texan_avatar_row img {
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--color_panel);
+}
+
+/* ---------- News / blog ---------- */
+.texan_news {
+  padding-block: clamp(3rem, 7vw, 5rem);
+}
+
+.texan_news_grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.texan_news article img {
+  aspect-ratio: 1.55 / 1;
+  height: auto;
+  margin-bottom: 0.75rem;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+
+.texan_news h3 {
+  font-size: 0.84rem;
+  line-height: 1.12;
+}
+
+.texan_news p {
+  margin-bottom: 0.35rem;
+  color: var(--color_muted);
+  font-size: 0.56rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+/* ---------- Responsive ---------- */
+@media (min-width: 560px) {
+  .texan_metric_grid,
+  .texan_product_grid,
+  .texan_news_grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 760px) {
+  .texan_hero {
+    min-height: clamp(36rem, 41.5vw, 49.8rem);
+  }
+
+  .texan_hero_badge {
+    display: flex;
+  }
+
+  .texan_metric_grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .texan_science_panel {
+    grid-template-columns: minmax(0, 0.95fr) minmax(20rem, 1.05fr);
+    align-items: center;
+  }
+
+  .texan_product_grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .texan_expert_grid {
+    grid-template-columns: minmax(16rem, 23rem) minmax(0, 1fr);
+    gap: 5.2rem;
+  }
+
+  .texan_news_grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 759px) {
+  .texan_hero_overlay {
+    align-items: flex-end;
+  }
+
+  .texan_compare {
+    text-align: left;
+  }
+}

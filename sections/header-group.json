@@ -1,0 +1,26 @@
+{
+  "type": "header",
+  "name": "Header group",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "msg-1": { "type": "message", "settings": { "text": "Free shipping on orders over $100" } },
+        "msg-2": { "type": "message", "settings": { "text": "Award-winning, clinically proven Urolithin A" } }
+      },
+      "block_order": ["msg-1", "msg-2"],
+      "settings": { "rotate": true }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "logo_text_left": "time",
+        "logo_text_right": "line",
+        "menu": "main-menu",
+        "sticky": true,
+        "enable_search": true
+      }
+    }
+  },
+  "order": ["announcement-bar", "header"]
+}

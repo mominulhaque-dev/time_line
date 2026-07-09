@@ -1,0 +1,43 @@
+{
+  "current": {
+    "color_ink": "#30302c",
+    "color_muted": "#74736d",
+    "color_soft": "#f4f3ed",
+    "color_panel": "#eeede5",
+    "color_line": "#d9d8d0",
+    "color_white": "#ffffff",
+    "color_red": "#d74d42",
+    "color_page_bg": "#fafaf6",
+    "font_heading": "inter_n7",
+    "font_body": "inter_n4",
+    "font_body_scale": 100,
+    "container_width": 1440,
+    "section_spacing": 48,
+    "corner_radius": 4,
+    "show_product_rating": true,
+    "show_product_badge": true,
+    "product_badge_text": "#1 Doctor recommended",
+    "show_second_image": true,
+    "cart_type": "drawer",
+    "show_cart_note": true,
+    "enable_free_shipping_bar": true,
+    "free_shipping_threshold": 100
+  },
+  "presets": {
+    "Texan Timeline": {
+      "color_ink": "#30302c",
+      "color_muted": "#74736d",
+      "color_soft": "#f4f3ed",
+      "color_panel": "#eeede5",
+      "color_line": "#d9d8d0",
+      "color_white": "#ffffff",
+      "color_red": "#d74d42",
+      "color_page_bg": "#fafaf6",
+      "font_heading": "inter_n7",
+      "font_body": "inter_n4",
+      "container_width": 1440,
+      "section_spacing": 48,
+      "corner_radius": 4
+    }
+  }
+}

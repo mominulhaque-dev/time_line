@@ -1,0 +1,51 @@
+{%- comment -%}
+  Single cart line item. Params: line_item, index (1-based)
+{%- endcomment -%}
+<div class="texan_cart_line" data_texan_cart_line>
+  <a href="{{ line_item.url }}">
+    {%- if line_item.image -%}
+      {%- assign line_alt = line_item.title | escape -%}
+      {{ line_item.image | image_url: width: 160 | image_tag: loading: 'lazy', widths: '80, 120, 160', alt: line_alt }}
+    {%- endif -%}
+  </a>
+
+  <div class="texan_cart_line_info">
+    <a href="{{ line_item.url }}" class="texan_cart_line_title">{{ line_item.product.title }}</a>
+    {%- unless line_item.product.has_only_default_variant -%}
+      <p class="texan_cart_line_variant">{{ line_item.variant.title }}</p>
+    {%- endunless -%}
+    {%- if line_item.selling_plan_allocation -%}
+      <p class="texan_cart_line_variant">{{ line_item.selling_plan_allocation.selling_plan.name }}</p>
+    {%- endif -%}
+
+    <div class="texan_qty_stepper" data_texan_qty>
+      <button type="button" data_texan_qty_down data_line="{{ index }}" aria-label="{{ 'products.product.decrease_quantity' | t }}">
+        {% render 'icon', name: 'minus' %}
+      </button>
+      <input
+        type="number"
+        min="0"
+        value="{{ line_item.quantity }}"
+        aria-label="{{ 'cart.quantity' | t }}"
+        data_texan_qty_input
+        data_line="{{ index }}"
+      >
+      <button type="button" data_texan_qty_up data_line="{{ index }}" aria-label="{{ 'products.product.increase_quantity' | t }}">
+        {% render 'icon', name: 'plus' %}
+      </button>
+    </div>
+
+    <button type="button" class="texan_cart_remove" data_texan_cart_remove data_line="{{ index }}">
+      {{ 'cart.remove' | t }}
+    </button>
+  </div>
+
+  <div class="texan_cart_line_price">
+    {%- if line_item.original_line_price > line_item.final_line_price -%}
+      <s>{{ line_item.original_line_price | money }}</s>
+      <span class="texan_price_current">{{ line_item.final_line_price | money }}</span>
+    {%- else -%}
+      <span class="texan_price_current">{{ line_item.final_line_price | money }}</span>
+    {%- endif -%}
+  </div>
+</div>

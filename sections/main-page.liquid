@@ -1,0 +1,16 @@
+{%- comment -%} Generic page: title + richtext content. {%- endcomment -%}
+<section class="texan_page texan_container">
+  <header class="texan_page_header">
+    <h1>{{ page.title }}</h1>
+  </header>
+  <div class="texan_page_content rte">
+    {{ page.content }}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Page",
+  "settings": []
+}
+{% endschema %}

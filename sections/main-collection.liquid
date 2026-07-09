@@ -1,0 +1,115 @@
+{%- comment -%}
+  Collection page: banner + faceted filtering + sorting + product grid.
+  Filtering/sorting update via the Section Rendering API (collection.js).
+{%- endcomment -%}
+{%- liquid
+  assign per_page = section.settings.products_per_page
+  assign sort_by = collection.sort_by | default: collection.default_sort_by
+-%}
+<section class="texan_collection" data_texan_collection data-section-id="{{ section.id }}">
+  {%- if section.settings.show_banner -%}
+    <header class="texan_collection_banner{% if collection.image and section.settings.show_image %} texan_has_image{% endif %}">
+      {%- if collection.image and section.settings.show_image -%}
+        {%- assign banner_alt = collection.title | escape -%}
+        {{ collection.image | image_url: width: 2400 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '600, 1200, 1800, 2400', sizes: '100vw', class: 'texan_collection_banner_img', alt: banner_alt }}
+      {%- endif -%}
+      <div class="texan_collection_banner_copy texan_container">
+        <h1>{{ collection.title }}</h1>
+        {%- if collection.description != blank and section.settings.show_description -%}
+          <div class="texan_collection_desc rte">{{ collection.description }}</div>
+        {%- endif -%}
+      </div>
+    </header>
+  {%- endif -%}
+
+  <div class="texan_container texan_collection_layout">
+    {%- comment -%} ---- Toolbar ---- {%- endcomment -%}
+    <div class="texan_collection_toolbar">
+      <button type="button" class="texan_outline_link texan_filter_toggle" data_texan_filter_toggle aria-expanded="false">
+        {{ 'products.facets.filter' | t }}
+      </button>
+      <p class="texan_collection_count" data_texan_product_count>{{ 'products.facets.product_count' | t: count: collection.products_count }}</p>
+      {%- if collection.sort_options.size > 0 -%}
+        <div class="texan_sort">
+          <label for="texan_sort_by">{{ 'products.facets.sort_by' | t }}</label>
+          <select id="texan_sort_by" data_texan_sort>
+            {%- for option in collection.sort_options -%}
+              <option value="{{ option.value }}" {% if option.value == sort_by %}selected{% endif %}>{{ option.name }}</option>
+            {%- endfor -%}
+          </select>
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="texan_collection_body">
+      {%- comment -%} ---- Facets ---- {%- endcomment -%}
+      {%- if section.settings.enable_filtering and collection.filters.size > 0 -%}
+        <aside class="texan_facets" data_texan_facets>
+          <form data_texan_facet_form>
+            {%- if collection.current_type != blank %}<input type="hidden" name="q" value="{{ collection.current_type }}">{% endif -%}
+            {%- for filter in collection.filters -%}
+              <details class="texan_facet" open>
+                <summary>{{ filter.label }}{% render 'icon', name: 'chevron_down' %}</summary>
+                <div class="texan_facet_body">
+                  {%- case filter.type -%}
+                    {%- when 'list', 'boolean' -%}
+                      {%- for value in filter.values -%}
+                        <label class="texan_facet_value{% if value.count == 0 and value.active == false %} texan_facet_disabled{% endif %}">
+                          <input type="checkbox" name="{{ value.param_name }}" value="{{ value.value }}" {% if value.active %}checked{% endif %} {% if value.count == 0 and value.active == false %}disabled{% endif %}>
+                          <span>{{ value.label }} <small>({{ value.count }})</small></span>
+                        </label>
+                      {%- endfor -%}
+                    {%- when 'price_range' -%}
+                      <div class="texan_price_range">
+                        <label>{{ 'products.facets.from' | t }}<input type="number" name="{{ filter.min_value.param_name }}" value="{{ filter.min_value.value }}" min="0" max="{{ filter.range_max | money_without_currency }}" placeholder="0"></label>
+                        <label>{{ 'products.facets.to' | t }}<input type="number" name="{{ filter.max_value.param_name }}" value="{{ filter.max_value.value }}" min="0" max="{{ filter.range_max | money_without_currency }}" placeholder="{{ filter.range_max | money_without_currency }}"></label>
+                      </div>
+                  {%- endcase -%}
+                </div>
+              </details>
+            {%- endfor -%}
+            <a href="{{ collection.url }}" class="texan_facet_clear" data_texan_facet_clear>{{ 'products.facets.clear_all' | t }}</a>
+          </form>
+        </aside>
+      {%- endif -%}
+
+      {%- comment -%} ---- Grid ---- {%- endcomment -%}
+      <div class="texan_collection_results" data_texan_collection_results>
+        {%- paginate collection.products by per_page -%}
+          {%- if collection.products.size > 0 -%}
+            <div class="texan_product_grid texan_collection_grid">
+              {%- for product in collection.products -%}
+                {% render 'product-card', product: product, show_quick_add: section.settings.show_quick_add %}
+              {%- endfor -%}
+            </div>
+            {% render 'pagination', paginate: paginate %}
+          {%- else -%}
+            <div class="texan_collection_empty">
+              <p>{{ 'products.facets.product_count' | t: count: 0 }}</p>
+              <a class="texan_outline_link" href="{{ collection.url }}">{{ 'products.facets.clear_all' | t }}</a>
+            </div>
+          {%- endif -%}
+        {%- endpaginate -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="{{ 'collection.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Collection",
+  "settings": [
+    { "type": "header", "content": "Banner" },
+    { "type": "checkbox", "id": "show_banner", "label": "Show banner", "default": true },
+    { "type": "checkbox", "id": "show_image", "label": "Show collection image", "default": true },
+    { "type": "checkbox", "id": "show_description", "label": "Show description", "default": true },
+    { "type": "header", "content": "Grid" },
+    { "type": "range", "id": "products_per_page", "min": 8, "max": 48, "step": 4, "label": "Products per page", "default": 12 },
+    { "type": "checkbox", "id": "show_quick_add", "label": "Enable quick add", "default": true },
+    { "type": "header", "content": "Filtering" },
+    { "type": "checkbox", "id": "enable_filtering", "label": "Enable filtering", "default": true }
+  ]
+}
+{% endschema %}

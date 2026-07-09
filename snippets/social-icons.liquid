@@ -1,0 +1,50 @@
+{%- comment -%} Renders configured social links as an icon row. {%- endcomment -%}
+{%- liquid
+  assign socials = ''
+  if settings.social_instagram != blank
+    assign socials = socials | append: 'instagram,'
+  endif
+  if settings.social_facebook != blank
+    assign socials = socials | append: 'facebook,'
+  endif
+  if settings.social_tiktok != blank
+    assign socials = socials | append: 'tiktok,'
+  endif
+  if settings.social_youtube != blank
+    assign socials = socials | append: 'youtube,'
+  endif
+  if settings.social_x != blank
+    assign socials = socials | append: 'x,'
+  endif
+  if settings.social_linkedin != blank
+    assign socials = socials | append: 'linkedin,'
+  endif
+  assign social_list = socials | split: ','
+-%}
+{%- if social_list.size > 0 -%}
+  <ul class="texan_social_icons">
+    {%- for network in social_list -%}
+      {%- liquid
+        case network
+          when 'instagram'
+            assign url = settings.social_instagram
+          when 'facebook'
+            assign url = settings.social_facebook
+          when 'tiktok'
+            assign url = settings.social_tiktok
+          when 'youtube'
+            assign url = settings.social_youtube
+          when 'x'
+            assign url = settings.social_x
+          when 'linkedin'
+            assign url = settings.social_linkedin
+        endcase
+      -%}
+      <li>
+        <a href="{{ url }}" target="_blank" rel="noopener" aria-label="{{ network }}">
+          {% render 'icon', name: network %}
+        </a>
+      </li>
+    {%- endfor -%}
+  </ul>
+{%- endif -%}

@@ -1,0 +1,22 @@
+{
+  "type": "footer",
+  "name": "Footer group",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "col-shop": { "type": "menu", "settings": { "heading": "Shop" } },
+        "col-science": { "type": "menu", "settings": { "heading": "Science" } },
+        "col-about": { "type": "menu", "settings": { "heading": "About" } },
+        "col-support": { "type": "menu", "settings": { "heading": "Support" } },
+        "newsletter": { "type": "newsletter", "settings": { "heading": "Newsletter" } }
+      },
+      "block_order": ["col-shop", "col-science", "col-about", "col-support", "newsletter"],
+      "settings": {
+        "tagline": "Life-Altering Science<sup>TM</sup>",
+        "show_payment_icons": true
+      }
+    }
+  },
+  "order": ["footer"]
+}

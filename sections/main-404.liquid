@@ -1,0 +1,35 @@
+{%- comment -%} 404 page. {%- endcomment -%}
+<section class="texan_404 texan_container">
+  <p class="texan_404_code">404</p>
+  <h1>{{ '404.title' | t }}</h1>
+  <p class="texan_404_text">{{ '404.subtext' | t }}</p>
+  <a class="texan_button" href="{{ routes.root_url }}">{{ '404.back_home' | t }}</a>
+</section>
+
+{% stylesheet %}
+  .texan_404 {
+    display: grid;
+    gap: 1rem;
+    place-items: center;
+    padding-block: clamp(4rem, 12vw, 9rem);
+    text-align: center;
+  }
+  .texan_404_code {
+    font-size: clamp(4rem, 16vw, 9rem);
+    font-weight: 700;
+    letter-spacing: -0.08em;
+    line-height: 0.9;
+    color: var(--color_red);
+  }
+  .texan_404 h1 {
+    font-size: clamp(1.4rem, 4vw, 2.2rem);
+    letter-spacing: -0.04em;
+  }
+  .texan_404_text {
+    color: var(--color_muted);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{ "name": "404", "settings": [] }
+{% endschema %}

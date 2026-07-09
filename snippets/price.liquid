@@ -1,0 +1,28 @@
+{%- comment -%}
+  Price display with compare-at + sale handling.
+  Params: product_or_variant (object), use_variant (bool)
+{%- endcomment -%}
+{%- liquid
+  if use_variant and product_or_variant.selected_or_first_available_variant
+    assign target = product_or_variant.selected_or_first_available_variant
+  else
+    assign target = product_or_variant
+  endif
+
+  assign price = target.price
+  assign compare = target.compare_at_price
+
+  if product_or_variant.price_varies and use_variant != true
+    assign price = product_or_variant.price_min
+  endif
+-%}
+<div class="texan_price{% if compare > price %} texan_price_on_sale{% endif %}">
+  {%- if product_or_variant.price_varies and use_variant != true -%}
+    <span class="texan_price_from">{{ 'products.product.from_price' | t: price: price | money }}</span>
+  {%- else -%}
+    <span class="texan_price_current">{{ price | money }}</span>
+  {%- endif -%}
+  {%- if compare > price -%}
+    <span class="texan_price_compare"><s>{{ compare | money }}</s></span>
+  {%- endif -%}
+</div>

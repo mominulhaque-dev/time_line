@@ -1,0 +1,23 @@
+{%- comment -%}
+  Reusable article card. Params: article, show_excerpt (bool)
+{%- endcomment -%}
+{%- if article and article != empty -%}
+  <article class="texan_article_card" data_texan_reveal>
+    <a href="{{ article.url }}" class="texan_article_media">
+      {%- if article.image -%}
+        {%- assign a_alt = article.image.alt | default: article.title | escape -%}
+        {{ article.image | image_url: width: 800 | image_tag: loading: 'lazy', widths: '300, 500, 800', sizes: '(min-width: 760px) 25vw, 100vw', alt: a_alt }}
+      {%- else -%}
+        {{ 'image' | placeholder_svg_tag: 'texan_placeholder' }}
+      {%- endif -%}
+    </a>
+    <p>
+      {%- if article.tags.size > 0 -%}{{ article.tags | first }} &middot; {% endif -%}
+      {{ article.published_at | date: '%b %-d, %Y' }}
+    </p>
+    <h3><a href="{{ article.url }}">{{ article.title }}</a></h3>
+    {%- if show_excerpt and article.excerpt_or_content != blank -%}
+      <div class="texan_article_excerpt">{{ article.excerpt_or_content | strip_html | truncatewords: 22 }}</div>
+    {%- endif -%}
+  </article>
+{%- endif -%}

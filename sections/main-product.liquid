@@ -1,0 +1,277 @@
+{%- comment -%}
+  Main product section. Media gallery (left) + block-driven info column (right).
+  Block order is controlled per template JSON, enabling multiple product layouts.
+{%- endcomment -%}
+{%- liquid
+  assign product_form_id = 'texan_product_form_' | append: section.id
+  assign current_variant = product.selected_or_first_available_variant
+-%}
+<section class="texan_product texan_container" data_texan_product_section data-section-id="{{ section.id }}">
+  <div class="texan_product_layout">
+    {%- comment -%} ---------- Media gallery ---------- {%- endcomment -%}
+    <div class="texan_gallery" data_texan_gallery>
+      <div class="texan_gallery_main">
+        {%- if product.media.size > 0 -%}
+          {%- for media in product.media -%}
+            <div
+              class="texan_gallery_slide{% if forloop.first %} texan_is_active{% endif %}"
+              data_texan_slide="{{ media.id }}"
+              {% unless forloop.first %}hidden{% endunless %}
+            >
+              {%- assign m_alt = media.alt | default: product.title | escape -%}
+              {%- if media.media_type == 'image' -%}
+                {{
+                  media
+                  | image_url: width: 1200
+                  | image_tag:
+                    loading: forloop.first | default: false,
+                    widths: '400, 600, 800, 1200, 1600',
+                    sizes: '(min-width: 900px) 45vw, 100vw',
+                    class: 'texan_zoomable',
+                    alt: m_alt
+                }}
+              {%- else -%}
+                {{ media | media_tag: image_size: '1200x' }}
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        {%- else -%}
+          {{ 'product-1' | placeholder_svg_tag: 'texan_placeholder' }}
+        {%- endif -%}
+      </div>
+
+      {%- if product.media.size > 1 -%}
+        <div class="texan_gallery_thumbs" role="tablist" aria-label="Product media">
+          {%- for media in product.media -%}
+            <button
+              type="button"
+              role="tab"
+              class="texan_thumb{% if forloop.first %} texan_is_active{% endif %}"
+              data_texan_thumb="{{ media.id }}"
+              aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+              aria-label="View media {{ forloop.index }}"
+            >
+              {%- assign t_alt = media.alt | default: product.title | escape -%}
+              {{ media.preview_image | image_url: width: 160 | image_tag: loading: 'lazy', widths: '80, 120, 160', alt: t_alt }}
+            </button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} ---------- Info column ---------- {%- endcomment -%}
+    <div class="texan_product_info">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'vendor' -%}
+            {%- if product.vendor != blank -%}<p class="texan_product_vendor" {{ block.shopify_attributes }}>{{ product.vendor }}</p>{%- endif -%}
+
+          {%- when 'title' -%}
+            <h1 class="texan_product_title" {{ block.shopify_attributes }}>{{ product.title }}</h1>
+
+          {%- when 'rating' -%}
+            <div {{ block.shopify_attributes }}>{% render 'rating', product: product, show_count: true %}</div>
+
+          {%- when 'price' -%}
+            <div class="texan_product_price" data_texan_price {{ block.shopify_attributes }}>
+              {% render 'price', product_or_variant: product, use_variant: true %}
+            </div>
+
+          {%- when 'description' -%}
+            {%- if product.description != blank -%}
+              <div class="texan_product_description rte" {{ block.shopify_attributes }}>{{ product.description }}</div>
+            {%- endif -%}
+
+          {%- when 'variant_picker' -%}
+            {%- unless product.has_only_default_variant -%}
+              <div class="texan_variant_picker" data_texan_variant_picker {{ block.shopify_attributes }}>
+                {%- for option in product.options_with_values -%}
+                  <fieldset class="texan_option">
+                    <legend>{{ option.name }}: <span data_texan_option_label="{{ option.position }}">{{ option.selected_value }}</span></legend>
+                    <div class="texan_option_values">
+                      {%- for value in option.values -%}
+                        {%- liquid
+                          assign input_id = section.id | append: '-' | append: option.position | append: '-' | append: forloop.index0
+                          assign is_checked = false
+                          if option.selected_value == value
+                            assign is_checked = true
+                          endif
+                        -%}
+                        {% render 'swatch',
+                          option: option,
+                          value: value,
+                          input_name: option.name,
+                          input_id: input_id,
+                          checked: is_checked %}
+                      {%- endfor -%}
+                    </div>
+                  </fieldset>
+                {%- endfor -%}
+              </div>
+            {%- endunless -%}
+
+          {%- when 'inventory' -%}
+            <p class="texan_inventory" data_texan_inventory {{ block.shopify_attributes }}>
+              {%- if current_variant.available -%}
+                {%- if current_variant.inventory_management and current_variant.inventory_quantity > 0 and current_variant.inventory_quantity <= block.settings.low_threshold -%}
+                  <span class="texan_inv_low">{{ 'products.product.low_stock' | t: count: current_variant.inventory_quantity }}</span>
+                {%- else -%}
+                  <span class="texan_inv_in">{{ 'products.product.in_stock' | t }}</span>
+                {%- endif -%}
+              {%- else -%}
+                <span class="texan_inv_out">{{ 'products.product.out_of_stock' | t }}</span>
+              {%- endif -%}
+            </p>
+
+          {%- when 'buy_buttons' -%}
+            <div class="texan_buy" {{ block.shopify_attributes }}>
+              {%- form 'product', product, id: product_form_id, class: 'texan_product_form', data_texan_product_form: '' -%}
+                <input type="hidden" name="id" value="{{ current_variant.id }}" data_texan_variant_id>
+                <div class="texan_buy_row">
+                  {%- if block.settings.show_quantity -%}
+                    <div class="texan_qty_stepper" data_texan_pdp_qty>
+                      <button type="button" data_texan_qty_minus aria-label="{{ 'products.product.decrease_quantity' | t }}">{% render 'icon', name: 'minus' %}</button>
+                      <input type="number" name="quantity" value="1" min="1" aria-label="{{ 'products.product.quantity' | t }}" data_texan_qty_field>
+                      <button type="button" data_texan_qty_plus aria-label="{{ 'products.product.increase_quantity' | t }}">{% render 'icon', name: 'plus' %}</button>
+                    </div>
+                  {%- endif -%}
+                  <button
+                    type="submit"
+                    name="add"
+                    class="texan_add_to_cart"
+                    data_texan_atc
+                    {% unless current_variant.available %}disabled{% endunless %}
+                  >
+                    <span data_texan_atc_text>{% if current_variant.available %}{{ 'products.product.add_to_cart' | t }}{% else %}{{ 'products.product.sold_out' | t }}{% endif %}</span>
+                  </button>
+                </div>
+                {%- if block.settings.show_dynamic_checkout -%}
+                  {{ form | payment_button }}
+                {%- endif -%}
+              {%- endform -%}
+            </div>
+
+          {%- when 'shipping' -%}
+            <p class="texan_ship_line" {{ block.shopify_attributes }}>
+              {% render 'icon', name: 'truck' %} {{ block.settings.text }}
+            </p>
+
+          {%- when 'trust_badges' -%}
+            <ul class="texan_trust_badges" {{ block.shopify_attributes }}>
+              {%- if block.settings.badge_1 != blank -%}<li>{% render 'icon', name: 'shield' %} {{ block.settings.badge_1 }}</li>{%- endif -%}
+              {%- if block.settings.badge_2 != blank -%}<li>{% render 'icon', name: 'leaf' %} {{ block.settings.badge_2 }}</li>{%- endif -%}
+              {%- if block.settings.badge_3 != blank -%}<li>{% render 'icon', name: 'check' %} {{ block.settings.badge_3 }}</li>{%- endif -%}
+            </ul>
+
+          {%- when 'collapsible' -%}
+            <details class="texan_accordion" {% if block.settings.open %}open{% endif %} {{ block.shopify_attributes }}>
+              <summary>{{ block.settings.heading }}{% render 'icon', name: 'chevron_down' %}</summary>
+              <div class="texan_accordion_body rte">{{ block.settings.content }}</div>
+            </details>
+
+          {%- when 'share' -%}
+            <button type="button" class="texan_share" data_texan_share data-url="{{ shop.url }}{{ product.url }}" data-title="{{ product.title | escape }}" {{ block.shopify_attributes }}>
+              {% render 'icon', name: 'share' %} {{ 'products.product.share' | t }}
+            </button>
+
+          {%- when '@app' -%}
+            {% render block %}
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </div>
+
+  {%- comment -%} Variant data for JS {%- endcomment -%}
+  <script type="application/json" data_texan_variants>
+    {{ product.variants | json }}
+  </script>
+  <script type="application/json" data_texan_media_map>
+    [{% for media in product.media %}{"id": {{ media.id }}, "position": {{ forloop.index0 }}}{% unless forloop.last %},{% endunless %}{% endfor %}]
+  </script>
+</section>
+
+{%- comment -%} Sticky add-to-cart bar {%- endcomment -%}
+<div class="texan_sticky_atc" data_texan_sticky_atc aria-hidden="true">
+  <div class="texan_container texan_sticky_atc_shell">
+    <div class="texan_sticky_atc_info">
+      {%- if product.featured_media -%}
+        {%- assign s_alt = product.title | escape -%}
+        {{ product.featured_media | image_url: width: 96 | image_tag: loading: 'lazy', alt: s_alt }}
+      {%- endif -%}
+      <div>
+        <strong>{{ product.title }}</strong>
+        <span data_texan_sticky_price>{{ current_variant.price | money }}</span>
+      </div>
+    </div>
+    <button type="submit" form="{{ product_form_id }}" class="texan_add_to_cart" data_texan_sticky_button>
+      {{ 'products.product.add_to_cart' | t }}
+    </button>
+  </div>
+</div>
+
+<script src="{{ 'product.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Product information",
+  "tag": "section",
+  "blocks": [
+    { "type": "@app" },
+    { "type": "vendor", "name": "Vendor", "limit": 1 },
+    { "type": "title", "name": "Title", "limit": 1 },
+    { "type": "rating", "name": "Rating", "limit": 1 },
+    { "type": "price", "name": "Price", "limit": 1 },
+    {
+      "type": "variant_picker",
+      "name": "Variant picker",
+      "limit": 1,
+      "settings": []
+    },
+    {
+      "type": "inventory",
+      "name": "Inventory status",
+      "limit": 1,
+      "settings": [
+        { "type": "range", "id": "low_threshold", "min": 1, "max": 50, "step": 1, "label": "Low stock threshold", "default": 10 }
+      ]
+    },
+    {
+      "type": "buy_buttons",
+      "name": "Buy buttons",
+      "limit": 1,
+      "settings": [
+        { "type": "checkbox", "id": "show_quantity", "label": "Show quantity selector", "default": true },
+        { "type": "checkbox", "id": "show_dynamic_checkout", "label": "Show dynamic checkout button", "default": true }
+      ]
+    },
+    {
+      "type": "shipping",
+      "name": "Shipping line",
+      "settings": [
+        { "type": "text", "id": "text", "label": "t:sections.all.content", "default": "Free shipping & 30-day returns" }
+      ]
+    },
+    {
+      "type": "trust_badges",
+      "name": "Trust badges",
+      "settings": [
+        { "type": "text", "id": "badge_1", "label": "Badge 1", "default": "Third-party tested" },
+        { "type": "text", "id": "badge_2", "label": "Badge 2", "default": "Vegan & non-GMO" },
+        { "type": "text", "id": "badge_3", "label": "Badge 3", "default": "Clinically proven" }
+      ]
+    },
+    { "type": "description", "name": "Description", "limit": 1 },
+    {
+      "type": "collapsible",
+      "name": "Collapsible row",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "t:sections.all.heading", "default": "Suggested use" },
+        { "type": "richtext", "id": "content", "label": "t:sections.all.content", "default": "<p>Take daily with a meal.</p>" },
+        { "type": "checkbox", "id": "open", "label": "Open by default", "default": false }
+      ]
+    },
+    { "type": "share", "name": "Share", "limit": 1 }
+  ],
+  "settings": []
+}
+{% endschema %}

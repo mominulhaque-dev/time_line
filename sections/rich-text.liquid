@@ -1,0 +1,74 @@
+{%- comment -%} Generic centered rich-text block. Reusable on any page. {%- endcomment -%}
+<section class="texan_rich_text texan_container" style="--pt: {{ section.settings.padding_top }}px; --pb: {{ section.settings.padding_bottom }}px;">
+  <div class="texan_rich_text_inner texan_align_{{ section.settings.alignment }}">
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when 'eyebrow' -%}
+          <p class="texan_rt_eyebrow" {{ block.shopify_attributes }}>{{ block.settings.text }}</p>
+        {%- when 'heading' -%}
+          <h2 class="texan_rt_heading" {{ block.shopify_attributes }}>{{ block.settings.text }}</h2>
+        {%- when 'text' -%}
+          <div class="texan_rt_body rte" {{ block.shopify_attributes }}>{{ block.settings.text }}</div>
+        {%- when 'button' -%}
+          <a class="texan_button" href="{{ block.settings.link | default: '#' }}" {{ block.shopify_attributes }}>{{ block.settings.label }}</a>
+      {%- endcase -%}
+    {%- endfor -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .texan_rich_text {
+    padding-block: var(--pt, 48px) var(--pb, 48px);
+  }
+  .texan_rich_text_inner {
+    display: grid;
+    gap: 1.1rem;
+    max-width: 46rem;
+  }
+  .texan_align_center {
+    margin-inline: auto;
+    justify-items: center;
+    text-align: center;
+  }
+  .texan_align_left {
+    justify-items: start;
+    text-align: left;
+  }
+  .texan_rt_eyebrow {
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color_red);
+  }
+  .texan_rt_heading {
+    font-size: clamp(1.6rem, 4vw, 2.8rem);
+    line-height: 1.05;
+    letter-spacing: -0.05em;
+  }
+  .texan_rt_body {
+    color: var(--color_muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Rich text",
+  "settings": [
+    { "type": "select", "id": "alignment", "label": "Alignment", "options": [ { "value": "center", "label": "Center" }, { "value": "left", "label": "Left" } ], "default": "center" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "t:sections.all.padding.top", "default": 48 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "t:sections.all.padding.bottom", "default": 48 }
+  ],
+  "blocks": [
+    { "type": "eyebrow", "name": "Eyebrow", "limit": 1, "settings": [ { "type": "text", "id": "text", "label": "t:sections.all.content", "default": "Our mission" } ] },
+    { "type": "heading", "name": "Heading", "limit": 1, "settings": [ { "type": "text", "id": "text", "label": "t:sections.all.heading", "default": "Life-Altering Science" } ] },
+    { "type": "text", "name": "Text", "settings": [ { "type": "richtext", "id": "text", "label": "t:sections.all.content", "default": "<p>Share your brand story here.</p>" } ] },
+    { "type": "button", "name": "Button", "settings": [ { "type": "text", "id": "label", "label": "t:sections.all.link_label", "default": "Learn more" }, { "type": "url", "id": "link", "label": "t:sections.all.link" } ] }
+  ],
+  "presets": [
+    { "name": "Rich text", "blocks": [ { "type": "eyebrow" }, { "type": "heading" }, { "type": "text" } ] }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,91 @@
+{%- comment -%} FAQ accordion. Blocks = question/answer. {%- endcomment -%}
+<section class="texan_faq texan_container">
+  {%- if section.settings.heading != blank -%}
+    <h2 class="texan_faq_heading">{{ section.settings.heading }}</h2>
+  {%- endif -%}
+  <div class="texan_faq_list">
+    {%- for block in section.blocks -%}
+      <details class="texan_accordion" {% if block.settings.open %}open{% endif %} {{ block.shopify_attributes }}>
+        <summary>{{ block.settings.question }}{% render 'icon', name: 'chevron_down' %}</summary>
+        <div class="texan_accordion_body rte">{{ block.settings.answer }}</div>
+      </details>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .texan_faq {
+    padding-block: clamp(2.5rem, 6vw, 5rem);
+  }
+  .texan_faq_heading {
+    margin-bottom: 1.5rem;
+    font-size: clamp(1.6rem, 4vw, 2.8rem);
+    letter-spacing: -0.05em;
+    text-align: center;
+  }
+  .texan_faq_list {
+    max-width: 46rem;
+    margin-inline: auto;
+  }
+  .texan_faq .texan_accordion summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 0;
+    font-size: 0.86rem;
+    font-weight: 700;
+    cursor: pointer;
+    list-style: none;
+    border-top: 1px solid var(--color_line);
+  }
+  .texan_faq .texan_accordion summary::-webkit-details-marker {
+    display: none;
+  }
+  .texan_faq .texan_accordion summary svg {
+    width: 1.1rem;
+    height: 1.1rem;
+    flex: 0 0 auto;
+    transition: transform var(--transition_base);
+  }
+  .texan_faq .texan_accordion[open] summary svg {
+    transform: rotate(180deg);
+  }
+  .texan_faq .texan_accordion_body {
+    padding-bottom: 1.1rem;
+    color: var(--color_muted);
+    font-size: 0.82rem;
+    line-height: 1.6;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "FAQ",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "t:sections.all.heading", "default": "Frequently asked questions" }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Question",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "What is Urolithin A?" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Urolithin A is a postbiotic compound that supports mitochondrial health.</p>" },
+        { "type": "checkbox", "id": "open", "label": "Open by default", "default": false }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ",
+      "blocks": [
+        { "type": "item", "settings": { "question": "What is Urolithin A?", "open": true } },
+        { "type": "item", "settings": { "question": "How do I take Mitopure?" } },
+        { "type": "item", "settings": { "question": "Is it third-party tested?" } },
+        { "type": "item", "settings": { "question": "What is your return policy?" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

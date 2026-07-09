@@ -1,0 +1,41 @@
+{%- comment -%}
+  Bridges Theme Editor settings onto the CSS custom properties defined in base.css.
+  base.css keeps hard-coded fallbacks, so a missing setting never breaks the design.
+{%- endcomment -%}
+{%- liquid
+  assign heading_font = settings.font_heading
+  assign body_font = settings.font_body
+  assign body_font_bold = body_font | font_modify: 'weight', 'bold'
+-%}
+{% style %}
+  {% if heading_font %}{{ heading_font | font_face: font_display: 'swap' }}{% endif %}
+  {% if body_font %}{{ body_font | font_face: font_display: 'swap' }}{% endif %}
+  {% if body_font_bold %}{{ body_font_bold | font_face: font_display: 'swap' }}{% endif %}
+
+  :root {
+    --color_ink: {{ settings.color_ink }};
+    --color_muted: {{ settings.color_muted }};
+    --color_soft: {{ settings.color_soft }};
+    --color_panel: {{ settings.color_panel }};
+    --color_line: {{ settings.color_line }};
+    --color_white: {{ settings.color_white }};
+    --color_red: {{ settings.color_red }};
+    --color_page_bg: {{ settings.color_page_bg }};
+
+    --color_ink_rgb: {{ settings.color_ink.red }}, {{ settings.color_ink.green }}, {{ settings.color_ink.blue }};
+    --color_red_rgb: {{ settings.color_red.red }}, {{ settings.color_red.green }}, {{ settings.color_red.blue }};
+
+    {% if heading_font %}--font_heading: {{ heading_font.family }}, {{ heading_font.fallback_families }};{% endif %}
+    {% if body_font %}--font_body: {{ body_font.family }}, {{ body_font.fallback_families }};{% endif %}
+    --font_body_scale: {{ settings.font_body_scale | divided_by: 100.0 }};
+
+    --container_width: {{ settings.container_width }}px;
+    --section_spacing: {{ settings.section_spacing }}px;
+    --radius: {{ settings.corner_radius }}px;
+  }
+
+  body {
+    background: var(--color_page_bg);
+    font-size: calc(1rem * var(--font_body_scale));
+  }
+{% endstyle %}

@@ -1,0 +1,24 @@
+{%- comment -%}
+  Product badge shown over the card image.
+  Priority: sold out > sale > metafield badge > global default badge.
+  Params: product
+{%- endcomment -%}
+{%- liquid
+  assign badge_text = ''
+  assign badge_modifier = ''
+
+  if product.available == false
+    assign badge_text = 'products.product.sold_out' | t
+    assign badge_modifier = 'texan_badge_soldout'
+  elsif product.compare_at_price > product.price
+    assign badge_text = 'products.product.on_sale' | t
+    assign badge_modifier = 'texan_badge_sale'
+  elsif product.metafields.custom.badge != blank
+    assign badge_text = product.metafields.custom.badge
+  elsif settings.show_product_badge
+    assign badge_text = settings.product_badge_text
+  endif
+-%}
+{%- if badge_text != blank -%}
+  <span class="texan_product_badge {{ badge_modifier }}">{{ badge_text }}</span>
+{%- endif -%}

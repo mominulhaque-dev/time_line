@@ -1,0 +1,82 @@
+{%- comment -%} Horizontal review carousel: video cards + quote cards (blocks). {%- endcomment -%}
+<section class="texan_review_strip" id="{{ section.settings.anchor | default: 'texan_reviews' }}" aria-labelledby="texan_review_title_{{ section.id }}">
+  {%- if section.settings.heading != blank -%}
+    <h2 id="texan_review_title_{{ section.id }}">{{ section.settings.heading }}</h2>
+  {%- endif -%}
+
+  {%- if section.blocks.size > 0 -%}
+    <div class="texan_review_cards">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'video' -%}
+            <article {{ block.shopify_attributes }}>
+              {%- if block.settings.image != blank -%}
+                {%- assign v_alt = block.settings.alt | default: 'Review video' | escape -%}
+                {{ block.settings.image | image_url: width: 560 | image_tag: loading: 'lazy', widths: '280, 420, 560', alt: v_alt }}
+              {%- endif -%}
+              <button type="button" aria-label="{{ 'general.accessibility.play' | t }}"{% if block.settings.video_url != blank %} data-video="{{ block.settings.video_url }}"{% endif %}>
+                {% render 'icon', name: 'play' %}
+              </button>
+            </article>
+          {%- when 'quote' -%}
+            <article {{ block.shopify_attributes }}>
+              <p class="texan_rating_stars" aria-hidden="true">
+                {%- for i in (1..5) -%}{% render 'icon', name: 'star' %}{%- endfor -%}
+              </p>
+              <blockquote>{{ block.settings.quote }}</blockquote>
+              <cite>{{ block.settings.author | default: 'Verified buyer' }}</cite>
+            </article>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+
+  {%- if section.settings.link_label != blank -%}
+    <a class="texan_outline_link" href="{{ section.settings.link | default: '#' }}">{{ section.settings.link_label }}</a>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.reviews.name",
+  "max_blocks": 16,
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Anchor ID", "default": "texan_reviews" },
+    { "type": "text", "id": "heading", "label": "t:sections.all.heading", "default": "Loved by our community" },
+    { "type": "text", "id": "link_label", "label": "t:sections.all.link_label", "default": "Read all reviews" },
+    { "type": "url", "id": "link", "label": "t:sections.all.link" }
+  ],
+  "blocks": [
+    {
+      "type": "video",
+      "name": "t:sections.reviews.video",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "t:sections.all.image" },
+        { "type": "text", "id": "alt", "label": "Image alt" },
+        { "type": "url", "id": "video_url", "label": "Video URL" }
+      ]
+    },
+    {
+      "type": "quote",
+      "name": "t:sections.press_ticker.quote",
+      "settings": [
+        { "type": "text", "id": "quote", "label": "t:sections.press_ticker.quote", "default": "Excellent supplement" },
+        { "type": "text", "id": "author", "label": "t:sections.press_ticker.author", "default": "Verified buyer" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.reviews.name",
+      "blocks": [
+        { "type": "video" },
+        { "type": "quote", "settings": { "quote": "Excellent supplement" } },
+        { "type": "video" },
+        { "type": "quote", "settings": { "quote": "Increased Strength and Energy" } },
+        { "type": "video" },
+        { "type": "quote", "settings": { "quote": "My stamina is returning..." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

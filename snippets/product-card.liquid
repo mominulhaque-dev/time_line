@@ -1,0 +1,63 @@
+{%- comment -%}
+  Reusable product card. Ports the .texan_product_card markup from the prototype.
+  Params:
+    product        (required) product object
+    show_quick_add (bool) render quick-add / choose-options control
+    lazy           (bool) lazy-load the image (default true)
+{%- endcomment -%}
+{%- liquid
+  assign lazy = lazy | default: true, allow_false: true
+  assign second_image = product.images[1]
+  assign loading = 'lazy'
+  if lazy == false
+    assign loading = 'eager'
+  endif
+  assign primary_alt = product.featured_media.alt | default: product.title | escape
+  assign secondary_alt = second_image.alt | default: product.title | escape
+-%}
+{%- if product and product != empty -%}
+  <article class="texan_product_card" data_texan_reveal>
+    <a href="{{ product.url }}" class="texan_product_card_media" aria-label="{{ product.title | escape }}">
+      <figure>
+        {%- if product.featured_media -%}
+          {{
+            product.featured_media
+            | image_url: width: 800
+            | image_tag:
+              loading: loading,
+              widths: '200, 300, 400, 600, 800',
+              sizes: '(min-width: 760px) 25vw, 50vw',
+              class: 'texan_card_img_primary',
+              alt: primary_alt
+          }}
+          {%- if settings.show_second_image and second_image -%}
+            {{
+              second_image
+              | image_url: width: 800
+              | image_tag:
+                loading: 'lazy',
+                widths: '200, 300, 400, 600, 800',
+                sizes: '(min-width: 760px) 25vw, 50vw',
+                class: 'texan_card_img_secondary',
+                alt: secondary_alt
+            }}
+          {%- endif -%}
+        {%- else -%}
+          {{ 'product-1' | placeholder_svg_tag: 'texan_placeholder' }}
+        {%- endif -%}
+        {% render 'product-badge', product: product %}
+      </figure>
+    </a>
+
+    <div class="texan_product_card_body">
+      <h3><a href="{{ product.url }}">{{ product.title }}</a></h3>
+      {%- if settings.show_product_rating -%}
+        {% render 'rating', product: product, show_count: true %}
+      {%- endif -%}
+      {% render 'price', product_or_variant: product %}
+      {%- if show_quick_add -%}
+        {% render 'quick-add', product: product %}
+      {%- endif -%}
+    </div>
+  </article>
+{%- endif -%}

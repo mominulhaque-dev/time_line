@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}" dir="{% if settings.text_direction == 'rtl' %}rtl{% else %}ltr{% endif %}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="{{ settings.color_page_bg }}">
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+    {%- endif -%}
+
+    <title>{{ page_title }}{% if current_tags %} &ndash; {{ 'general.meta.tags' | t: tags: current_tags.first }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}</title>
+
+    {%- if page_description -%}
+      <meta name="description" content="{{ page_description | escape }}">
+    {%- endif -%}
+
+    {% render 'meta-tags' %}
+
+    {{ content_for_header }}
+
+    {{ 'base.css' | asset_url | stylesheet_tag }}
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+
+    {%- comment -%} Page-scoped CSS — loaded only where used (hybrid strategy). {%- endcomment -%}
+    {%- case request.page_type -%}
+      {%- when 'index' -%}
+        {{ 'homepage.css' | asset_url | stylesheet_tag }}
+      {%- when 'product' -%}
+        {{ 'product.css' | asset_url | stylesheet_tag }}
+      {%- when 'collection', 'list-collections', 'search' -%}
+        {{ 'collection.css' | asset_url | stylesheet_tag }}
+      {%- when 'blog', 'article' -%}
+        {{ 'blog.css' | asset_url | stylesheet_tag }}
+      {%- when 'cart' -%}
+        {{ 'cart.css' | asset_url | stylesheet_tag }}
+      {%- when 'page' -%}
+        {{ 'page.css' | asset_url | stylesheet_tag }}
+    {%- endcase -%}
+    {%- if request.page_type contains 'customers/' -%}
+      {{ 'customer.css' | asset_url | stylesheet_tag }}
+    {%- endif -%}
+
+    {% render 'css-variables' %}
+  </head>
+
+  <body class="template-{{ request.page_type | handleize }}">
+    <a class="texan_skip_link texan_screen_reader" href="#texan_main_content">
+      {{ 'general.accessibility.skip_to_content' | t }}
+    </a>
+
+    {% sections 'header-group' %}
+
+    <main id="texan_main_content" role="main">
+      {{ content_for_layout }}
+    </main>
+
+    {% sections 'footer-group' %}
+
+    {%- if settings.cart_type == 'drawer' -%}
+      {% section 'cart-drawer' %}
+    {%- endif -%}
+
+    {% render 'back-to-top' %}
+    {% render 'cookie-banner' %}
+
+    <script src="{{ 'global.js' | asset_url }}" defer></script>
+  </body>
+</html>

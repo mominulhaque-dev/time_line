@@ -1,0 +1,46 @@
+{%- comment -%}
+  Rendered by global.js via /search/suggest?section_id=predictive-search.
+{%- endcomment -%}
+<div class="texan_predictive_results" data_texan_predictive_results>
+  {%- if predictive_search.performed -%}
+    {%- if predictive_search.resources.products.size > 0 -%}
+      <p class="texan_predictive_group_title">{{ 'general.search.products' | t }}</p>
+      {%- for product in predictive_search.resources.products -%}
+        <a class="texan_predictive_item" href="{{ product.url }}">
+          {%- if product.featured_media -%}
+            {%- assign p_alt = product.title | escape -%}
+            {{ product.featured_media | image_url: width: 80 | image_tag: loading: 'lazy', alt: p_alt }}
+          {%- else -%}
+            <span></span>
+          {%- endif -%}
+          <span>
+            <strong>{{ product.title }}</strong>
+            {% render 'price', product_or_variant: product %}
+          </span>
+        </a>
+      {%- endfor -%}
+    {%- endif -%}
+
+    {%- if predictive_search.resources.pages.size > 0 -%}
+      <p class="texan_predictive_group_title">{{ 'general.search.pages' | t }}</p>
+      {%- for page in predictive_search.resources.pages -%}
+        <a class="texan_predictive_item" href="{{ page.url }}"><span></span><span><strong>{{ page.title }}</strong></span></a>
+      {%- endfor -%}
+    {%- endif -%}
+
+    {%- if predictive_search.resources.articles.size > 0 -%}
+      <p class="texan_predictive_group_title">{{ 'general.search.articles' | t }}</p>
+      {%- for article in predictive_search.resources.articles -%}
+        <a class="texan_predictive_item" href="{{ article.url }}"><span></span><span><strong>{{ article.title }}</strong></span></a>
+      {%- endfor -%}
+    {%- endif -%}
+
+    {%- if predictive_search.resources.products.size == 0 and predictive_search.resources.pages.size == 0 and predictive_search.resources.articles.size == 0 -%}
+      <p class="texan_predictive_group_title">{{ 'general.search.no_results' | t: terms: predictive_search.terms }}</p>
+    {%- endif -%}
+  {%- endif -%}
+</div>
+
+{% schema %}
+{ "name": "Predictive search", "settings": [] }
+{% endschema %}

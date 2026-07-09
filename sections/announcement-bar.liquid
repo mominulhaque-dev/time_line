@@ -1,0 +1,91 @@
+{%- comment -%} Announcement bar — rotating messages via blocks. {%- endcomment -%}
+{%- if section.blocks.size > 0 -%}
+  <div
+    class="texan_announcement"
+    style="--announcement_bg: {{ section.settings.bg }}; --announcement_fg: {{ section.settings.fg }};"
+    {% if section.settings.rotate and section.blocks.size > 1 %}data_texan_announcement{% endif %}
+  >
+    <div class="texan_container texan_announcement_shell">
+      {%- for block in section.blocks -%}
+        <p class="texan_announcement_item" {% if forloop.first == false %}hidden{% endif %} {{ block.shopify_attributes }}>
+          {%- if block.settings.link != blank -%}
+            <a href="{{ block.settings.link }}">{{ block.settings.text }}</a>
+          {%- else -%}
+            {{ block.settings.text }}
+          {%- endif -%}
+        </p>
+      {%- endfor -%}
+    </div>
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .texan_announcement {
+    background: var(--announcement_bg, var(--color_ink));
+    color: var(--announcement_fg, var(--color_white));
+  }
+  .texan_announcement_shell {
+    display: grid;
+    place-items: center;
+    min-height: 2.1rem;
+    text-align: center;
+  }
+  .texan_announcement_item {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .texan_announcement_item[hidden] {
+    display: none;
+  }
+  .texan_announcement_item a {
+    text-decoration: underline;
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  (() => {
+    const bar = document.querySelector("[data_texan_announcement]");
+    if (!bar) return;
+    const items = bar.querySelectorAll(".texan_announcement_item");
+    if (items.length < 2) return;
+    let i = 0;
+    setInterval(() => {
+      items[i].hidden = true;
+      i = (i + 1) % items.length;
+      items[i].hidden = false;
+    }, 4500);
+  })();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "t:sections.announcement.name",
+  "max_blocks": 6,
+  "settings": [
+    { "type": "color", "id": "bg", "label": "t:sections.all.colors.background", "default": "#30302c" },
+    { "type": "color", "id": "fg", "label": "t:sections.all.colors.text", "default": "#ffffff" },
+    { "type": "checkbox", "id": "rotate", "label": "t:sections.announcement.rotate", "default": true }
+  ],
+  "blocks": [
+    {
+      "type": "message",
+      "name": "t:sections.announcement.block",
+      "settings": [
+        { "type": "text", "id": "text", "label": "t:sections.all.content", "default": "Free shipping on orders over $100" },
+        { "type": "url", "id": "link", "label": "t:sections.all.link" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.announcement.name",
+      "blocks": [
+        { "type": "message", "settings": { "text": "Free shipping on orders over $100" } },
+        { "type": "message", "settings": { "text": "Award-winning, clinically proven Urolithin A" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,65 @@
+{%- comment -%} Single article. {%- endcomment -%}
+<article class="texan_article texan_container">
+  <header class="texan_article_header">
+    {%- if article.tags.size > 0 -%}<p class="texan_article_meta">{{ article.tags | first }}</p>{%- endif -%}
+    <h1>{{ article.title }}</h1>
+    <p class="texan_article_byline">
+      {%- if section.settings.show_author -%}{{ article.author }} &middot; {% endif -%}
+      <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%B %-d, %Y' }}</time>
+    </p>
+  </header>
+
+  {%- if article.image and section.settings.show_image -%}
+    <div class="texan_article_hero">
+      {%- assign hero_alt = article.title | escape -%}
+      {{ article.image | image_url: width: 1600 | image_tag: loading: 'eager', widths: '600, 1000, 1400, 1600', sizes: '100vw', alt: hero_alt }}
+    </div>
+  {%- endif -%}
+
+  <div class="texan_article_body rte">
+    {{ article.content }}
+  </div>
+
+  <footer class="texan_article_footer">
+    <button type="button" class="texan_share" data_texan_share data-url="{{ shop.url }}{{ article.url }}" data-title="{{ article.title | escape }}">
+      {% render 'icon', name: 'share' %} {{ 'products.product.share' | t }}
+    </button>
+    <a class="texan_outline_link" href="{{ blog.url }}">{{ 'blogs.article.back_to_blog' | t: title: blog.title }}</a>
+  </footer>
+
+  {%- if blog.comments_enabled? -%}
+    <section class="texan_comments">
+      <h2>{{ 'blogs.article.comments' | t: count: article.comments_count }}</h2>
+      {%- if article.comments_count > 0 -%}
+        {%- for comment in article.comments -%}
+          <div class="texan_comment">
+            <p class="texan_comment_author">{{ comment.author }}</p>
+            <div class="texan_comment_body rte">{{ comment.content }}</div>
+          </div>
+        {%- endfor -%}
+      {%- endif -%}
+
+      {%- form 'new_comment', article, class: 'texan_comment_form' -%}
+        {%- if form.posted_successfully? -%}<p class="texan_form_success">Thanks, your comment was posted.</p>{%- endif -%}
+        <div class="texan_contact_grid">
+          <div class="texan_field"><label for="cm_name">{{ 'contact.name' | t }}</label><input id="cm_name" type="text" name="comment[author]" required></div>
+          <div class="texan_field"><label for="cm_email">{{ 'contact.email' | t }}</label><input id="cm_email" type="email" name="comment[email]" required></div>
+        </div>
+        <div class="texan_field"><label for="cm_body">{{ 'contact.message' | t }}</label><textarea id="cm_body" name="comment[body]" required></textarea></div>
+        <button type="submit" class="texan_button">{{ 'contact.send' | t }}</button>
+      {%- endform -%}
+    </section>
+  {%- endif -%}
+</article>
+
+<script src="{{ 'product.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Article",
+  "settings": [
+    { "type": "checkbox", "id": "show_image", "label": "Show featured image", "default": true },
+    { "type": "checkbox", "id": "show_author", "label": "Show author", "default": true }
+  ]
+}
+{% endschema %}

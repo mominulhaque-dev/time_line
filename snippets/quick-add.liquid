@@ -1,0 +1,27 @@
+{%- comment -%}
+  Quick-add control for cards. Single-variant products add straight to cart via
+  the global AJAX handler; multi-variant products link to the product page.
+  Params: product
+{%- endcomment -%}
+{%- liquid
+  assign single = false
+  if product.variants.size == 1 and product.available
+    assign single = true
+  endif
+-%}
+{%- if single -%}
+  {%- form 'product', product, class: 'texan_quick_add', data_texan_product_form: '' -%}
+    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+    <button type="submit" class="texan_button texan_quick_add_button">
+      {{ 'products.product.quick_add' | t }}
+    </button>
+  {%- endform -%}
+{%- elsif product.available -%}
+  <a href="{{ product.url }}" class="texan_button texan_quick_add_button">
+    {{ 'products.product.choose_options' | t }}
+  </a>
+{%- else -%}
+  <button type="button" class="texan_button texan_quick_add_button" disabled>
+    {{ 'products.product.sold_out' | t }}
+  </button>
+{%- endif -%}

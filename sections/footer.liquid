@@ -1,0 +1,96 @@
+{%- comment -%} Global footer: tagline, menu columns, newsletter, legal, social. {%- endcomment -%}
+<footer class="texan_footer" role="contentinfo">
+  <div class="texan_container">
+    {%- if section.settings.tagline != blank -%}
+      <h2 class="texan_footer_tagline">{{ section.settings.tagline }}</h2>
+    {%- endif -%}
+
+    <div class="texan_footer_columns">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'menu' -%}
+            <div {{ block.shopify_attributes }}>
+              {%- if block.settings.heading != blank -%}<h3>{{ block.settings.heading }}</h3>{%- endif -%}
+              {%- if block.settings.menu != blank -%}
+                {%- for link in linklists[block.settings.menu].links -%}
+                  <a href="{{ link.url }}">{{ link.title }}</a>
+                {%- endfor -%}
+              {%- endif -%}
+            </div>
+          {%- when 'newsletter' -%}
+            <div {{ block.shopify_attributes }}>
+              {% render 'newsletter-form',
+                heading: block.settings.heading,
+                note: block.settings.note
+              %}
+            </div>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.disclaimer != blank -%}
+      <p class="texan_footer_note">{{ section.settings.disclaimer }}</p>
+    {%- endif -%}
+
+    <div class="texan_footer_bottom">
+      <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}</span>
+      {%- if section.settings.policy_menu != blank -%}
+        {%- for link in linklists[section.settings.policy_menu].links -%}
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        {%- endfor -%}
+      {%- endif -%}
+      {% render 'social-icons' %}
+      {%- if section.settings.show_payment_icons and shop.enabled_payment_types.size > 0 -%}
+        <div class="texan_payment_icons">
+          {%- for type in shop.enabled_payment_types -%}
+            {{ type | payment_type_svg_tag: class: 'texan_payment_icon' }}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "t:sections.footer.name",
+  "max_blocks": 6,
+  "settings": [
+    { "type": "text", "id": "tagline", "label": "t:sections.footer.tagline", "default": "Life-Altering Science<sup>TM</sup>" },
+    { "type": "richtext", "id": "disclaimer", "label": "t:sections.footer.disclaimer", "default": "<p>These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure or prevent any disease.</p>" },
+    { "type": "link_list", "id": "policy_menu", "label": "Legal / policy menu" },
+    { "type": "checkbox", "id": "show_payment_icons", "label": "Show payment icons", "default": true }
+  ],
+  "blocks": [
+    {
+      "type": "menu",
+      "name": "t:sections.footer.column",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "t:sections.all.heading", "default": "Shop" },
+        { "type": "link_list", "id": "menu", "label": "t:sections.header.menu" }
+      ]
+    },
+    {
+      "type": "newsletter",
+      "name": "Newsletter",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "heading", "label": "t:sections.all.heading", "default": "Newsletter" },
+        { "type": "text", "id": "note", "label": "t:sections.all.content", "default": "By signing up, you agree to our privacy policy" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.footer.name",
+      "blocks": [
+        { "type": "menu", "settings": { "heading": "Shop" } },
+        { "type": "menu", "settings": { "heading": "Science" } },
+        { "type": "menu", "settings": { "heading": "About" } },
+        { "type": "menu", "settings": { "heading": "Support" } },
+        { "type": "newsletter" }
+      ]
+    }
+  ]
+}
+{% endschema %}

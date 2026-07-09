@@ -1,0 +1,45 @@
+{%- comment -%} Scrolling press-quote ticker. Blocks = quotes/authors. {%- endcomment -%}
+{%- if section.blocks.size > 0 -%}
+  <section class="texan_quote_ticker texan_marquee_wrap" aria-label="Press quotes" style="--marquee_duration: {{ section.settings.speed }}s;">
+    <div class="texan_marquee_track" aria-hidden="false">
+      {%- comment -%} Rendered twice for a seamless loop. {%- endcomment -%}
+      {%- for i in (1..2) -%}
+        {%- for block in section.blocks -%}
+          <span {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
+        {%- endfor -%}
+      {%- endfor -%}
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:sections.press_ticker.name",
+  "settings": [
+    { "type": "range", "id": "speed", "min": 15, "max": 80, "step": 5, "unit": "s", "label": "Scroll duration", "default": 40 }
+  ],
+  "blocks": [
+    {
+      "type": "quote",
+      "name": "t:sections.press_ticker.quote",
+      "settings": [
+        { "type": "text", "id": "text", "label": "t:sections.all.content", "default": "\"Game changer for your energy and health\"" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.press_ticker.name",
+      "blocks": [
+        { "type": "quote", "settings": { "text": "\"Game changer for your energy and health\"" } },
+        { "type": "quote", "settings": { "text": "Ines" } },
+        { "type": "quote", "settings": { "text": "\"It works!\"" } },
+        { "type": "quote", "settings": { "text": "Sarasara" } },
+        { "type": "quote", "settings": { "text": "\"This supplement is the future\"" } },
+        { "type": "quote", "settings": { "text": "Zachary" } },
+        { "type": "quote", "settings": { "text": "\"It's a game changer\"" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

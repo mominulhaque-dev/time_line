@@ -1,0 +1,97 @@
+{%- comment -%}
+  Comparison table. Columns are section settings (col 1 = your brand, with image);
+  each row is a block with one cell per column.
+{%- endcomment -%}
+{%- liquid
+  assign col_labels = ''
+  for n in (1..6)
+    assign key = 'col_' | append: n
+    assign val = section.settings[key]
+    if val != blank
+      assign col_labels = col_labels | append: val | append: '||'
+    endif
+  endfor
+  assign columns = col_labels | split: '||'
+  assign col_count = columns.size
+-%}
+<section class="texan_panel texan_compare" aria-labelledby="texan_compare_title_{{ section.id }}" style="--compare_cols: {{ col_count }};">
+  {%- if section.settings.eyebrow != blank -%}
+    <p class="texan_compare_label">{{ section.settings.eyebrow }}{% if section.settings.eyebrow_pill != blank %} <span>{{ section.settings.eyebrow_pill }}</span>{% endif %}</p>
+  {%- endif -%}
+  {%- if section.settings.heading != blank -%}
+    <h2 id="texan_compare_title_{{ section.id }}">{{ section.settings.heading }}</h2>
+  {%- endif -%}
+
+  <div class="texan_compare_table" role="table" aria-label="{{ section.settings.heading | escape }}">
+    <div role="row" class="texan_compare_head">
+      <span role="columnheader"></span>
+      {%- for col in columns -%}
+        <span role="columnheader">
+          {%- if forloop.first and section.settings.brand_image != blank -%}
+            {%- assign brand_alt = col | escape -%}
+            {{ section.settings.brand_image | image_url: width: 172 | image_tag: loading: 'lazy', widths: '86, 130, 172', alt: brand_alt }}
+          {%- endif -%}
+          {{ col }}
+        </span>
+      {%- endfor -%}
+    </div>
+
+    {%- for block in section.blocks -%}
+      <div role="row" {{ block.shopify_attributes }}>
+        <span>{{ block.settings.feature }}</span>
+        {%- for n in (1..6) -%}
+          {%- if n <= col_count -%}
+            {%- assign cell_key = 'cell_' | append: n -%}
+            <b>{{ block.settings[cell_key] }}</b>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.comparison.name",
+  "max_blocks": 12,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Compare us to other supplements" },
+    { "type": "text", "id": "eyebrow_pill", "label": "Eyebrow pill", "default": "Urolithin A" },
+    { "type": "text", "id": "heading", "label": "t:sections.all.heading", "default": "The Ultimate Longevity Powerhouse" },
+    { "type": "image_picker", "id": "brand_image", "label": "Brand column image" },
+    { "type": "header", "content": "Columns" },
+    { "type": "text", "id": "col_1", "label": "Column 1 (your brand)", "default": "Mitopure" },
+    { "type": "text", "id": "col_2", "label": "Column 2", "default": "NAD+" },
+    { "type": "text", "id": "col_3", "label": "Column 3", "default": "CoQ10" },
+    { "type": "text", "id": "col_4", "label": "Column 4", "default": "Creatine" },
+    { "type": "text", "id": "col_5", "label": "Column 5", "default": "Spermidine" },
+    { "type": "text", "id": "col_6", "label": "Column 6" }
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "t:sections.comparison.row",
+      "settings": [
+        { "type": "text", "id": "feature", "label": "Feature", "default": "Directly activates mitophagy" },
+        { "type": "text", "id": "cell_1", "label": "Cell 1", "default": "●" },
+        { "type": "text", "id": "cell_2", "label": "Cell 2", "default": "○" },
+        { "type": "text", "id": "cell_3", "label": "Cell 3", "default": "○" },
+        { "type": "text", "id": "cell_4", "label": "Cell 4", "default": "○" },
+        { "type": "text", "id": "cell_5", "label": "Cell 5", "default": "Partial" },
+        { "type": "text", "id": "cell_6", "label": "Cell 6" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.comparison.name",
+      "blocks": [
+        { "type": "row", "settings": { "feature": "Directly activates mitophagy", "cell_1": "●", "cell_2": "○", "cell_3": "○", "cell_4": "○", "cell_5": "Partial" } },
+        { "type": "row", "settings": { "feature": "Targets a root cause of age-related cellular energy decline", "cell_1": "●", "cell_2": "Partial", "cell_3": "Partial", "cell_4": "○", "cell_5": "Partial" } },
+        { "type": "row", "settings": { "feature": "Benefits without changing exercise routine", "cell_1": "●", "cell_2": "○", "cell_3": "●", "cell_4": "○", "cell_5": "●" } },
+        { "type": "row", "settings": { "feature": "Complete human clinical trials", "cell_1": "●", "cell_2": "Limited", "cell_3": "●", "cell_4": "●", "cell_5": "Limited" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

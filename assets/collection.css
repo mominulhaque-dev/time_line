@@ -1,0 +1,327 @@
+/* ============================================================
+   COLLECTION / SEARCH / LIST-COLLECTIONS templates.
+   ============================================================ */
+.texan_collection {
+  padding-bottom: clamp(2rem, 5vw, 4rem);
+}
+
+/* ---------- Banner ---------- */
+.texan_collection_banner {
+  position: relative;
+  padding-block: clamp(2rem, 6vw, 4.5rem);
+  margin-bottom: 1.5rem;
+  background: var(--color_panel);
+}
+
+.texan_collection_banner.texan_has_image {
+  color: var(--color_white);
+}
+
+.texan_collection_banner_img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.texan_has_image .texan_collection_banner_copy {
+  position: relative;
+}
+
+.texan_has_image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(29, 30, 26, 0.55), rgba(29, 30, 26, 0.15));
+}
+
+.texan_collection_banner_copy {
+  position: relative;
+  z-index: 1;
+}
+
+.texan_collection_banner h1 {
+  font-size: clamp(2rem, 5vw, 3.6rem);
+  letter-spacing: -0.05em;
+}
+
+.texan_collection_desc {
+  max-width: 42rem;
+  margin-top: 0.8rem;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+/* ---------- Toolbar ---------- */
+.texan_collection_toolbar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-block: 1rem;
+  border-bottom: 1px solid var(--color_line);
+}
+
+.texan_collection_count {
+  color: var(--color_muted);
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.texan_sort {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-left: auto;
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.texan_sort select {
+  min-height: 2.2rem;
+  padding: 0 1.8rem 0 0.6rem;
+  border: 1px solid var(--color_line);
+  border-radius: 2px;
+  background: var(--color_white);
+  font-size: 0.7rem;
+}
+
+.texan_filter_toggle {
+  display: none;
+}
+
+/* ---------- Layout ---------- */
+.texan_collection_body {
+  display: grid;
+  gap: 1.5rem;
+  padding-top: 1.5rem;
+}
+
+/* ---------- Facets ---------- */
+.texan_facet {
+  border-bottom: 1px solid var(--color_line);
+}
+
+.texan_facet summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 0;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  cursor: pointer;
+  list-style: none;
+}
+
+.texan_facet summary::-webkit-details-marker {
+  display: none;
+}
+
+.texan_facet summary svg {
+  width: 1rem;
+  height: 1rem;
+  transition: transform var(--transition_base);
+}
+
+.texan_facet[open] summary svg {
+  transform: rotate(180deg);
+}
+
+.texan_facet_body {
+  display: grid;
+  gap: 0.5rem;
+  padding-bottom: 1rem;
+}
+
+.texan_facet_value {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+  cursor: pointer;
+}
+
+.texan_facet_value small {
+  color: var(--color_muted);
+}
+
+.texan_facet_disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.texan_price_range {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.texan_price_range label {
+  display: grid;
+  gap: 0.25rem;
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.texan_price_range input {
+  min-height: 2.3rem;
+  padding: 0 0.5rem;
+  border: 1px solid var(--color_line);
+  border-radius: 2px;
+}
+
+.texan_facet_clear {
+  display: inline-block;
+  margin-top: 0.8rem;
+  font-size: 0.64rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  text-decoration: underline;
+}
+
+/* ---------- Grid ---------- */
+.texan_collection_grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem 0.8rem;
+}
+
+.texan_collection_results[aria-busy="true"] {
+  opacity: 0.5;
+  transition: opacity 160ms ease;
+}
+
+.texan_collection_empty {
+  display: grid;
+  gap: 1rem;
+  place-items: center;
+  padding: 4rem 1rem;
+  text-align: center;
+  color: var(--color_muted);
+}
+
+/* ---------- List collections ---------- */
+.texan_collection_list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  padding-block: clamp(2rem, 5vw, 4rem);
+}
+
+.texan_collection_tile {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--color_panel);
+}
+
+.texan_collection_tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 500ms ease;
+}
+
+.texan_collection_tile:hover img {
+  transform: scale(1.04);
+}
+
+.texan_collection_tile span {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  padding: 0.4rem 0.7rem;
+  background: var(--color_white);
+  font-size: 0.72rem;
+  font-weight: 800;
+  border-radius: 2px;
+}
+
+/* ---------- Search ---------- */
+.texan_search_page {
+  padding-block: clamp(2rem, 5vw, 4rem);
+}
+
+.texan_search_header {
+  margin-bottom: 1.5rem;
+}
+
+.texan_search_header h1 {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  letter-spacing: -0.05em;
+}
+
+.texan_search_form {
+  display: flex;
+  gap: 0.5rem;
+  max-width: 36rem;
+  margin-top: 1rem;
+}
+
+.texan_search_form input {
+  flex: 1;
+  min-height: 2.9rem;
+  padding-inline: 1rem;
+  border: 1px solid var(--color_line);
+  border-radius: 2px;
+}
+
+.texan_search_form button {
+  padding-inline: 1.4rem;
+  background: var(--color_ink);
+  color: var(--color_white);
+  border: 0;
+  border-radius: 2px;
+  font-weight: 700;
+}
+
+@media (min-width: 560px) {
+  .texan_collection_grid,
+  .texan_collection_list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 900px) {
+  .texan_collection_body {
+    grid-template-columns: 15rem minmax(0, 1fr);
+  }
+
+  .texan_collection_grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1200px) {
+  .texan_collection_grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* ---------- Mobile facet drawer ---------- */
+@media (max-width: 899px) {
+  .texan_filter_toggle {
+    display: inline-flex;
+  }
+
+  .texan_facets {
+    position: fixed;
+    inset: 0 0 0 auto;
+    z-index: 60;
+    width: min(100%, 22rem);
+    padding: 1.5rem;
+    overflow-y: auto;
+    background: var(--color_page_bg);
+    box-shadow: -20px 0 40px rgba(var(--color_ink_rgb), 0.15);
+    transform: translateX(100%);
+    transition: transform 280ms ease;
+  }
+
+  .texan_facets.texan_is_open {
+    transform: none;
+  }
+}

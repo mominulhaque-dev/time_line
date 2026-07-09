@@ -1,0 +1,71 @@
+{%- comment -%} Hero banner — homepage LCP. Contains the single H1. {%- endcomment -%}
+<section class="texan_hero" aria-labelledby="texan_hero_title_{{ section.id }}">
+  {%- if section.settings.image != blank -%}
+    {{
+      section.settings.image
+      | image_url: width: 2400
+      | image_tag:
+        loading: 'eager',
+        fetchpriority: 'high',
+        widths: '600, 900, 1200, 1600, 2000, 2400',
+        sizes: '100vw',
+        alt: section.settings.image.alt | default: section.settings.heading | escape
+    }}
+  {%- else -%}
+    <img
+      src="{{ 'texan_timeline_hero_reference.jpg' | asset_url }}"
+      alt="{{ section.settings.heading | escape }}"
+      width="1760"
+      height="1594"
+      fetchpriority="high"
+    >
+  {%- endif -%}
+
+  <div class="texan_hero_overlay" style="--overlay: {{ section.settings.overlay_opacity | divided_by: 100.0 }};">
+    <div class="texan_hero_content" data_texan_reveal>
+      {%- if section.settings.eyebrow_prefix != blank or section.settings.eyebrow_highlight != blank -%}
+        <p class="texan_powered">
+          {{ section.settings.eyebrow_prefix }}
+          {%- if section.settings.eyebrow_highlight != blank -%}<span>{{ section.settings.eyebrow_highlight }}</span>{%- endif -%}
+        </p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h1 id="texan_hero_title_{{ section.id }}">{{ section.settings.heading }}</h1>
+      {%- endif -%}
+      {%- if section.settings.text != blank -%}<p>{{ section.settings.text }}</p>{%- endif -%}
+      {%- if section.settings.button_label != blank -%}
+        <a class="texan_button texan_button_light" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}">
+          {{ section.settings.button_label }}
+        </a>
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.badge_text != blank -%}
+      <aside class="texan_hero_badge" aria-label="{{ section.settings.badge_text | escape }}">
+        {%- if section.settings.badge_number != blank -%}<strong>{{ section.settings.badge_number }}</strong>{%- endif -%}
+        <span>{{ section.settings.badge_text }}</span>
+      </aside>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.hero.name",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "t:sections.all.image" },
+    { "type": "range", "id": "overlay_opacity", "min": 0, "max": 80, "step": 5, "unit": "%", "label": "Overlay darkness", "default": 40 },
+    { "type": "header", "content": "Content" },
+    { "type": "text", "id": "eyebrow_prefix", "label": "t:sections.hero.eyebrow", "default": "Powered by" },
+    { "type": "text", "id": "eyebrow_highlight", "label": "Eyebrow highlight", "default": "mitopure" },
+    { "type": "text", "id": "heading", "label": "t:sections.all.heading", "default": "No other supplement does this." },
+    { "type": "text", "id": "text", "label": "t:sections.all.content", "default": "Award-winning clinically proven Urolithin A products." },
+    { "type": "text", "id": "button_label", "label": "t:sections.all.link_label", "default": "Shop now" },
+    { "type": "url", "id": "button_link", "label": "t:sections.all.link" },
+    { "type": "header", "content": "Badge" },
+    { "type": "text", "id": "badge_number", "label": "t:sections.hero.badge_number", "default": "#1" },
+    { "type": "text", "id": "badge_text", "label": "t:sections.hero.badge_text", "default": "Doctor recommended Urolithin A brand" }
+  ],
+  "presets": [{ "name": "t:sections.hero.name" }]
+}
+{% endschema %}

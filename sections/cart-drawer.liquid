@@ -1,0 +1,75 @@
+{%- comment -%}
+  Cart drawer. Rendered once in theme.liquid and refreshed by global.js via the
+  Section Rendering API (?section_id=cart-drawer).
+{%- endcomment -%}
+<div class="texan_cart_drawer" data_texan_cart_drawer aria-hidden="true" role="dialog" aria-modal="true" aria-label="{{ 'cart.title' | t }}">
+  <div class="texan_cart_overlay" data_texan_cart_overlay></div>
+  <aside class="texan_cart_panel">
+    <header class="texan_cart_header">
+      <h2>{{ 'cart.title' | t }}</h2>
+      <button type="button" class="texan_cart_close" data_texan_cart_close aria-label="{{ 'general.accessibility.close' | t }}">
+        {% render 'icon', name: 'close' %}
+      </button>
+    </header>
+
+    <div class="texan_cart_contents" data_texan_cart_contents>
+      {%- if cart.item_count > 0 -%}
+        <div class="texan_cart_items">
+          {%- for item in cart.items -%}
+            {% render 'cart-line', line_item: item, index: forloop.index %}
+          {%- endfor -%}
+        </div>
+
+        <div class="texan_cart_footer">
+          {%- if settings.enable_free_shipping_bar and settings.free_shipping_threshold > 0 -%}
+            {%- liquid
+              assign threshold = settings.free_shipping_threshold | times: 100
+              assign remaining = threshold | minus: cart.total_price
+              assign pct = cart.total_price | times: 100.0 | divided_by: threshold
+              if pct > 100
+                assign pct = 100
+              endif
+            -%}
+            <div class="texan_free_ship_bar">
+              <p class="texan_free_ship_text">
+                {%- if remaining > 0 -%}
+                  {{ 'cart.free_shipping_progress' | t: amount: remaining | money }}
+                {%- else -%}
+                  {{ 'cart.free_shipping_qualified' | t }}
+                {%- endif -%}
+              </p>
+              <div class="texan_free_ship_track"><div class="texan_free_ship_fill" style="width: {{ pct }}%"></div></div>
+            </div>
+          {%- endif -%}
+
+          {%- if settings.show_cart_note -%}
+            <label class="texan_screen_reader" for="texan_cart_note">{{ 'cart.note' | t }}</label>
+            <textarea class="texan_cart_note" id="texan_cart_note" name="note" placeholder="{{ 'cart.note' | t }}" data_texan_cart_note>{{ cart.note }}</textarea>
+          {%- endif -%}
+
+          <div class="texan_cart_subtotal">
+            <span>{{ 'cart.subtotal' | t }}</span>
+            <span>{{ cart.total_price | money }}</span>
+          </div>
+
+          <form action="{{ routes.cart_url }}" method="post">
+            <button type="submit" name="checkout" class="texan_cart_checkout">{{ 'cart.checkout' | t }}</button>
+          </form>
+          <p class="texan_cart_taxes">{{ 'cart.taxes_shipping_at_checkout' | t }}</p>
+        </div>
+      {%- else -%}
+        <div class="texan_cart_empty">
+          <p>{{ 'cart.empty' | t }}</p>
+          <a class="texan_button" href="{{ routes.all_products_collection_url }}">{{ 'cart.continue_shopping' | t }}</a>
+        </div>
+      {%- endif -%}
+    </div>
+  </aside>
+</div>
+
+{% schema %}
+{
+  "name": "Cart drawer",
+  "settings": []
+}
+{% endschema %}

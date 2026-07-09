@@ -1,0 +1,40 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": { "type": "title" },
+        "vendor": { "type": "vendor" },
+        "price": { "type": "price" },
+        "rating": { "type": "rating" },
+        "description": { "type": "description" },
+        "variant_picker": { "type": "variant_picker" },
+        "buy_buttons": { "type": "buy_buttons", "settings": { "show_quantity": false, "show_dynamic_checkout": true } },
+        "inventory": { "type": "inventory" },
+        "trust": { "type": "trust_badges" },
+        "tab_story": { "type": "collapsible", "settings": { "heading": "The science", "open": true } },
+        "tab_use": { "type": "collapsible", "settings": { "heading": "How to use" } },
+        "share": { "type": "share" }
+      },
+      "block_order": [
+        "title",
+        "vendor",
+        "price",
+        "rating",
+        "description",
+        "variant_picker",
+        "buy_buttons",
+        "inventory",
+        "trust",
+        "tab_story",
+        "tab_use",
+        "share"
+      ]
+    },
+    "recommendations": {
+      "type": "product-recommendations",
+      "settings": { "heading": "Complete your routine", "products_to_show": 4 }
+    }
+  },
+  "order": ["main", "recommendations"]
+}

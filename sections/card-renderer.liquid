@@ -1,0 +1,9 @@
+{%- comment -%}
+  Renders a single product card for the current product context. Used by the
+  recently-viewed section via the Section Rendering API.
+{%- endcomment -%}
+{% render 'product-card', product: product, show_quick_add: true %}
+
+{% schema %}
+{ "name": "Card renderer", "settings": [] }
+{% endschema %}

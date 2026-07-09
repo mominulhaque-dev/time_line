@@ -1,0 +1,141 @@
+{
+  "settings": {
+    "colors": {
+      "name": "Colors",
+      "header_core": "Core palette",
+      "ink": "Ink (primary text)",
+      "muted": "Muted text",
+      "soft": "Soft surface",
+      "panel": "Panel background",
+      "line": "Borders / dividers",
+      "white": "White / cards",
+      "accent": "Accent (brand red)",
+      "page_bg": "Page background"
+    },
+    "typography": {
+      "name": "Typography",
+      "heading": "Heading font",
+      "body": "Body font",
+      "body_scale": "Body font size"
+    },
+    "layout": {
+      "name": "Layout",
+      "container_width": "Container max width",
+      "section_spacing": "Default section spacing",
+      "corner_radius": "Corner radius"
+    },
+    "product_card": {
+      "name": "Product cards",
+      "show_rating": "Show rating",
+      "show_badge": "Show badge",
+      "badge_text": "Default badge text",
+      "show_second_image": "Reveal second image on hover",
+      "show_second_image_info": "Uses the product's second image if available"
+    },
+    "cart": {
+      "name": "Cart",
+      "type": "Cart type",
+      "type_drawer": "Drawer",
+      "type_page": "Page",
+      "show_note": "Enable order note",
+      "free_shipping_bar": "Show free-shipping progress bar",
+      "free_shipping_threshold": "Free shipping threshold"
+    },
+    "social": {
+      "name": "Social media"
+    },
+    "brand": {
+      "name": "Brand",
+      "favicon": "Favicon",
+      "favicon_info": "32 x 32px .png recommended",
+      "logo": "Logo image"
+    }
+  },
+  "sections": {
+    "all": {
+      "padding": {
+        "heading": "Section padding",
+        "top": "Top padding",
+        "bottom": "Bottom padding"
+      },
+      "colors": {
+        "label": "Color scheme",
+        "background": "Background",
+        "text": "Text"
+      },
+      "heading": "Heading",
+      "subheading": "Subheading",
+      "content": "Content",
+      "image": "Image",
+      "link_label": "Button label",
+      "link": "Button link",
+      "width": "Width"
+    },
+    "header": {
+      "name": "Header",
+      "logo_text": "Logo text",
+      "menu": "Menu",
+      "secondary_menu": "Secondary (category) menu",
+      "enable_sticky": "Sticky header",
+      "enable_search": "Enable search"
+    },
+    "announcement": {
+      "name": "Announcement bar",
+      "text": "Text",
+      "rotate": "Rotate messages",
+      "block": "Message"
+    },
+    "footer": {
+      "name": "Footer",
+      "tagline": "Tagline",
+      "disclaimer": "Disclaimer",
+      "column": "Menu column",
+      "newsletter_heading": "Newsletter heading"
+    },
+    "hero": {
+      "name": "Hero banner",
+      "eyebrow": "Eyebrow",
+      "badge_number": "Badge number",
+      "badge_text": "Badge text"
+    },
+    "press_ticker": {
+      "name": "Press ticker",
+      "quote": "Quote",
+      "author": "Author"
+    },
+    "intro_metrics": {
+      "name": "Intro + metrics",
+      "metric_value": "Value",
+      "metric_label": "Label",
+      "metric_text": "Description"
+    },
+    "science": {
+      "name": "Science panel",
+      "tab": "Tab label",
+      "stat": "Stat value"
+    },
+    "comparison": {
+      "name": "Comparison table",
+      "row": "Row",
+      "column": "Column"
+    },
+    "featured_products": {
+      "name": "Featured products"
+    },
+    "logo_marquee": {
+      "name": "Logo marquee",
+      "logo": "Logo"
+    },
+    "reviews": {
+      "name": "Reviews strip",
+      "review": "Review",
+      "video": "Video card"
+    },
+    "expert": {
+      "name": "Expert quote"
+    },
+    "news": {
+      "name": "News / blog posts"
+    }
+  }
+}

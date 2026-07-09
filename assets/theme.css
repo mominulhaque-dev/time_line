@@ -1,0 +1,942 @@
+/* ============================================================
+   GLOBAL CHROME & SHARED COMPONENTS — loaded site-wide.
+   Header, nav, search, cart drawer, footer, product card,
+   price, rating, swatches, pagination, forms, cookie banner.
+   ============================================================ */
+
+/* ---------- Header ---------- */
+.texan_site_header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(250, 250, 246, 0.94);
+  backdrop-filter: blur(16px);
+}
+
+.texan_header_shell {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: start;
+  min-height: 7.85rem;
+  padding-top: 1.05rem;
+}
+
+.texan_header_tabs {
+  display: none;
+  gap: 0.28rem;
+}
+
+.texan_header_tabs a {
+  padding: 0.44rem 0.72rem;
+  border-radius: 2px;
+  background: #efeee8;
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.texan_header_tabs a[aria-current="true"] {
+  background: var(--color_ink);
+  color: var(--color_white);
+}
+
+.texan_logo_link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  justify-self: center;
+  margin-top: 0.55rem;
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.texan_logo_link i {
+  display: block;
+  width: 1.1rem;
+  height: 1px;
+  background: currentColor;
+}
+
+.texan_logo_link img {
+  width: auto;
+  max-height: 2rem;
+}
+
+.texan_header_icons {
+  display: none;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 0.6rem;
+}
+
+.texan_header_icons a,
+.texan_header_icons button {
+  position: relative;
+  display: inline-grid;
+  width: 1.25rem;
+  height: 1.25rem;
+  place-items: center;
+  background: transparent;
+  border: 0;
+}
+
+.texan_header_icons svg {
+  width: 1rem;
+  height: 1rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.55;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.texan_cart_count {
+  position: absolute;
+  top: -0.45rem;
+  right: -0.5rem;
+  display: grid;
+  place-items: center;
+  min-width: 1rem;
+  height: 1rem;
+  padding-inline: 0.2rem;
+  border-radius: 999px;
+  background: var(--color_red);
+  color: var(--color_white);
+  font-size: 0.5rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.texan_menu_button {
+  display: inline-grid;
+  width: 2.4rem;
+  height: 2.4rem;
+  place-items: center;
+  justify-self: end;
+  background: transparent;
+  border: 1px solid var(--color_line);
+}
+
+.texan_menu_button span {
+  width: 1rem;
+  height: 1px;
+  background: var(--color_ink);
+  transition: transform var(--transition_base);
+}
+
+.texan_menu_button[aria-expanded="true"] span:first-child {
+  transform: translateY(4px) rotate(45deg);
+}
+
+.texan_menu_button[aria-expanded="true"] span:last-child {
+  transform: translateY(-4px) rotate(-45deg);
+}
+
+.texan_nav_panel {
+  position: fixed;
+  inset: 0;
+  z-index: 39;
+  display: grid;
+  place-items: center;
+  background: var(--color_page_bg);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-0.5rem);
+  transition:
+    opacity var(--transition_base),
+    transform var(--transition_base),
+    visibility var(--transition_base);
+}
+
+.texan_site_header.texan_is_open .texan_nav_panel {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.texan_nav_list {
+  display: grid;
+  gap: 1.1rem;
+  text-align: center;
+}
+
+.texan_nav_list > li > a {
+  font-size: clamp(2rem, 10vw, 4rem);
+  font-weight: 700;
+}
+
+/* Mega menu (desktop) */
+.texan_has_mega > .texan_mega {
+  display: none;
+}
+
+/* ---------- Search panel + predictive ---------- */
+.texan_search_panel {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.5rem;
+  width: min(100% - 2rem, 36rem);
+  margin: 0 auto 1rem;
+}
+
+.texan_search_panel[hidden] {
+  display: none;
+}
+
+.texan_search_panel input,
+.texan_search_panel button[type="submit"] {
+  min-height: 2.7rem;
+  padding-inline: 1rem;
+  border: 1px solid var(--color_line);
+  background: var(--color_white);
+}
+
+.texan_predictive_results {
+  position: absolute;
+  top: calc(100% + 0.4rem);
+  left: 0;
+  right: 0;
+  z-index: 5;
+  max-height: 60vh;
+  overflow-y: auto;
+  padding: 0.5rem;
+  background: var(--color_white);
+  border: 1px solid var(--color_line);
+  border-radius: var(--radius);
+  box-shadow: 0 20px 40px rgba(48, 48, 44, 0.12);
+}
+
+.texan_predictive_results[hidden] {
+  display: none;
+}
+
+.texan_predictive_group_title {
+  padding: 0.4rem 0.5rem;
+  color: var(--color_muted);
+  font-size: 0.56rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.texan_predictive_item {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  gap: 0.6rem;
+  align-items: center;
+  padding: 0.4rem 0.5rem;
+  border-radius: 2px;
+}
+
+.texan_predictive_item:hover {
+  background: var(--color_soft);
+}
+
+.texan_predictive_item img {
+  width: 2.5rem;
+  height: 2.5rem;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+.texan_predictive_item strong {
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+/* ---------- Shared product card ---------- */
+.texan_product_card_media figure {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  margin-bottom: 0.7rem;
+  background: var(--color_panel);
+  border-radius: var(--radius);
+}
+
+.texan_product_card_media img {
+  height: 100%;
+  object-fit: cover;
+  transition:
+    transform 600ms ease,
+    opacity var(--transition_base);
+}
+
+.texan_card_img_secondary {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.texan_product_card_media:hover .texan_card_img_secondary {
+  opacity: 1;
+}
+
+.texan_product_card_media:hover .texan_card_img_primary {
+  transform: scale(1.03);
+}
+
+.texan_product_badge {
+  position: absolute;
+  left: 50%;
+  bottom: 1rem;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: calc(100% - 1.4rem);
+  padding: 0.42rem 0.55rem;
+  background: var(--color_white);
+  color: var(--color_red);
+  font-size: 0.54rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  border-radius: 2px;
+}
+
+.texan_badge_soldout {
+  color: var(--color_muted);
+}
+
+.texan_product_card_body h3 {
+  font-size: 0.84rem;
+  line-height: 1.12;
+}
+
+.texan_product_card_body .texan_rating,
+.texan_product_card_body .texan_price {
+  margin-top: 0.3rem;
+}
+
+/* ---------- Price ---------- */
+.texan_price {
+  display: flex;
+  gap: 0.4rem;
+  align-items: baseline;
+  color: var(--color_muted);
+  font-size: 0.64rem;
+  font-weight: 500;
+}
+
+.texan_price_on_sale .texan_price_current {
+  color: var(--color_red);
+}
+
+.texan_price_compare s {
+  color: var(--color_muted);
+  opacity: 0.7;
+}
+
+/* ---------- Rating ---------- */
+.texan_rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.62rem;
+  color: var(--color_muted);
+}
+
+.texan_rating_stars {
+  display: inline-flex;
+  color: var(--color_red);
+}
+
+.texan_rating_stars svg {
+  width: 0.72rem;
+  height: 0.72rem;
+}
+
+.texan_star_empty {
+  color: var(--color_line);
+}
+
+/* ---------- Quick add ---------- */
+.texan_quick_add {
+  margin-top: 0.55rem;
+}
+
+.texan_quick_add_button {
+  width: 100%;
+}
+
+.texan_is_loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* ---------- Swatches ---------- */
+.texan_swatch {
+  display: inline-flex;
+  cursor: pointer;
+}
+
+.texan_swatch_chip {
+  display: block;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  background-size: cover;
+  box-shadow: 0 0 0 1px var(--color_line);
+  transition: box-shadow var(--transition_base);
+}
+
+.texan_swatch_label {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding-inline: 0.85rem;
+  border: 1px solid var(--color_line);
+  border-radius: 2px;
+  font-size: 0.66rem;
+  font-weight: 700;
+  transition:
+    border-color var(--transition_base),
+    background var(--transition_base);
+}
+
+.texan_swatch input:checked ~ .texan_swatch_chip {
+  box-shadow: 0 0 0 2px var(--color_ink);
+}
+
+.texan_swatch input:checked ~ .texan_swatch_label {
+  border-color: var(--color_ink);
+  background: var(--color_ink);
+  color: var(--color_white);
+}
+
+.texan_swatch input:focus-visible ~ * {
+  outline: 2px solid var(--color_red);
+  outline-offset: 2px;
+}
+
+.texan_swatch_disabled {
+  opacity: 0.4;
+}
+
+/* ---------- Section heading (shared) ---------- */
+.texan_section_heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.35rem;
+}
+
+.texan_section_heading h2 {
+  font-size: clamp(1.55rem, 3vw, 3rem);
+  line-height: 1;
+  letter-spacing: -0.065em;
+}
+
+/* ---------- Cart drawer ---------- */
+.texan_cart_drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.texan_cart_drawer.texan_is_open {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.texan_cart_overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(var(--color_ink_rgb), 0.4);
+  opacity: 0;
+  transition: opacity 260ms ease;
+}
+
+.texan_cart_drawer.texan_is_open .texan_cart_overlay {
+  opacity: 1;
+}
+
+.texan_cart_panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  width: min(100%, 27rem);
+  height: 100%;
+  background: var(--color_page_bg);
+  transform: translateX(100%);
+  transition: transform 320ms cubic-bezier(0.4, 0, 0.1, 1);
+}
+
+.texan_cart_drawer.texan_is_open .texan_cart_panel {
+  transform: none;
+}
+
+.texan_cart_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 1.3rem;
+  border-bottom: 1px solid var(--color_line);
+}
+
+.texan_cart_header h2 {
+  font-size: 1rem;
+  letter-spacing: -0.03em;
+}
+
+.texan_cart_close {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  background: transparent;
+  border: 0;
+}
+
+.texan_cart_close svg {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.texan_cart_contents {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.texan_cart_items {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem 1.3rem;
+}
+
+.texan_cart_empty {
+  display: grid;
+  place-items: center;
+  gap: 1rem;
+  padding: 3rem 1.3rem;
+  text-align: center;
+  color: var(--color_muted);
+}
+
+.texan_cart_line {
+  display: grid;
+  grid-template-columns: 4.2rem 1fr auto;
+  gap: 0.9rem;
+  padding-block: 1rem;
+  border-bottom: 1px solid var(--color_line);
+}
+
+.texan_cart_line img {
+  width: 4.2rem;
+  height: 5rem;
+  object-fit: cover;
+  border-radius: 2px;
+  background: var(--color_panel);
+}
+
+.texan_cart_line_title {
+  font-size: 0.74rem;
+  font-weight: 600;
+}
+
+.texan_cart_line_variant {
+  margin-top: 0.15rem;
+  color: var(--color_muted);
+  font-size: 0.6rem;
+}
+
+.texan_qty_stepper {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 0.5rem;
+  border: 1px solid var(--color_line);
+  border-radius: 2px;
+}
+
+.texan_qty_stepper button {
+  display: grid;
+  place-items: center;
+  width: 1.8rem;
+  height: 1.8rem;
+  background: transparent;
+  border: 0;
+}
+
+.texan_qty_stepper button svg {
+  width: 0.8rem;
+  height: 0.8rem;
+}
+
+.texan_qty_stepper input {
+  width: 2rem;
+  height: 1.8rem;
+  padding: 0;
+  text-align: center;
+  border: 0;
+  border-inline: 1px solid var(--color_line);
+  background: transparent;
+}
+
+.texan_cart_remove {
+  margin-top: 0.4rem;
+  color: var(--color_muted);
+  font-size: 0.56rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: none;
+  border: 0;
+  text-decoration: underline;
+}
+
+.texan_cart_footer {
+  padding: 1.2rem 1.3rem calc(1.2rem + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--color_line);
+}
+
+.texan_free_ship_bar {
+  margin-bottom: 1rem;
+}
+
+.texan_free_ship_track {
+  height: 4px;
+  margin-top: 0.5rem;
+  border-radius: 999px;
+  background: var(--color_line);
+  overflow: hidden;
+}
+
+.texan_free_ship_fill {
+  height: 100%;
+  background: var(--color_red);
+  transition: width 320ms ease;
+}
+
+.texan_free_ship_text {
+  font-size: 0.6rem;
+  font-weight: 700;
+}
+
+.texan_cart_subtotal {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.9rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.texan_cart_note {
+  width: 100%;
+  min-height: 3rem;
+  margin-bottom: 0.9rem;
+  padding: 0.6rem;
+  border: 1px solid var(--color_line);
+  background: var(--color_white);
+  font-size: 0.66rem;
+  resize: vertical;
+}
+
+.texan_cart_checkout {
+  width: 100%;
+  min-height: 2.9rem;
+  background: var(--color_ink);
+  color: var(--color_white);
+  border: 0;
+  border-radius: 2px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.texan_cart_taxes {
+  margin-top: 0.6rem;
+  color: var(--color_muted);
+  font-size: 0.56rem;
+  text-align: center;
+}
+
+/* ---------- Cookie banner ---------- */
+.texan_cookie_banner {
+  position: fixed;
+  left: 50%;
+  bottom: 1rem;
+  z-index: 55;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  width: min(100% - 2rem, 40rem);
+  padding: 1rem 1.2rem;
+  transform: translateX(-50%);
+  background: var(--color_ink);
+  color: var(--color_white);
+  border-radius: var(--radius);
+  box-shadow: 0 20px 40px rgba(var(--color_ink_rgb), 0.3);
+}
+
+.texan_cookie_banner[hidden] {
+  display: none;
+}
+
+.texan_cookie_banner p {
+  flex: 1;
+  min-width: 14rem;
+  font-size: 0.66rem;
+}
+
+.texan_cookie_banner a {
+  text-decoration: underline;
+}
+
+/* ---------- Social icons ---------- */
+.texan_social_icons {
+  display: flex;
+  gap: 0.9rem;
+}
+
+.texan_social_icons svg {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+/* ---------- Footer ---------- */
+.texan_footer {
+  width: calc(100% - 1rem);
+  margin: 0.5rem auto;
+  padding: clamp(4rem, 8vw, 8.5rem) 0 2rem;
+  border-radius: var(--radius);
+  background: var(--color_panel);
+}
+
+.texan_footer_tagline {
+  margin-bottom: clamp(4rem, 8vw, 7rem);
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 3.15rem);
+  letter-spacing: -0.07em;
+}
+
+.texan_footer_tagline sup {
+  font-size: 0.38em;
+}
+
+.texan_footer_columns {
+  display: grid;
+  gap: 2rem;
+}
+
+.texan_footer_columns > div,
+.texan_footer .texan_newsletter {
+  display: grid;
+  gap: 0.5rem;
+  align-content: start;
+  padding-top: 0.9rem;
+  border-top: 1px dashed #bdbbb2;
+}
+
+.texan_footer_columns h3 {
+  margin-bottom: 0.45rem;
+  font-size: 0.58rem;
+  text-transform: uppercase;
+}
+
+.texan_footer_columns a,
+.texan_footer .texan_newsletter p {
+  color: var(--color_muted);
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.texan_newsletter div {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  border-bottom: 1px solid #bdbbb2;
+}
+
+.texan_newsletter input,
+.texan_newsletter button {
+  min-height: 2.2rem;
+  border: 0;
+  background: transparent;
+}
+
+.texan_newsletter button svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.texan_form_success {
+  color: var(--color_red);
+  font-size: 0.66rem;
+  font-weight: 700;
+}
+
+.texan_form_error {
+  color: var(--color_red);
+  font-size: 0.6rem;
+}
+
+.texan_footer_note {
+  margin-top: 2.2rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid #d1d0c8;
+  color: var(--color_muted);
+  font-size: 0.58rem;
+}
+
+.texan_footer_bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.2rem;
+  color: var(--color_muted);
+  font-size: 0.62rem;
+}
+
+.texan_payment_icons {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+.texan_payment_icons svg {
+  width: 2.2rem;
+  height: 1.4rem;
+}
+
+/* ---------- Generic form controls ---------- */
+.texan_field {
+  display: grid;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+}
+
+.texan_field label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.texan_field input,
+.texan_field textarea,
+.texan_field select {
+  min-height: 2.7rem;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--color_line);
+  border-radius: 2px;
+  background: var(--color_white);
+  font-size: 0.75rem;
+}
+
+.texan_field textarea {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+/* ---------- Pagination ---------- */
+.texan_pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 2.5rem;
+}
+
+.texan_pagination a,
+.texan_pagination span {
+  display: grid;
+  place-items: center;
+  min-width: 2.3rem;
+  height: 2.3rem;
+  padding-inline: 0.5rem;
+  border: 1px solid var(--color_line);
+  border-radius: 2px;
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.texan_pagination [aria-current="page"] {
+  background: var(--color_ink);
+  color: var(--color_white);
+  border-color: var(--color_ink);
+}
+
+/* ---------- Responsive chrome ---------- */
+@media (min-width: 760px) {
+  .texan_header_tabs,
+  .texan_header_icons {
+    display: flex;
+  }
+
+  .texan_menu_button {
+    display: none;
+  }
+
+  .texan_nav_panel {
+    position: absolute;
+    inset: auto 0 1.9rem;
+    display: block;
+    background: transparent;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .texan_nav_list {
+    display: flex;
+    justify-content: center;
+    gap: 1.7rem;
+  }
+
+  .texan_nav_list > li {
+    position: relative;
+  }
+
+  .texan_nav_list > li > a {
+    font-size: 0.61rem;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  .texan_has_mega:hover > .texan_mega,
+  .texan_has_mega:focus-within > .texan_mega {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    display: grid;
+    gap: 0.5rem;
+    min-width: 12rem;
+    padding: 1rem;
+    transform: translateX(-50%);
+    background: var(--color_white);
+    border: 1px solid var(--color_line);
+    border-radius: var(--radius);
+    box-shadow: 0 20px 40px rgba(var(--color_ink_rgb), 0.12);
+  }
+
+  .texan_mega a {
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .texan_footer_columns {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 759px) {
+  .texan_header_shell {
+    min-height: 4.5rem;
+    align-items: center;
+    padding-top: 0;
+  }
+
+  .texan_logo_link {
+    margin-top: 0;
+  }
+}

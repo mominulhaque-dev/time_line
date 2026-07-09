@@ -1,0 +1,73 @@
+{%- comment -%} Contact form using Shopify's {% form 'contact' %}. {%- endcomment -%}
+<section class="texan_contact texan_container">
+  <div class="texan_contact_inner">
+    {%- if section.settings.heading != blank -%}<h1>{{ section.settings.heading }}</h1>{%- endif -%}
+    {%- if section.settings.subtext != blank -%}<p class="texan_contact_sub">{{ section.settings.subtext }}</p>{%- endif -%}
+
+    {%- form 'contact', class: 'texan_contact_form' -%}
+      {%- if form.posted_successfully? -%}
+        <p class="texan_form_success">{{ 'contact.success' | t }}</p>
+      {%- endif -%}
+      {%- if form.errors -%}
+        <p class="texan_form_error">{{ form.errors | default_errors }}</p>
+      {%- endif -%}
+      <div class="texan_contact_grid">
+        <div class="texan_field">
+          <label for="texan_contact_name">{{ 'contact.name' | t }}</label>
+          <input id="texan_contact_name" type="text" name="contact[name]" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" required>
+        </div>
+        <div class="texan_field">
+          <label for="texan_contact_email">{{ 'contact.email' | t }}</label>
+          <input id="texan_contact_email" type="email" name="contact[email]" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" autocomplete="email" required>
+        </div>
+      </div>
+      <div class="texan_field">
+        <label for="texan_contact_phone">{{ 'contact.phone' | t }}</label>
+        <input id="texan_contact_phone" type="tel" name="contact[phone]" value="{{ form.phone }}" autocomplete="tel">
+      </div>
+      <div class="texan_field">
+        <label for="texan_contact_message">{{ 'contact.message' | t }}</label>
+        <textarea id="texan_contact_message" name="contact[body]" required>{{ form.body }}</textarea>
+      </div>
+      <button type="submit" class="texan_button">{{ 'contact.send' | t }}</button>
+    {%- endform -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .texan_contact {
+    padding-block: clamp(2.5rem, 6vw, 5rem);
+  }
+  .texan_contact_inner {
+    max-width: 42rem;
+    margin-inline: auto;
+  }
+  .texan_contact_inner h1 {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    letter-spacing: -0.05em;
+  }
+  .texan_contact_sub {
+    margin: 0.6rem 0 1.8rem;
+    color: var(--color_muted);
+  }
+  .texan_contact_grid {
+    display: grid;
+    gap: 0 1rem;
+  }
+  @media (min-width: 600px) {
+    .texan_contact_grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Contact form",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "t:sections.all.heading", "default": "Get in touch" },
+    { "type": "text", "id": "subtext", "label": "t:sections.all.content", "default": "We usually reply within one business day." }
+  ],
+  "presets": [{ "name": "Contact form" }]
+}
+{% endschema %}

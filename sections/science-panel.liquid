@@ -1,0 +1,152 @@
+{%- comment -%}
+  Clinical science panel. Each block is a benefit tab that swaps the stat
+  headline and the bar chart on the right.
+{%- endcomment -%}
+<section class="texan_panel texan_science_panel" id="{{ section.settings.anchor | default: 'texan_science' }}" aria-labelledby="texan_science_title_{{ section.id }}" data_texan_science>
+  <div class="texan_panel_copy" data_texan_reveal>
+    {%- if section.settings.eyebrow != blank or section.settings.eyebrow_note != blank -%}
+      <p class="texan_mitopure">{{ section.settings.eyebrow }}{% if section.settings.eyebrow_note != blank %}<span>{{ section.settings.eyebrow_note }}</span>{% endif %}</p>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="texan_tab_list" role="tablist" aria-label="Clinical benefit tabs">
+        {%- for block in section.blocks -%}
+          <button
+            type="button"
+            role="tab"
+            id="texan_tab_{{ block.id }}"
+            aria-controls="texan_tabpanel_{{ block.id }}"
+            aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+            data_texan_tab="{{ forloop.index0 }}"
+            {{ block.shopify_attributes }}
+          >{{ block.settings.tab_label }}</button>
+        {%- endfor -%}
+      </div>
+
+      {%- for block in section.blocks -%}
+        <div
+          class="texan_science_stat"
+          id="texan_tabpanel_{{ block.id }}"
+          role="tabpanel"
+          aria-labelledby="texan_tab_{{ block.id }}"
+          data_texan_tabpanel="{{ forloop.index0 }}"
+          {% unless forloop.first %}hidden{% endunless %}
+        >
+          <h2 id="texan_science_title_{{ section.id }}">{{ block.settings.stat_heading }}</h2>
+          {%- if block.settings.stat_note != blank -%}<p class="texan_panel_note">{{ block.settings.stat_note }}</p>{%- endif -%}
+        </div>
+      {%- endfor -%}
+    {%- endif -%}
+
+    {%- if section.settings.card_heading != blank -%}
+      <article class="texan_micro_card">
+        {%- if section.settings.card_image != blank -%}
+          {%- assign card_alt = section.settings.card_heading | escape -%}
+          {{ section.settings.card_image | image_url: width: 200 | image_tag: loading: 'lazy', widths: '80, 120, 200', alt: card_alt }}
+        {%- else -%}
+          <img src="{{ 'imgi_481_b0194f0b6220d027b3045e916805df1486a7cded-1200x1200.png' | asset_url }}" alt="" width="200" height="200" loading="lazy">
+        {%- endif -%}
+        <div>
+          <h3>{{ section.settings.card_heading }}</h3>
+          {%- if section.settings.card_text != blank -%}<p>{{ section.settings.card_text }}</p>{%- endif -%}
+          {%- if section.settings.card_link_label != blank -%}<a href="{{ section.settings.card_link | default: '#' }}">{{ section.settings.card_link_label }}</a>{%- endif -%}
+        </div>
+      </article>
+    {%- endif -%}
+  </div>
+
+  {%- if section.blocks.size > 0 -%}
+    <div class="texan_science_charts" data_texan_reveal>
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign placebo_h = block.settings.placebo_percent | times: 0.2
+          assign mito_h = block.settings.mitopure_percent | times: 0.2
+        -%}
+        <figure
+          class="texan_chart"
+          data_texan_chart="{{ forloop.index0 }}"
+          style="--placebo_h: {{ placebo_h }}rem; --mitopure_h: {{ mito_h }}rem;"
+          {% unless forloop.first %}hidden{% endunless %}
+        >
+          <figcaption>{{ block.settings.delta }}</figcaption>
+          <div class="texan_chart_axis"></div>
+          <div class="texan_chart_bars">
+            <span class="texan_bar_placebo"></span>
+            <span class="texan_bar_mitopure"></span>
+          </div>
+          <p class="texan_chart_legend"><span></span> {{ section.settings.legend_a | default: 'Placebo' }} <b></b> {{ section.settings.legend_b | default: 'Mitopure supplements' }}</p>
+        </figure>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</section>
+
+{% stylesheet %}
+  .texan_science_charts figure[hidden],
+  .texan_science_stat[hidden] {
+    display: none;
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  (() => {
+    document.querySelectorAll("[data_texan_science]").forEach((panel) => {
+      const tabs = panel.querySelectorAll("[data_texan_tab]");
+      const stats = panel.querySelectorAll("[data_texan_tabpanel]");
+      const charts = panel.querySelectorAll("[data_texan_chart]");
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const idx = tab.getAttribute("data_texan_tab");
+          tabs.forEach((t) => t.setAttribute("aria-selected", String(t === tab)));
+          stats.forEach((s) => (s.hidden = s.getAttribute("data_texan_tabpanel") !== idx));
+          charts.forEach((c) => (c.hidden = c.getAttribute("data_texan_chart") !== idx));
+        });
+      });
+    });
+  })();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "t:sections.science.name",
+  "max_blocks": 6,
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Anchor ID", "default": "texan_science" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "mitopure" },
+    { "type": "text", "id": "eyebrow_note", "label": "Eyebrow note", "default": "Gold-standard clinical trial" },
+    { "type": "text", "id": "legend_a", "label": "Chart legend A", "default": "Placebo" },
+    { "type": "text", "id": "legend_b", "label": "Chart legend B", "default": "Mitopure supplements" },
+    { "type": "header", "content": "Video / micro card" },
+    { "type": "image_picker", "id": "card_image", "label": "Card image" },
+    { "type": "text", "id": "card_heading", "label": "Card heading", "default": "Hear from our scientists" },
+    { "type": "text", "id": "card_text", "label": "Card text", "default": "About how Mitopure renews cells" },
+    { "type": "text", "id": "card_link_label", "label": "Card link label", "default": "Watch now" },
+    { "type": "url", "id": "card_link", "label": "Card link" }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "t:sections.science.tab",
+      "settings": [
+        { "type": "text", "id": "tab_label", "label": "Tab label", "default": "Renewal" },
+        { "type": "text", "id": "stat_heading", "label": "Stat headline", "default": "Mitochondrial renewal increases by +39% after 16 weeks over placebo" },
+        { "type": "text", "id": "stat_note", "label": "Stat note", "default": "See study details" },
+        { "type": "text", "id": "delta", "label": "Chart delta label", "default": "+39%" },
+        { "type": "range", "id": "placebo_percent", "min": 0, "max": 100, "step": 1, "unit": "%", "label": "Placebo bar", "default": 35 },
+        { "type": "range", "id": "mitopure_percent", "min": 0, "max": 100, "step": 1, "unit": "%", "label": "Mitopure bar", "default": 92 }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.science.name",
+      "blocks": [
+        { "type": "tab", "settings": { "tab_label": "Renewal", "stat_heading": "Mitochondrial renewal increases by +39% after 16 weeks over placebo", "delta": "+39%", "placebo_percent": 35, "mitopure_percent": 92 } },
+        { "type": "tab", "settings": { "tab_label": "Strength", "stat_heading": "Muscle strength improved by +12% in clinical testing", "delta": "+12%", "placebo_percent": 40, "mitopure_percent": 70 } },
+        { "type": "tab", "settings": { "tab_label": "Energy", "stat_heading": "Cellular energy markers rose significantly over placebo", "delta": "+28%", "placebo_percent": 38, "mitopure_percent": 85 } },
+        { "type": "tab", "settings": { "tab_label": "Bioavailability", "stat_heading": "6x more bioavailable than dietary sources of Urolithin A", "delta": "6x", "placebo_percent": 20, "mitopure_percent": 95 } }
+      ]
+    }
+  ]
+}
+{% endschema %}

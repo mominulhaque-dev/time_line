@@ -1,0 +1,104 @@
+{%- comment -%} Global header: brand tabs, logo, nav, search, account, cart. {%- endcomment -%}
+{%- liquid
+  assign main_menu = section.settings.menu
+  assign secondary_menu = section.settings.secondary_menu
+-%}
+<header class="texan_site_header{% unless section.settings.sticky %} texan_not_sticky{% endunless %}" data_texan_header>
+  <div class="texan_container texan_header_shell">
+    {%- if secondary_menu != blank and linklists[secondary_menu].links.size > 0 -%}
+      <div class="texan_header_tabs" aria-label="Brand categories">
+        {%- for link in linklists[secondary_menu].links -%}
+          <a href="{{ link.url }}" {% if link.active %}aria-current="true"{% endif %}>{{ link.title }}</a>
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <div class="texan_header_tabs" aria-hidden="true"></div>
+    {%- endif -%}
+
+    <a href="{{ routes.root_url }}" class="texan_logo_link" aria-label="{{ shop.name }} homepage">
+      {%- if section.settings.logo != blank -%}
+        {%- assign logo_alt = shop.name | escape -%}
+        {{ section.settings.logo | image_url: width: 240 | image_tag: widths: '120, 180, 240', alt: logo_alt }}
+      {%- else -%}
+        <span>{{ section.settings.logo_text_left | default: 'time' }}</span><i></i><span>{{ section.settings.logo_text_right | default: 'line' }}</span>
+      {%- endif -%}
+    </a>
+
+    <div class="texan_header_icons" aria-label="Customer actions">
+      <a href="{{ routes.account_url }}" aria-label="{{ 'customer.account.title' | t }}">
+        {% render 'icon', name: 'account' %}
+      </a>
+      {%- if section.settings.enable_search -%}
+        <button type="button" aria-label="{{ 'general.search.title' | t }}" aria-expanded="false" data_texan_search_button>
+          {% render 'icon', name: 'search' %}
+        </button>
+      {%- endif -%}
+      <a href="{{ routes.cart_url }}" aria-label="{{ 'cart.title' | t }}" {% if settings.cart_type == 'drawer' %}data_texan_cart_open{% endif %}>
+        {% render 'icon', name: 'cart' %}
+        <span class="texan_cart_count" data_texan_cart_count {% if cart.item_count == 0 %}hidden{% endif %}>{{ cart.item_count }}</span>
+      </a>
+    </div>
+
+    <button
+      class="texan_menu_button"
+      type="button"
+      aria-label="{{ 'general.accessibility.open_menu' | t }}"
+      aria-controls="texan_navigation_menu"
+      aria-expanded="false"
+      data_texan_menu_button
+    >
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="texan_nav_panel" id="texan_navigation_menu" aria-label="Primary navigation" data_texan_nav_panel>
+      <ul class="texan_nav_list">
+        {%- for link in linklists[main_menu].links -%}
+          <li class="{% if link.links.size > 0 %}texan_has_mega{% endif %}">
+            <a href="{{ link.url }}" {% if link.active %}aria-current="page"{% endif %}>{{ link.title }}</a>
+            {%- if link.links.size > 0 -%}
+              <div class="texan_mega">
+                {%- for child in link.links -%}
+                  <a href="{{ child.url }}">{{ child.title }}</a>
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+          </li>
+        {%- else -%}
+          <li><a href="{{ routes.all_products_collection_url }}">Shop</a></li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+  </div>
+
+  {%- if section.settings.enable_search -%}
+    <form class="texan_search_panel" role="search" action="{{ routes.search_url }}" method="get" data_texan_search_panel hidden>
+      <label class="texan_screen_reader" for="texan_search_input">{{ 'general.search.title' | t }}</label>
+      <input
+        id="texan_search_input"
+        type="search"
+        name="q"
+        placeholder="{{ 'general.search.placeholder' | t }}"
+        autocomplete="off"
+        data_texan_predictive_input
+      >
+      <button type="submit">{{ 'general.search.submit' | t }}</button>
+      {% render 'predictive-search' %}
+    </form>
+  {%- endif -%}
+</header>
+
+{% schema %}
+{
+  "name": "t:sections.header.name",
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "t:settings.brand.logo" },
+    { "type": "text", "id": "logo_text_left", "label": "Logo text (left)", "default": "time" },
+    { "type": "text", "id": "logo_text_right", "label": "Logo text (right)", "default": "line" },
+    { "type": "link_list", "id": "menu", "label": "t:sections.header.menu", "default": "main-menu" },
+    { "type": "link_list", "id": "secondary_menu", "label": "t:sections.header.secondary_menu" },
+    { "type": "checkbox", "id": "sticky", "label": "t:sections.header.enable_sticky", "default": true },
+    { "type": "checkbox", "id": "enable_search", "label": "t:sections.header.enable_search", "default": true }
+  ]
+}
+{% endschema %}
