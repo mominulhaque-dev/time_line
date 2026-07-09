@@ -4,38 +4,13 @@
   flex-direction: column;
   width: 100%;
   box-sizing: border-box;
+  background-color: var(--color-secondary-background);
 }
- .texan_nav_desktop_version{
-  display: none;
-} 
 .texan_nav__top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-direction: column;
-}
-
-.texan_nav__brand_links {
-  background-color: var(--color-secondary-background);
-  padding: var(--space-sm);
-  border-radius: var(--radius-card);
-  text-transform: uppercase;
-  font-size: var(--text-sm);
-  width: 100%;
-}
-.texan_nav__brand_links a {
-  text-align: center;
-  padding: var(--space-xs);
-  text-decoration: none;
-  font-weight: 500;
-  border-radius: var(--radius-card);
-}
-.texan_nav__brand_link_active {
-  background-color: var(--color-base-background);
-  color: var(--neutral-900);
-}
-.texan_nav__brand_ink {
-  color: var(--neutral-400);
+  padding: var(--space-lg);
 }
 
 .texan_nav__actions {
@@ -73,8 +48,8 @@
 }
 
 .texan_nav__profile_link svg {
-    width: 24px;
-    height: 24px;
+  width: 24px;
+  height: 24px;
 }
 .texan_nav__action_item,
 .texan_nav__search_button,
@@ -83,41 +58,45 @@
   background: transparent;
 }
 
-.texan_nav__main_list{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: var(--space-xs);
+.texan_nav__main_list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-xs);
 }
-.texan_nav__main_item{
-    padding: 0 10px;
-    list-style-type: none;
-
+.texan_nav__main_item {
+  padding: 0 10px;
+  list-style-type: none;
 }
 .texan_nav__main_link {
-    text-decoration: none;
-    text-transform: uppercase;
-    color:var(--neutral-900);
-    font-weight: 500;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: var(--neutral-900);
+  font-weight: 500;
 }
+
+/* footer css */
+
+
+
+
+
+
+
+
 
 /* ============================
    RESPONSIVE DESIGN
    ============================ */
-@media screen and (min-width:768px) {
-    .texan_nav {
-        padding: 10px;
-    }
+@media screen and (min-width: 768px) {
+  .texan_nav {
+    padding: var(--space-sm);
+  }
+
+  .texan_nav__top {
     
-    .texan_nav__top{
-        flex-direction: row;
-        padding: 0 0 0 10px;
-    }
-    .texan_nav__brand_links{
-        width: auto;
-    }
-    /* .texan_nav_moblie_version{
-      display: none;
-    } */
-    
+    padding: 0 0 0 10px;
+  }
+  
 }
+

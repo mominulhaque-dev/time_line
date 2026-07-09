@@ -1,6 +1,9 @@
 /* ==========================================================================
    1. SHOPIFY DESIGN TOKENS & LIQUID INTERACTIVE VARIABLES
    ========================================================================== */
+
+
+   /* comment */
 :root {
   /* --- Primitive Color Palette (To be linked to Shopify Schema settings) --- */
   --neutral-100: #f4f4f4;
@@ -9,6 +12,7 @@
   --neutral-400: #0000007A;
   --neutral-800: #2b2b2b;
   --neutral-900: #121212;
+  --new-color:#000;
 
   /* --- Shopify Customizer Placeholders (Theme Editor Ready) --- */
   --color-base-text: var(--neutral-900);
@@ -283,3 +287,4 @@ iframe, embed {
    ========================================================================== */
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
 .visually-hidden { display: none !important; }
+
