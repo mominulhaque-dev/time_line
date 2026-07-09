@@ -64,6 +64,9 @@
   align-items: center;
   gap: var(--space-xs);
 }
+ .mobile_device_hamberger_item{
+  display: none;
+ }
 .texan_nav__main_item {
   padding: 0 10px;
   list-style-type: none;
@@ -94,9 +97,11 @@
   }
 
   .texan_nav__top {
-    
     padding: 0 0 0 10px;
   }
+  /* .mobile_device_hamberger_item{
+    display: flex;
+  } */
   
 }
 
