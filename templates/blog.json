@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-blog",
+      "settings": { "show_tags": true, "show_excerpt": true, "posts_per_page": 9 }
+    }
+  },
+  "order": ["main"]
+}

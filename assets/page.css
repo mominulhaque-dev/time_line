@@ -1,1 +1,22 @@
-/* page.css — populated in its build phase */
+/* ============================================================
+   GENERIC PAGE template + shared RTE typography.
+   ============================================================ */
+.texan_page {
+  padding-block: clamp(2.5rem, 6vw, 5rem);
+}
+
+.texan_page_header {
+  max-width: 46rem;
+  margin: 0 auto 1.8rem;
+  text-align: center;
+}
+
+.texan_page_header h1 {
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  letter-spacing: -0.05em;
+}
+
+.texan_page_content {
+  max-width: 42rem;
+  margin-inline: auto;
+}

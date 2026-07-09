@@ -1,0 +1,37 @@
+{%- comment -%} Gift card template (must be Liquid, not JSON). {%- endcomment -%}
+<div class="texan_giftcard texan_container">
+  <div class="texan_giftcard_inner">
+    <p class="texan_rt_eyebrow">{{ shop.name }}</p>
+    <h1>{{ 'gift_cards.issued.title' | t: value: gift_card.initial_value | money, shop: shop.name }}</h1>
+
+    <div class="texan_giftcard_card">
+      {%- if gift_card.qr_identifier -%}
+        <img src="{{ gift_card | payment_type_img_url }}" alt="" width="120" height="120">
+      {%- endif -%}
+      <p class="texan_giftcard_balance">{{ gift_card.balance | money }}</p>
+      <div class="texan_giftcard_code" data_texan_giftcard_code>
+        <span>{{ gift_card.code | format_code }}</span>
+      </div>
+      <button type="button" class="texan_button" data_texan_giftcard_copy data-code="{{ gift_card.code | format_code }}">
+        {{ 'gift_cards.issued.copy_code' | t }}
+      </button>
+    </div>
+
+    <a class="texan_outline_link" href="{{ shop.url }}">{{ 'cart.continue_shopping' | t }}</a>
+  </div>
+</div>
+
+<style>
+  .texan_giftcard { padding-block: clamp(3rem, 8vw, 6rem); }
+  .texan_giftcard_inner { max-width: 30rem; margin-inline: auto; text-align: center; display: grid; gap: 1.2rem; justify-items: center; }
+  .texan_giftcard h1 { font-size: clamp(1.4rem, 4vw, 2.2rem); letter-spacing: -0.04em; }
+  .texan_giftcard_card { display: grid; gap: 1rem; justify-items: center; width: 100%; padding: 2rem; background: var(--color_panel); border-radius: var(--radius); }
+  .texan_giftcard_balance { font-size: 2.4rem; font-weight: 700; letter-spacing: -0.05em; color: var(--color_red); }
+  .texan_giftcard_code { padding: 0.6rem 1rem; background: var(--color_white); border: 1px dashed var(--color_line); border-radius: 2px; font-size: 1.1rem; letter-spacing: 0.1em; }
+</style>
+
+<script>
+  document.querySelector("[data_texan_giftcard_copy]")?.addEventListener("click", (e) => {
+    navigator.clipboard?.writeText(e.currentTarget.dataset.code);
+  });
+</script>

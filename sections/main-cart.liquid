@@ -1,0 +1,142 @@
+{%- comment -%} Full cart page. {%- endcomment -%}
+<section class="texan_cart_page texan_container">
+  <h1>{{ 'cart.title' | t }}</h1>
+
+  {%- if cart.item_count > 0 -%}
+    <form action="{{ routes.cart_url }}" method="post" class="texan_cart_page_form" data_texan_cart_page>
+      <div class="texan_cart_page_grid">
+        <div class="texan_cart_page_items">
+          <div class="texan_cart_page_head">
+            <span>Product</span>
+            <span>Quantity</span>
+            <span>Total</span>
+          </div>
+          {%- for item in cart.items -%}
+            <div class="texan_cart_page_row" data_texan_cart_line>
+              <div class="texan_cart_page_product">
+                <a href="{{ item.url }}">
+                  {%- if item.image -%}
+                    {%- assign ci_alt = item.title | escape -%}
+                    {{ item.image | image_url: width: 200 | image_tag: loading: 'lazy', widths: '100, 150, 200', alt: ci_alt }}
+                  {%- endif -%}
+                </a>
+                <div>
+                  <a href="{{ item.url }}" class="texan_cart_line_title">{{ item.product.title }}</a>
+                  {%- unless item.product.has_only_default_variant -%}<p class="texan_cart_line_variant">{{ item.variant.title }}</p>{%- endunless -%}
+                  <p class="texan_cart_line_variant">{{ item.final_price | money }}</p>
+                </div>
+              </div>
+              <div class="texan_cart_page_qty">
+                <div class="texan_qty_stepper">
+                  <button type="button" data_texan_qty_down data_line="{{ forloop.index }}" aria-label="{{ 'products.product.decrease_quantity' | t }}">{% render 'icon', name: 'minus' %}</button>
+                  <input type="number" min="0" value="{{ item.quantity }}" data_texan_qty_input data_line="{{ forloop.index }}" aria-label="{{ 'cart.quantity' | t }}">
+                  <button type="button" data_texan_qty_up data_line="{{ forloop.index }}" aria-label="{{ 'products.product.increase_quantity' | t }}">{% render 'icon', name: 'plus' %}</button>
+                </div>
+                <button type="button" class="texan_cart_remove" data_texan_cart_remove data_line="{{ forloop.index }}">{{ 'cart.remove' | t }}</button>
+              </div>
+              <div class="texan_cart_page_total">{{ item.final_line_price | money }}</div>
+            </div>
+          {%- endfor -%}
+        </div>
+
+        <aside class="texan_cart_summary">
+          {%- if settings.show_cart_note -%}
+            <label for="texan_cart_page_note">{{ 'cart.note' | t }}</label>
+            <textarea id="texan_cart_page_note" name="note" class="texan_cart_note" data_texan_cart_note>{{ cart.note }}</textarea>
+          {%- endif -%}
+          <div class="texan_cart_subtotal">
+            <span>{{ 'cart.subtotal' | t }}</span>
+            <span>{{ cart.total_price | money }}</span>
+          </div>
+          <p class="texan_cart_taxes">{{ 'cart.taxes_shipping_at_checkout' | t }}</p>
+          <button type="submit" name="checkout" class="texan_cart_checkout">{{ 'cart.checkout' | t }}</button>
+        </aside>
+      </div>
+    </form>
+  {%- else -%}
+    <div class="texan_cart_empty">
+      <p>{{ 'cart.empty' | t }}</p>
+      <a class="texan_button" href="{{ routes.all_products_collection_url }}">{{ 'cart.continue_shopping' | t }}</a>
+    </div>
+  {%- endif -%}
+</section>
+
+{% stylesheet %}
+  .texan_cart_page {
+    padding-block: clamp(2rem, 5vw, 4rem);
+  }
+  .texan_cart_page h1 {
+    margin-bottom: 1.5rem;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    letter-spacing: -0.05em;
+  }
+  .texan_cart_page_grid {
+    display: grid;
+    gap: 2rem;
+  }
+  .texan_cart_page_head {
+    display: none;
+    padding-bottom: 0.7rem;
+    border-bottom: 1px solid var(--color_line);
+    font-size: 0.6rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--color_muted);
+  }
+  .texan_cart_page_row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    padding-block: 1.2rem;
+    border-bottom: 1px solid var(--color_line);
+  }
+  .texan_cart_page_product {
+    display: grid;
+    grid-template-columns: 5rem 1fr;
+    gap: 1rem;
+  }
+  .texan_cart_page_product img {
+    width: 5rem;
+    height: 6rem;
+    object-fit: cover;
+    border-radius: 2px;
+    background: var(--color_panel);
+  }
+  .texan_cart_page_total {
+    font-weight: 700;
+    text-align: right;
+  }
+  .texan_cart_summary {
+    align-self: start;
+    padding: 1.4rem;
+    background: var(--color_panel);
+    border-radius: var(--radius);
+  }
+  .texan_cart_summary label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.62rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+  @media (min-width: 500px) {
+    .texan_cart_page_head {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 1rem;
+    }
+  }
+  @media (min-width: 900px) {
+    .texan_cart_page_grid {
+      grid-template-columns: minmax(0, 1fr) 20rem;
+    }
+    .texan_cart_page_row {
+      grid-template-columns: 1fr 10rem 6rem;
+      align-items: center;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{ "name": "Cart", "settings": [] }
+{% endschema %}

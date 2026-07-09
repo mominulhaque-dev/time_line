@@ -1,1 +1,190 @@
-/* blog.css — populated in its build phase */
+/* ============================================================
+   BLOG + ARTICLE templates.
+   ============================================================ */
+.texan_blog {
+  padding-block: clamp(2rem, 5vw, 4rem);
+}
+
+.texan_blog_header {
+  margin-bottom: 1.8rem;
+}
+
+.texan_blog_header h1 {
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  letter-spacing: -0.05em;
+}
+
+.texan_blog_tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.texan_blog_tags a {
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--color_line);
+  border-radius: 999px;
+  font-size: 0.64rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.texan_blog_tags a[aria-current="page"] {
+  background: var(--color_ink);
+  color: var(--color_white);
+  border-color: var(--color_ink);
+}
+
+.texan_blog_grid {
+  display: grid;
+  gap: 1.5rem 1rem;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+/* ---------- Article card ---------- */
+.texan_article_card img,
+.texan_article_media img {
+  aspect-ratio: 1.4 / 1;
+  object-fit: cover;
+  margin-bottom: 0.75rem;
+  border-radius: var(--radius);
+}
+
+.texan_article_card p {
+  margin-bottom: 0.35rem;
+  color: var(--color_muted);
+  font-size: 0.56rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.texan_article_card h3 {
+  font-size: 0.92rem;
+  line-height: 1.14;
+  letter-spacing: -0.02em;
+}
+
+.texan_article_excerpt {
+  margin-top: 0.5rem;
+  color: var(--color_muted);
+  font-size: 0.76rem;
+  line-height: 1.5;
+}
+
+/* ---------- Single article ---------- */
+.texan_article {
+  padding-block: clamp(2rem, 5vw, 4rem);
+}
+
+.texan_article_header {
+  max-width: 46rem;
+  margin: 0 auto 1.5rem;
+  text-align: center;
+}
+
+.texan_article_meta {
+  color: var(--color_red);
+  font-size: 0.62rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.texan_article_header h1 {
+  margin: 0.6rem 0;
+  font-size: clamp(1.9rem, 5vw, 3.4rem);
+  line-height: 1.03;
+  letter-spacing: -0.05em;
+}
+
+.texan_article_byline {
+  color: var(--color_muted);
+  font-size: 0.7rem;
+}
+
+.texan_article_hero {
+  margin-bottom: 2rem;
+}
+
+.texan_article_hero img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+
+.texan_article_body {
+  max-width: 42rem;
+  margin-inline: auto;
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.texan_article_body > * + * {
+  margin-top: 1.1rem;
+}
+
+.texan_article_body h2 {
+  margin-top: 2rem;
+  font-size: 1.4rem;
+  letter-spacing: -0.03em;
+}
+
+.texan_article_body img {
+  border-radius: var(--radius);
+}
+
+.texan_article_footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: 42rem;
+  margin: 2.5rem auto 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color_line);
+}
+
+/* ---------- Comments ---------- */
+.texan_comments {
+  max-width: 42rem;
+  margin: 3rem auto 0;
+}
+
+.texan_comments h2 {
+  margin-bottom: 1.2rem;
+  font-size: 1.2rem;
+}
+
+.texan_comment {
+  padding-block: 1rem;
+  border-bottom: 1px solid var(--color_line);
+}
+
+.texan_comment_author {
+  font-weight: 700;
+  font-size: 0.78rem;
+}
+
+.texan_comment_body {
+  margin-top: 0.3rem;
+  color: var(--color_muted);
+  font-size: 0.82rem;
+}
+
+.texan_comment_form {
+  margin-top: 1.8rem;
+}
+
+@media (min-width: 560px) {
+  .texan_blog_grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 900px) {
+  .texan_blog_grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

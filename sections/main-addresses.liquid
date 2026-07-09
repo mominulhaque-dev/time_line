@@ -1,0 +1,69 @@
+{%- comment -%} Customer address book with add/edit/delete. {%- endcomment -%}
+<section class="texan_customer texan_container" data_texan_addresses>
+  <header class="texan_account_header">
+    <h1>{{ 'customer.account.addresses' | t }}</h1>
+    <a href="{{ routes.account_url }}" class="texan_outline_link">&larr; {{ 'customer.account.title' | t }}</a>
+  </header>
+
+  <button type="button" class="texan_button" data_texan_address_new>Add new address</button>
+
+  {%- comment -%} New address form {%- endcomment -%}
+  <div class="texan_address_form_wrap" id="texan_address_new" hidden>
+    {%- form 'customer_address', customer.new_address, class: 'texan_customer_form' -%}
+      <h2>New address</h2>
+      {% render 'address-fields', form: form %}
+      <div class="texan_field texan_checkbox">
+        <label>{{ form.set_as_default_checkbox }} Set as default address</label>
+      </div>
+      <button type="submit" class="texan_button">Save</button>
+    {%- endform -%}
+  </div>
+
+  {%- for address in customer.addresses -%}
+    <article class="texan_address_card">
+      {%- if address == customer.default_address -%}<span class="texan_address_default">Default</span>{%- endif -%}
+      <div class="texan_account_address">{{ address | format_address }}</div>
+      <div class="texan_address_actions">
+        <button type="button" class="texan_link_button" data_texan_address_edit="{{ address.id }}">Edit</button>
+        {%- form 'customer_address', address, method: 'delete' -%}
+          <button type="submit" class="texan_link_button" data-confirm="Delete this address?">{{ 'cart.remove' | t }}</button>
+        {%- endform -%}
+      </div>
+
+      <div class="texan_address_form_wrap" id="texan_address_edit_{{ address.id }}" hidden>
+        {%- form 'customer_address', address, class: 'texan_customer_form' -%}
+          <h2>Edit address</h2>
+          {% render 'address-fields', form: form %}
+          <div class="texan_field texan_checkbox">
+            <label>{{ form.set_as_default_checkbox }} Set as default address</label>
+          </div>
+          <button type="submit" class="texan_button">Update</button>
+        {%- endform -%}
+      </div>
+    </article>
+  {%- endfor -%}
+</section>
+
+{% javascript %}
+  (() => {
+    const root = document.querySelector("[data_texan_addresses]");
+    if (!root) return;
+    const toggle = (id) => {
+      const el = document.getElementById(id);
+      if (el) el.hidden = !el.hidden;
+    };
+    root.querySelector("[data_texan_address_new]")?.addEventListener("click", () => toggle("texan_address_new"));
+    root.querySelectorAll("[data_texan_address_edit]").forEach((btn) => {
+      btn.addEventListener("click", () => toggle("texan_address_edit_" + btn.getAttribute("data_texan_address_edit")));
+    });
+    root.querySelectorAll("[data-confirm]").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        if (!confirm(btn.getAttribute("data-confirm"))) e.preventDefault();
+      });
+    });
+  })();
+{% endjavascript %}
+
+{% schema %}
+{ "name": "Addresses", "settings": [] }
+{% endschema %}

@@ -1,0 +1,34 @@
+{
+  "sections": {
+    "hero": {
+      "type": "rich-text",
+      "blocks": {
+        "eyebrow": { "type": "eyebrow", "settings": { "text": "Our mission" } },
+        "heading": { "type": "heading", "settings": { "text": "Life-Altering Science" } },
+        "text": { "type": "text", "settings": { "text": "<p>We translate breakthrough longevity research into products that help your cells work like they did when you were younger.</p>" } }
+      },
+      "block_order": ["eyebrow", "heading", "text"],
+      "settings": { "alignment": "center", "padding_top": 72, "padding_bottom": 24 }
+    },
+    "iwt_1": {
+      "type": "image-with-text",
+      "settings": {
+        "layout": "default",
+        "eyebrow": "The science",
+        "heading": "Backed by 18 years of research",
+        "text": "<p>Developed in collaboration with the Swiss Federal Institute of Technology of Lausanne, powered by our proprietary Mitopure ingredient.</p>"
+      }
+    },
+    "iwt_2": {
+      "type": "image-with-text",
+      "settings": {
+        "layout": "reverse",
+        "eyebrow": "Our promise",
+        "heading": "Clinically proven, third-party tested",
+        "text": "<p>Every batch is rigorously tested so you can trust exactly what's inside.</p>"
+      }
+    },
+    "page_body": { "type": "main-page" }
+  },
+  "order": ["hero", "iwt_1", "iwt_2", "page_body"]
+}

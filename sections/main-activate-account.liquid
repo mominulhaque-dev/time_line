@@ -1,0 +1,26 @@
+{%- comment -%} Activate account. {%- endcomment -%}
+<section class="texan_customer texan_container">
+  <div class="texan_customer_card">
+    <h1>Activate your account</h1>
+    <p class="texan_customer_sub">Create your password to activate your account.</p>
+    {%- form 'activate_customer_password', class: 'texan_customer_form' -%}
+      {%- if form.errors -%}<p class="texan_form_error">{{ form.errors | default_errors }}</p>{%- endif -%}
+      <div class="texan_field">
+        <label for="texan_activate_password">Password</label>
+        <input id="texan_activate_password" type="password" name="customer[password]" autocomplete="new-password" required>
+      </div>
+      <div class="texan_field">
+        <label for="texan_activate_confirm">Confirm password</label>
+        <input id="texan_activate_confirm" type="password" name="customer[password_confirmation]" autocomplete="new-password" required>
+      </div>
+      <div class="texan_customer_actions">
+        <button type="submit" name="commit" class="texan_button">Activate account</button>
+        <button type="submit" name="decline" class="texan_link_button">Decline invitation</button>
+      </div>
+    {%- endform -%}
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Activate account", "settings": [] }
+{% endschema %}

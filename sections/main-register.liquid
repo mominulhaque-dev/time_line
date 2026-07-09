@@ -1,0 +1,35 @@
+{%- comment -%} Customer registration. {%- endcomment -%}
+<section class="texan_customer texan_container">
+  <div class="texan_customer_card">
+    <h1>{{ 'customer.register.title' | t }}</h1>
+    {%- form 'create_customer', class: 'texan_customer_form' -%}
+      {%- if form.errors -%}<p class="texan_form_error">{{ form.errors | default_errors }}</p>{%- endif -%}
+      <div class="texan_contact_grid">
+        <div class="texan_field">
+          <label for="texan_reg_first">{{ 'customer.register.first_name' | t }}</label>
+          <input id="texan_reg_first" type="text" name="customer[first_name]" autocomplete="given-name">
+        </div>
+        <div class="texan_field">
+          <label for="texan_reg_last">{{ 'customer.register.last_name' | t }}</label>
+          <input id="texan_reg_last" type="text" name="customer[last_name]" autocomplete="family-name">
+        </div>
+      </div>
+      <div class="texan_field">
+        <label for="texan_reg_email">{{ 'customer.login.email' | t }}</label>
+        <input id="texan_reg_email" type="email" name="customer[email]" autocomplete="email" required>
+      </div>
+      <div class="texan_field">
+        <label for="texan_reg_password">{{ 'customer.login.password' | t }}</label>
+        <input id="texan_reg_password" type="password" name="customer[password]" autocomplete="new-password" required>
+      </div>
+      <button type="submit" class="texan_button">{{ 'customer.register.submit' | t }}</button>
+    {%- endform -%}
+    <p class="texan_customer_alt">
+      <a href="{{ routes.account_login_url }}">{{ 'customer.login.title' | t }}</a>
+    </p>
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Register", "settings": [] }
+{% endschema %}

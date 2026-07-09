@@ -864,6 +864,60 @@
   border-color: var(--color_ink);
 }
 
+/* ---------- Shared rich-text (rte) typography ---------- */
+.rte {
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.rte > * + * {
+  margin-top: 1rem;
+}
+
+.rte h2 {
+  margin-top: 1.6rem;
+  font-size: 1.4rem;
+  letter-spacing: -0.03em;
+}
+
+.rte h3 {
+  margin-top: 1.2rem;
+  font-size: 1.1rem;
+}
+
+.rte a {
+  color: var(--color_red);
+  text-decoration: underline;
+}
+
+.rte ul,
+.rte ol {
+  padding-left: 1.2rem;
+}
+
+.rte ul {
+  list-style: disc;
+}
+
+.rte ol {
+  list-style: decimal;
+}
+
+.rte li + li {
+  margin-top: 0.35rem;
+}
+
+.rte blockquote {
+  padding-left: 1rem;
+  border-left: 3px solid var(--color_red);
+  font-style: italic;
+  color: var(--color_muted);
+}
+
+.rte img {
+  border-radius: var(--radius);
+}
+
 /* ---------- Responsive chrome ---------- */
 @media (min-width: 760px) {
   .texan_header_tabs,

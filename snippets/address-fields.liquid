@@ -1,0 +1,47 @@
+{%- comment -%} Shared address form fields. Param: form (customer_address form). {%- endcomment -%}
+<div class="texan_contact_grid">
+  <div class="texan_field">
+    <label for="texan_addr_first_{{ form.id }}">First name</label>
+    <input id="texan_addr_first_{{ form.id }}" type="text" name="address[first_name]" value="{{ form.first_name }}" autocomplete="given-name">
+  </div>
+  <div class="texan_field">
+    <label for="texan_addr_last_{{ form.id }}">Last name</label>
+    <input id="texan_addr_last_{{ form.id }}" type="text" name="address[last_name]" value="{{ form.last_name }}" autocomplete="family-name">
+  </div>
+</div>
+<div class="texan_field">
+  <label for="texan_addr_company_{{ form.id }}">Company</label>
+  <input id="texan_addr_company_{{ form.id }}" type="text" name="address[company]" value="{{ form.company }}" autocomplete="organization">
+</div>
+<div class="texan_field">
+  <label for="texan_addr_1_{{ form.id }}">Address</label>
+  <input id="texan_addr_1_{{ form.id }}" type="text" name="address[address1]" value="{{ form.address1 }}" autocomplete="address-line1">
+</div>
+<div class="texan_field">
+  <label for="texan_addr_2_{{ form.id }}">Apartment, suite, etc.</label>
+  <input id="texan_addr_2_{{ form.id }}" type="text" name="address[address2]" value="{{ form.address2 }}" autocomplete="address-line2">
+</div>
+<div class="texan_contact_grid">
+  <div class="texan_field">
+    <label for="texan_addr_city_{{ form.id }}">City</label>
+    <input id="texan_addr_city_{{ form.id }}" type="text" name="address[city]" value="{{ form.city }}" autocomplete="address-level2">
+  </div>
+  <div class="texan_field">
+    <label for="texan_addr_zip_{{ form.id }}">Postal / ZIP code</label>
+    <input id="texan_addr_zip_{{ form.id }}" type="text" name="address[zip]" value="{{ form.zip }}" autocomplete="postal-code">
+  </div>
+</div>
+<div class="texan_contact_grid">
+  <div class="texan_field">
+    <label for="texan_addr_country_{{ form.id }}">Country / region</label>
+    <select id="texan_addr_country_{{ form.id }}" name="address[country]" data-default="{{ form.country }}">{{ all_country_option_tags }}</select>
+  </div>
+  <div class="texan_field" data-province-wrap>
+    <label for="texan_addr_province_{{ form.id }}">Province / state</label>
+    <select id="texan_addr_province_{{ form.id }}" name="address[province]" data-default="{{ form.province }}"></select>
+  </div>
+</div>
+<div class="texan_field">
+  <label for="texan_addr_phone_{{ form.id }}">Phone</label>
+  <input id="texan_addr_phone_{{ form.id }}" type="tel" name="address[phone]" value="{{ form.phone }}" autocomplete="tel">
+</div>

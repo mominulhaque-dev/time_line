@@ -1,0 +1,62 @@
+{%- comment -%} Customer login + recover password + guest checkout. {%- endcomment -%}
+<section class="texan_customer texan_container">
+  <div class="texan_customer_card" data_texan_login_wrap>
+    <h1>{{ 'customer.login.title' | t }}</h1>
+
+    {%- comment -%} Recover password form {%- endcomment -%}
+    {%- form 'recover_customer_password', class: 'texan_customer_form', data_texan_recover: '' -%}
+      <div id="texan_recover" style="display:none">
+        <h2>{{ 'customer.login.forgot' | t }}</h2>
+        {%- if form.errors -%}<p class="texan_form_error">{{ form.errors | default_errors }}</p>{%- endif -%}
+        {%- if form.posted_successfully? -%}<p class="texan_form_success">We've sent you an email with a link to update your password.</p>{%- endif -%}
+        <div class="texan_field">
+          <label for="texan_recover_email">{{ 'customer.login.email' | t }}</label>
+          <input id="texan_recover_email" type="email" name="email" autocomplete="email" required>
+        </div>
+        <button type="submit" class="texan_button">{{ 'customer.login.submit' | t }}</button>
+        <button type="button" class="texan_link_button" data_texan_show_login>Cancel</button>
+      </div>
+    {%- endform -%}
+
+    {%- comment -%} Login form {%- endcomment -%}
+    {%- form 'customer_login', class: 'texan_customer_form', data_texan_login: '' -%}
+      {%- if form.errors -%}<p class="texan_form_error">{{ form.errors | default_errors }}</p>{%- endif -%}
+      <div class="texan_field">
+        <label for="texan_login_email">{{ 'customer.login.email' | t }}</label>
+        <input id="texan_login_email" type="email" name="customer[email]" autocomplete="email" required>
+      </div>
+      <div class="texan_field">
+        <label for="texan_login_password">{{ 'customer.login.password' | t }}</label>
+        <input id="texan_login_password" type="password" name="customer[password]" autocomplete="current-password" required>
+      </div>
+      <button type="submit" class="texan_button">{{ 'customer.login.submit' | t }}</button>
+      <button type="button" class="texan_link_button" data_texan_show_recover>{{ 'customer.login.forgot' | t }}</button>
+    {%- endform -%}
+
+    <p class="texan_customer_alt">
+      {{ 'customer.login.create' | t }} &rarr; <a href="{{ routes.account_register_url }}">{{ 'customer.register.title' | t }}</a>
+    </p>
+  </div>
+</section>
+
+{% javascript %}
+  (() => {
+    const wrap = document.querySelector("[data_texan_login_wrap]");
+    if (!wrap) return;
+    const login = wrap.querySelector("[data_texan_login]");
+    const recover = wrap.querySelector("#texan_recover");
+    const recoverForm = wrap.querySelector("[data_texan_recover]");
+    const show = (which) => {
+      const showRecover = which === "recover";
+      recover.style.display = showRecover ? "block" : "none";
+      login.style.display = showRecover ? "none" : "block";
+    };
+    wrap.querySelector("[data_texan_show_recover]")?.addEventListener("click", () => show("recover"));
+    wrap.querySelector("[data_texan_show_login]")?.addEventListener("click", () => show("login"));
+    if (window.location.hash === "#recover") show("recover");
+  })();
+{% endjavascript %}
+
+{% schema %}
+{ "name": "Login", "settings": [] }
+{% endschema %}

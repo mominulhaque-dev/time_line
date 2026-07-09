@@ -1,0 +1,15 @@
+{
+  "sections": {
+    "main": {
+      "type": "faq",
+      "blocks": {
+        "q1": { "type": "item", "settings": { "question": "What is Urolithin A?", "open": true } },
+        "q2": { "type": "item", "settings": { "question": "How do I take Mitopure?" } },
+        "q3": { "type": "item", "settings": { "question": "Is it third-party tested?" } },
+        "q4": { "type": "item", "settings": { "question": "What is your return policy?" } }
+      },
+      "block_order": ["q1", "q2", "q3", "q4"]
+    }
+  },
+  "order": ["main"]
+}

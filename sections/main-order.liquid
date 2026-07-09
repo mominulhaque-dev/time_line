@@ -1,0 +1,49 @@
+{%- comment -%} Single customer order detail. {%- endcomment -%}
+<section class="texan_customer texan_container">
+  <header class="texan_account_header">
+    <h1>{{ order.name }}</h1>
+    <a href="{{ routes.account_url }}" class="texan_outline_link">&larr; {{ 'customer.account.title' | t }}</a>
+  </header>
+  <p class="texan_order_meta">{{ order.created_at | date: '%B %-d, %Y' }} &middot; {{ order.financial_status_label }} &middot; {{ order.fulfillment_status_label }}</p>
+
+  <table class="texan_orders_table">
+    <thead>
+      <tr><th>Product</th><th>Price</th><th>Qty</th><th>Total</th></tr>
+    </thead>
+    <tbody>
+      {%- for line in order.line_items -%}
+        <tr>
+          <td><a href="{{ line.product.url }}">{{ line.title }}</a></td>
+          <td>{{ line.price | money }}</td>
+          <td>{{ line.quantity }}</td>
+          <td>{{ line.final_line_price | money }}</td>
+        </tr>
+      {%- endfor -%}
+    </tbody>
+    <tfoot>
+      <tr><td colspan="3">{{ 'cart.subtotal' | t }}</td><td>{{ order.line_items_subtotal_price | money }}</td></tr>
+      {%- for shipping in order.shipping_methods -%}
+        <tr><td colspan="3">Shipping ({{ shipping.title }})</td><td>{{ shipping.price | money }}</td></tr>
+      {%- endfor -%}
+      {%- for tax in order.tax_lines -%}
+        <tr><td colspan="3">Tax ({{ tax.title }})</td><td>{{ tax.price | money }}</td></tr>
+      {%- endfor -%}
+      <tr><td colspan="3"><strong>{{ 'customer.orders.total' | t }}</strong></td><td><strong>{{ order.total_net_amount | money }}</strong></td></tr>
+    </tfoot>
+  </table>
+
+  <div class="texan_order_addresses">
+    <div>
+      <h2>Billing address</h2>
+      <div class="texan_account_address">{{ order.billing_address | format_address }}</div>
+    </div>
+    <div>
+      <h2>Shipping address</h2>
+      <div class="texan_account_address">{{ order.shipping_address | format_address }}</div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Order", "settings": [] }
+{% endschema %}
