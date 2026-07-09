@@ -5,6 +5,9 @@
   width: 100%;
   box-sizing: border-box;
 }
+ .texan_nav_desktop_version{
+  display: none;
+} 
 .texan_nav__top {
   display: flex;
   justify-content: space-between;
@@ -113,5 +116,8 @@
     .texan_nav__brand_links{
         width: auto;
     }
+    /* .texan_nav_moblie_version{
+      display: none;
+    } */
     
 }
