@@ -3,277 +3,320 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Texan Clone</title>
+    <meta
+      name="description"
+      content="Timeline inspired supplement homepage layout for premium longevity products powered by Mitopure."
+    />
+    <title>time-line | Life-Altering Science</title>
+    <link rel="preload" as="image" href="./assets/images/texan_timeline_hero_reference.jpg" />
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/homepage.css" />
   </head>
   <body>
-    <header class="texan_header texan_container">
-      <!-- desktop version -->
-      <nav class="texan_nav">
-        <div class="texan_nav__top">
-          <div class="texan_nav__logo_block">
-            <a
-              href="#"
-              class="texan_nav__logo-link"
-              aria-label="Texan homepage"
-            >
-              <svg
-                viewBox="0 0 173 24"
-                focusable="false"
-                xmlns="http://www.w3.org/2000/svg"
-                class="texan_nav__logo-icon"
-                data-sentry-element="texanLogo"
-                data-sentry-source-file="Header.tsx"
-              >
-                <path
-                  fill="currentColor"
-                  d="M121.49 0h3.017v23.426h-3.017V0zm10.558 0h-3.016v3.306h3.016V0zm0 5.704h-3.016v17.722h3.016V5.704zm20.38 6.696v11.026h-3.017V12.471c0-2.972-1.691-4.725-4.635-4.725-3.273 0-5.187 2.22-5.187 5.978v9.702h-3.017V5.704h3.017v6.086h.073c0-4.044 2.317-6.445 6.18-6.445 4.158 0 6.586 2.615 6.586 7.054zm-35.463.898H74.972v2.178h41.993v-2.178zM7.491 20.49c-.845 0-1.533-.667-1.533-1.492V7.888h4.525V5.704H5.96V0H2.943v5.704H0v2.184h2.943v11.135c0 2.431 2.027 4.403 4.525 4.403h3.017v-2.935H7.491zM163.906 5.345c-5.298 0-8.461 3.402-8.461 9.236 0 5.8 3.163 9.2 8.461 9.2 4.532 0 7.592-2.26 8.34-6.13h-2.997c-.619 2.375-2.574 3.803-5.343 3.803-3.182 0-5.169-2.188-5.451-5.98h13.873v-.891c.002-5.836-3.124-9.238-8.422-9.238zm0 2.327c3.056 0 5.018 2.057 5.38 5.624h-10.797c.362-3.567 2.361-5.624 5.417-5.624zM18.025 5.704h-3.017v17.722h3.017V5.704zm32.519 6.516v11.206h-3.017V12.292c0-2.865-1.655-4.547-4.451-4.547-3.164 0-5.041 2.149-5.041 5.8v9.881h-3.017V12.292c0-2.865-1.618-4.547-4.452-4.547-3.163 0-5.002 2.149-5.002 5.8v9.881H22.55V5.704h3.017v5.943h.073c0-3.973 2.244-6.3 6.07-6.3 4.01 0 6.327 2.505 6.327 6.3h.073c0-3.973 2.245-6.3 6.034-6.3 4.046-.002 6.4 2.541 6.4 6.873zm11.478-6.875c-5.297 0-8.461 3.402-8.461 9.236 0 5.8 3.163 9.2 8.461 9.2 4.532 0 7.592-2.26 8.34-6.13h-2.996c-.62 2.375-2.575 3.803-5.344 3.803-3.182 0-5.17-2.188-5.451-5.98h13.873v-.891c.002-5.836-3.124-9.238-8.422-9.238zm0 2.327c3.056 0 5.018 2.057 5.38 5.624H56.605c.365-3.567 2.361-5.624 5.417-5.624zM18.025 0h-3.017v3.306h3.017V0z"
-                ></path>
-              </svg>
-            </a>
-          </div>
-
-          <div class="texan_nav__actions">
-            <ul class="texan_nav__actions_list">
-              <li class="texan_nav__action_item">
-                <a
-                  href="#"
-                  class="texan_nav__action_link texan_nav__profile-link"
-                >
-                  <svg
-                    viewBox="0 0 20 20"
-                    focusable="false"
-                    class="user_profile_icon"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
-                    width="24px"
-                    height="24px"
-                  >
-                    <path
-                      d="M16.6668 17.5V15.8333C16.6668 14.9493 16.3156 14.1014 15.6905 13.4763C15.0654 12.8512 14.2176 12.5 13.3335 12.5H6.66683C5.78277 12.5 4.93493 12.8512 4.30981 13.4763C3.68469 14.1014 3.3335 14.9493 3.3335 15.8333V17.5M13.3332 6.33333C13.3332 8.17428 11.8408 9.66667 9.99984 9.66667C8.15889 9.66667 6.6665 8.17428 6.6665 6.33333C6.6665 4.49238 8.15889 3 9.99984 3C11.8408 3 13.3332 4.49238 13.3332 6.33333Z"
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      vector-effect="non-scaling-stroke"
-                    ></path>
-                  </svg>
-                </a>
-              </li>
-              <li class="texan_nav__action-item">
-                <button
-                  class="texan_nav__action_link texan_nav__icon_button texan_nav__search_button"
-                  type="button"
-                  aria-label="Search"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    fill="currentColor"
-                    class="bi bi-search"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"
-                    />
-                  </svg>
-                </button>
-              </li>
-              <li class="texan_nav__action_link texan_nav__action_item">
-                <button class="texan_nav__cart_button" type="button">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    fill="currentColor"
-                    class="bi bi-bag-plus"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5"
-                    />
-                    <path
-                      d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"
-                    />
-                  </svg>
-                </button>
-              </li>
-            </ul>
-          </div>
+    <header class="texan_site_header" data_texan_header>
+      <div class="texan_container texan_header_shell">
+        <div class="texan_header_tabs" aria-label="Brand categories">
+          <a href="#">Supplements</a>
+          <a href="#">Skincare</a>
         </div>
 
-        <!-- desktop device hamberger menu -->
-        <ul class="texan_nav__main_list desktop_device_hamberger_item">
-          <li class="texan_nav__main_item">
-            <a href="#" class="texan_nav__main_link">Shop</a>
-          </li>
-          <li class="texan_nav__main_item">
-            <a href="#" class="texan_nav__main_link">Skin Care</a>
-          </li>
-          <li class="texan_nav__main_item">
-            <a href="#" class="texan_nav__main_link">About</a>
-          </li>
-          <li class="texan_nav__main_item">
-            <a href="#" class="texan_nav__main_link">Longevity Game</a>
-          </li>
-        </ul>
+        <a href="#" class="texan_logo_link" aria-label="time-line homepage">
+          <span>time</span><i></i><span>line</span>
+        </a>
 
-        <!-- mobile device hamberger menu -->
-          <ul class="texan_nav__main_list mobile_device_hamberger_item">
-          <li class="texan_nav__main_item">
-            <a href="#" class="texan_nav__main_link">Shop</a>
-          </li>
-          <li class="texan_nav__main_item">
-            <a href="#" class="texan_nav__main_link">Skin Care</a>
-          </li>
-          <li class="texan_nav__main_item">
-            <a href="#" class="texan_nav__main_link">About</a>
-          </li>
-          <li class="texan_nav__main_item">
-            <a href="#" class="texan_nav__main_link">Longevity Game</a>
-          </li>
-        </ul>
+        <div class="texan_header_icons" aria-label="Customer actions">
+          <a href="#" aria-label="Account">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20 21a8 8 0 0 0-16 0M12 13a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z" />
+            </svg>
+          </a>
+          <button type="button" aria-label="Search" data_texan_search_button>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m21 21-4.4-4.4M10.8 18a7.2 7.2 0 1 1 0-14.4 7.2 7.2 0 0 1 0 14.4Z" />
+            </svg>
+          </button>
+          <a href="#" aria-label="Cart">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6.5 8h11l1 13h-13l1-13ZM9 8V6a3 3 0 1 1 6 0v2" />
+            </svg>
+          </a>
+        </div>
 
-      </nav>
+        <button
+          class="texan_menu_button"
+          type="button"
+          aria-label="Open navigation menu"
+          aria-controls="texan_navigation_menu"
+          aria-expanded="false"
+          data_texan_menu_button
+        >
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="texan_nav_panel" id="texan_navigation_menu" aria-label="Primary navigation" data_texan_nav_panel>
+          <ul class="texan_nav_list">
+            <li><a href="#texan_shop">Shop</a></li>
+            <li><a href="#texan_science">Science</a></li>
+            <li><a href="#texan_about">About</a></li>
+            <li><a href="#texan_game">Longevity Game</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <form class="texan_search_panel" role="search" data_texan_search_panel hidden>
+        <label class="texan_screen_reader" for="texan_search_input">Search products</label>
+        <input id="texan_search_input" type="search" placeholder="Search supplements or skincare" />
+        <button type="submit">Search</button>
+      </form>
     </header>
 
-    <main class="texan_main">
-      <section class="hero">
-        <div class="hero__content">
-          <p class="hero__eyebrow">Crafted for longevity</p>
-          <h1 class="hero__title">Wellness and skincare with purpose</h1>
-          <p class="hero__copy">
-            Discover premium formulas, clean ingredients, and a seamless
-            shopping experience designed for modern self-care.
-          </p>
-          <div class="hero__actions">
-            <a href="#" class="hero__cta">Explore products</a>
-            <a href="#" class="hero__secondary-link">Learn more</a>
+    <main>
+      <section class="texan_hero" aria-labelledby="texan_hero_title">
+        <img
+          src="./assets/images/texan_timeline_hero_reference.jpg"
+          alt="A group of active adults standing on a mountain overlook"
+          width="880"
+          height="797"
+        />
+        <div class="texan_hero_overlay">
+          <div class="texan_hero_content" data_texan_reveal>
+            <p class="texan_powered">Powered by <span>mitopure</span></p>
+            <h1 id="texan_hero_title">No other supplement does this.</h1>
+            <p>Award-winning clinically proven Urolithin A products.</p>
+            <a class="texan_button texan_button_light" href="#texan_shop">Shop now</a>
           </div>
+          <aside class="texan_hero_badge" aria-label="Doctor recommended badge">
+            <strong>#1</strong>
+            <span>Doctor recommended Urolithin A brand</span>
+          </aside>
+        </div>
+      </section>
+
+      <section class="texan_quote_ticker" aria-label="Press quotes">
+        <div>
+          <span>"Game changer for your energy and health"</span>
+          <span>Ines</span>
+          <span>"It works!"</span>
+          <span>Sarasara</span>
+          <span>"This supplement is the future"</span>
+          <span>Zachary</span>
+          <span>"It's a game changer"</span>
+          <span>Valerie</span>
+          <span>"Revitalize"</span>
+        </div>
+      </section>
+
+      <section class="texan_intro texan_container" aria-labelledby="texan_intro_title">
+        <div class="texan_intro_copy" data_texan_reveal>
+          <h2 id="texan_intro_title">
+            Time to give your cells new life with high-performance products powered by
+            <span>mitopure</span>, our powerful ingredient that unlocks a precise dose of the rare Urolithin A molecule and promotes healthy aging.
+          </h2>
+          <a class="texan_outline_link" href="#texan_science">Discover our science</a>
+        </div>
+        <div class="texan_metric_grid" aria-label="Clinical proof metrics">
+          <article data_texan_reveal>
+            <strong>18</strong>
+            <h3>Years of research</h3>
+            <p>In collaboration with the Swiss Federal Institute of Technology of Lausanne.</p>
+          </article>
+          <article data_texan_reveal>
+            <strong>25</strong>
+            <h3>Human clinical trials</h3>
+            <p>Completed and ongoing gold standard clinical trials involving over 1000 participants.</p>
+          </article>
+          <article data_texan_reveal>
+            <strong>500<sup>+</sup></strong>
+            <h3>Studies on Urolithin A</h3>
+            <p>Scientists have extensively explored the effectiveness of Urolithin A on health.</p>
+          </article>
+          <article data_texan_reveal>
+            <strong>80</strong>
+            <h3>Patents</h3>
+            <p>Our proprietary ingredient Mitopure is protected under US patents.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="texan_panel texan_science_panel" id="texan_science" aria-labelledby="texan_science_title">
+        <div class="texan_panel_copy" data_texan_reveal>
+          <p class="texan_mitopure">mitopure <span>Gold-standard clinical trial</span></p>
+          <div class="texan_tab_list" aria-label="Clinical benefit tabs">
+            <span>Renewal</span>
+            <span>Strength</span>
+            <span>Energy</span>
+            <span>Bioavailability</span>
+          </div>
+          <h2 id="texan_science_title">Mitochondrial renewal increases by +39% after 16 weeks over placebo<sup>1</sup></h2>
+          <p>See study details</p>
+          <article class="texan_micro_card">
+            <img
+              src="./assets/images/imgi_481_b0194f0b6220d027b3045e916805df1486a7cded-1200x1200.png"
+              alt="Cellular image representing mitochondrial renewal"
+              width="3840"
+              height="3840"
+              loading="lazy"
+            />
+            <div>
+              <h3>Hear from our scientists</h3>
+              <p>About how Mitopure renews cells</p>
+              <a href="#">Watch now</a>
+            </div>
+          </article>
+        </div>
+        <figure class="texan_chart" data_texan_reveal>
+          <figcaption>+39%</figcaption>
+          <div class="texan_chart_axis"></div>
+          <div class="texan_chart_bars">
+            <span class="texan_bar_placebo"></span>
+            <span class="texan_bar_mitopure"></span>
+          </div>
+          <p><span></span> Placebo <b></b> Mitopure supplements</p>
+        </figure>
+      </section>
+
+      <section class="texan_panel texan_compare" aria-labelledby="texan_compare_title">
+        <p class="texan_compare_label">Compare us to other <span>supplements</span> Urolithin A</p>
+        <h2 id="texan_compare_title">The Ultimate Longevity Powerhouse</h2>
+        <div class="texan_compare_table" role="table" aria-label="Supplement comparison">
+          <div role="row" class="texan_compare_head">
+            <span role="columnheader"></span>
+            <span role="columnheader">
+              <img src="./assets/images/imgi_55_da75dfa991293ca6df36af8adb4978b09313eed2-1600x2000.png" alt="Mitopure product" width="2048" height="2560" loading="lazy" />
+              Mitopure
+            </span>
+            <span role="columnheader">NAD+</span>
+            <span role="columnheader">CoQ10</span>
+            <span role="columnheader">Creatine</span>
+            <span role="columnheader">Spermidine</span>
+          </div>
+          <div role="row"><span>Directly activates mitophagy</span><b>●</b><b>○</b><b>○</b><b>○</b><b>Partial</b></div>
+          <div role="row"><span>Targets a root cause of age-related cellular energy decline</span><b>●</b><b>Partial</b><b>Partial</b><b>○</b><b>Partial</b></div>
+          <div role="row"><span>Benefits without changing exercise routine</span><b>●</b><b>○</b><b>●</b><b>○</b><b>●</b></div>
+          <div role="row"><span>Complete human clinical trials</span><b>●</b><b>Limited</b><b>●</b><b>●</b><b>Limited</b></div>
+        </div>
+      </section>
+
+      <section class="texan_products texan_container" id="texan_shop" aria-labelledby="texan_products_title">
+        <div class="texan_section_heading">
+          <h2 id="texan_products_title">Products powered by Mitopure</h2>
+          <a class="texan_outline_link" href="#">Shop all</a>
+        </div>
+        <div class="texan_product_grid">
+          <article class="texan_product_card" data_texan_reveal>
+            <figure>
+              <img src="./assets/images/imgi_63_9852bb6613c37c6283c53b0ffc81afbe203fe12e-1600x2000.png" alt="Mitopure gummies product pouch" width="2048" height="2560" loading="lazy" />
+              <span>#1 Doctor recommended</span>
+            </figure>
+            <h3>Mitopure Gummies</h3>
+            <p>4.6 (1262)</p>
+            <strong>$90 $85</strong>
+          </article>
+          <article class="texan_product_card" data_texan_reveal>
+            <figure>
+              <img src="./assets/images/imgi_71_d576a998715d39c70e9f6c02538a77a00a5e262c-1600x2000.png" alt="Mitopure softgels product pouch" width="2048" height="2560" loading="lazy" />
+              <span>#1 Doctor recommended</span>
+            </figure>
+            <h3>Mitopure Softgels</h3>
+            <p>4.5 (1423)</p>
+            <strong>$90 $85</strong>
+          </article>
+          <article class="texan_product_card" data_texan_reveal>
+            <figure>
+              <img src="./assets/images/imgi_222_2759d320f7f781843dcad38cd69567b48a125c1d-1600x2000.png" alt="Mitopure powder sachet" width="2048" height="2560" loading="lazy" />
+              <span>#1 Doctor recommended</span>
+            </figure>
+            <h3>Mitopure Powder</h3>
+            <p>4.6 (708)</p>
+            <strong>$90 $85</strong>
+          </article>
+          <article class="texan_skin_card" data_texan_reveal>
+            <p>mitopure</p>
+            <h3>Now available as Skincare</h3>
+            <a href="#">Shop skincare</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="texan_logo_marquee" aria-label="Featured press">
+        <span>Forbes</span>
+        <span>Financial Times</span>
+        <span>Popular Science</span>
+        <span>Runner's World</span>
+        <span>Medical News Today</span>
+        <span>Forbes</span>
+        <span>Financial Times</span>
+      </section>
+
+      <section class="texan_review_strip" id="texan_about" aria-labelledby="texan_review_title">
+        <h2 id="texan_review_title">Loved by our community</h2>
+        <div class="texan_review_cards">
+          <article><img src="./assets/images/imgi_521_104ff16cf8433dc318c3d00fae1f1ccf28d11cb3-2640x1760.jpg" alt="Person exercising with a grip trainer" width="3840" height="2560" loading="lazy" /><button type="button" aria-label="Play review video">▶</button></article>
+          <article><p>★★★★★</p><blockquote>“Excellent supplement”</blockquote><span>Verified buyer</span></article>
+          <article><img src="./assets/images/imgi_452_466a26e75705b0090cdef38df8f43a6bec975bc5-1600x2000.png" alt="Person taking a daily capsule" width="2048" height="2560" loading="lazy" /><button type="button" aria-label="Play review video">▶</button></article>
+          <article><p>★★★★★</p><blockquote>“Increased Strength and Energy”</blockquote><span>Verified buyer</span></article>
+          <article><img src="./assets/images/imgi_511_78b9900ff7b99352620bbe1efa5c1b424d2a2793-2640x1760.jpg" alt="Active older adult walking with cane" width="3840" height="2560" loading="lazy" /><button type="button" aria-label="Play review video">▶</button></article>
+          <article><p>★★★★★</p><blockquote>“My stamina is returning...”</blockquote><span>Verified buyer</span></article>
+        </div>
+        <a class="texan_outline_link" href="#">Read all reviews</a>
+      </section>
+
+      <section class="texan_expert texan_container" aria-labelledby="texan_expert_title">
+        <h2 id="texan_expert_title">Find out why the experts trust Urolithin A from Timeline</h2>
+        <div class="texan_expert_grid">
+          <img src="./assets/images/image_time_line2.png" alt="Dr Johan Auwerx portrait" width="3840" height="3840" loading="lazy" />
+          <blockquote>
+            <div class="texan_avatar_row" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+            “The latest clinical studies crystallize how Mitopure can be a real game-changer for human health.”
+            <footer>Dr. Johan Auwerx MD, PhD<br />Scientific Advisor</footer>
+          </blockquote>
+        </div>
+      </section>
+
+      <section class="texan_news texan_container" id="texan_game" aria-labelledby="texan_news_title">
+        <div class="texan_section_heading">
+          <h2 id="texan_news_title">Latest news</h2>
+          <a class="texan_outline_link" href="#">Our blog</a>
+        </div>
+        <div class="texan_news_grid">
+          <article><img src="./assets/images/imgi_588_8cfa59bd043663ba44edd0d2e456db1fa3d65432-200x200.png" alt="Fermented food texture" width="3840" height="3840" loading="lazy" /><p>Nutrition · Jun 26, 2026</p><h3>Fermented Foods for Longevity and Healthy Aging</h3></article>
+          <article><img src="./assets/images/imgi_511_78b9900ff7b99352620bbe1efa5c1b424d2a2793-2640x1760.jpg" alt="Centenarian hands holding a cane" width="3840" height="2560" loading="lazy" /><p>News · Nutrition · Jun 26, 2026</p><h3>What Centenarians Reveal About Longevity and Immune Health</h3></article>
+          <article><img src="./assets/images/imgi_146_4502d6d8cbd8326e1495c362868e7a5fc5be1fae-3500x1500.jpg" alt="Lab skincare bottles" width="1920" height="1920" loading="lazy" /><p>Nutrition · Skincare · May 22, 2026</p><h3>Inside Timeline's Lab: Meet Isha Rana</h3></article>
+          <article><img src="./assets/images/imgi_521_104ff16cf8433dc318c3d00fae1f1ccf28d11cb3-2640x1760.jpg" alt="Hand using strength equipment" width="3840" height="2560" loading="lazy" /><p>Nutrition · Apr 22, 2026</p><h3>Why Grip Strength is Linked to Longevity and Healthspan</h3></article>
         </div>
       </section>
     </main>
 
-    <!-- footer start here -->
-    <footer class="texan_container texan_main_container">
-      <h2 class="texan_footer_tagline">Your Brand Tagline<sup>™</sup></h2>
-
-      <div class="texan_footer_columns">
-        <div class="texan_footer_col">
-          <h4>SHOP</h4>
-          <hr />
-          <ul>
-            <li><a href="#">Shop All</a></li>
-            <li><a href="#">Samples</a></li>
-            <li><a href="#">Accessories</a></li>
-          </ul>
+    <footer class="texan_footer">
+      <div class="texan_container">
+        <h2>Life-Altering Science<sup>TM</sup></h2>
+        <div class="texan_footer_columns">
+          <div><h3>Shop</h3><a href="#">Mitopure</a><a href="#">Samples</a><a href="#">Accessories</a></div>
+          <div><h3>Science</h3><a href="#">Science of Mitopure</a><a href="#">How Mitopure works</a><a href="#">Benefits</a><a href="#">Studies</a><a href="#">Patents</a></div>
+          <div><h3>About</h3><a href="#">About us</a><a href="#">Reviews</a><a href="#">Testimonials</a><a href="#">Blog</a><a href="#">FAQs</a></div>
+          <div><h3>Support</h3><a href="#">Help center</a><a href="mailto:care@email.com">care@email.com</a><a href="#">Rewards</a><a href="#">Affiliate program</a></div>
+          <form class="texan_newsletter" aria-label="Newsletter signup">
+            <h3>Newsletter</h3>
+            <label class="texan_screen_reader" for="texan_newsletter_email">Email</label>
+            <div><input id="texan_newsletter_email" type="email" placeholder="Email" /><button type="submit" aria-label="Join newsletter">→</button></div>
+            <p>By signing up, you agree to our privacy policy</p>
+          </form>
         </div>
-
-        <div class="texan_footer_col">
-          <h4>SCIENCE</h4>
-          <hr />
-          <ul>
-            <li><a href="#">How It Works</a></li>
-            <li><a href="#">Benefits</a></li>
-            <li><a href="#">Studies</a></li>
-            <li><a href="#">Patents</a></li>
-          </ul>
-        </div>
-
-        <div class="texan_footer_col">
-          <h4>ABOUT</h4>
-          <hr />
-          <ul>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Reviews</a></li>
-            <li><a href="#">Testimonials</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">FAQs</a></li>
-            <li><a href="#">For Providers ↗</a></li>
-          </ul>
-        </div>
-
-        <div class="texan_footer_col">
-          <h4>SUPPORT</h4>
-          <hr />
-          <ul>
-            <li><a href="#">Help Center</a></li>
-            <li>
-              <a href="mailto:support@yourbrand.com">support@yourbrand.com</a>
-            </li>
-            <li><a href="tel:+10000000000">+1-000-000-0000</a></li>
-            <li><a href="#">Rewards</a></li>
-            <li><a href="#">Affiliate Program</a></li>
-          </ul>
-        </div>
-
-        <div class="texan_footer_col">
-          <h4>NEWSLETTER</h4>
-          <hr />
-          <div class="texan_footer_newsletter_input">
-            <input type="email" placeholder="Email" />
-            <button aria-label="Subscribe">→</button>
-          </div>
-          <p class="texan_footer_newsletter_note">
-            By signing up, you agree to our privacy policy
-          </p>
-        </div>
-      </div>
-
-      <div class="texan_footer_social">
-        <a href="https://www.instagram.com/" aria-label="Instagram"
-          ><svg viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M12 2c2.7 0 3 .01 4.1.06 1.1.05 1.85.22 2.5.48.68.26 1.26.62 1.83 1.19.57.57.93 1.15 1.19 1.83.26.65.43 1.4.48 2.5.05 1.1.06 1.4.06 4.1s-.01 3-.06 4.1c-.05 1.1-.22 1.85-.48 2.5a4.9 4.9 0 0 1-1.19 1.83 4.9 4.9 0 0 1-1.83 1.19c-.65.26-1.4.43-2.5.48-1.1.05-1.4.06-4.1.06s-3-.01-4.1-.06c-1.1-.05-1.85-.22-2.5-.48a4.9 4.9 0 0 1-1.83-1.19 4.9 4.9 0 0 1-1.19-1.83c-.26-.65-.43-1.4-.48-2.5C2.01 15 2 14.7 2 12s.01-3 .06-4.1c.05-1.1.22-1.85.48-2.5.26-.68.62-1.26 1.19-1.83A4.9 4.9 0 0 1 5.56.56.9.9 0 0 1 5.4 2.54c-1.1.05-1.4.06-4.1.06zM12 6.35A5.65 5.65 0 1 0 12 17.65 5.65 5.65 0 0 0 12 6.35zm0 9.32A3.67 3.67 0 1 1 12 8.33a3.67 3.67 0 0 1 0 7.34zm5.88-9.55a1.32 1.32 0 1 1 0-2.64 1.32 1.32 0 0 1 0 2.64z"
-            /></svg
-        ></a>
-        <a href="https://www.facebook.com/" aria-label="Facebook"
-          ><svg viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"
-            /></svg
-        ></a>
-        <a href="https://www.youtube.com/" aria-label="YouTube"
-          ><svg viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"
-            /></svg
-        ></a>
-        <a
-          href="https://www.tiktok.com/@abaya.elegance.hamburg"
-          aria-label="TikTok"
-          ><svg viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M16.6 5.8a4.3 4.3 0 0 1-3-3.8h-3.1v13.7a2.6 2.6 0 1 1-1.8-2.5V9.9a5.9 5.9 0 1 0 5 5.8V9.2a7.3 7.3 0 0 0 4.3 1.4V7.5a4.3 4.3 0 0 1-1.4-1.7z"
-            /></svg
-        ></a>
-      </div>
-
-      <div class="texan_footer_disclaimer">
-        † These statements have not been evaluated by the relevant regulatory
-        authority. This product is not intended to diagnose, treat, cure, or
-        prevent any disease.
-      </div>
-
-      <div class="texan_footer_disclaimer">
-        References: Add your citations, study references, and legal disclaimers
-        here.
-      </div>
-
-      <div class="texan_footer_bottom">
-        <span>© 2026 Your Brand</span>
-        <div class="texan_footer_bottom_links">
-          <a href="#">Terms &amp; Conditions</a>
+        <p class="texan_footer_note">
+          These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure or prevent any disease.
+        </p>
+        <div class="texan_footer_bottom">
+          <span>© 2026</span>
+          <a href="#">Terms & Conditions</a>
           <a href="#">Privacy Policy</a>
-        </div>
-        <div class="texan_footer_payment_icons">
-          <span>G Pay</span><span>Apple Pay</span><span>Mastercard</span
-          ><span>Visa</span>
+          <span>G Pay</span>
+          <span>Apple Pay</span>
+          <span>Visa</span>
         </div>
       </div>
     </footer>
+
+    <script src="./js/main.js" defer></script>
   </body>
-  <!-- test -->
 </html>

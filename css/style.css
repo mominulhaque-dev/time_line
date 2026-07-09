@@ -1,59 +1,21 @@
-/* ==========================================================================
-   1. SHOPIFY DESIGN TOKENS & LIQUID INTERACTIVE VARIABLES
-   ========================================================================== */
-
-
-   /* comment */
 :root {
-  /* --- Primitive Color Palette (To be linked to Shopify Schema settings) --- */
-  --neutral-100: #f4f4f4;
-  --neutral-200: #e2e2e2;
-  --neutral-300: #000000cc;
-  --neutral-400: #0000007A;
-  --neutral-800: #2b2b2b;
-  --neutral-900: #121212;
-  --new-color:#000;
-
-  /* --- Shopify Customizer Placeholders (Theme Editor Ready) --- */
-  --color-base-text: var(--neutral-900);
-  --color-base-background: #ffffff;
-  --color-secondary-background: #f5f5f5f5;
-  --color-base-accent: #005a9c;
-  --color-base-accent-hover: #004475;
-  --color-sale-badge: #d72c0d;
-
-  /* --- Typography Base (Shopify Font Engine Placeholders) --- */
-  --font-heading: "Helvetica Neue", Arial, sans-serif;
-  --font-body: "Assistant", Arial, sans-serif;
-  
-  --text-xs: 0.75rem;    /* 12px */
-  --text-sm: 0.875rem;   /* 14px */
-  --text-base: 1rem;     /* 16px */
-  --text-lg: 1.125rem;   /* 18px */
-  --text-xl: 1.25rem;    /* 20px */
-  --text-2xl: 1.5rem;    /* 24px */
-  --text-3xl: 2rem;      /* 32px */
-
-  /* --- Spacing & Theme Layout (8px Grid Rules) --- */
-  --space-xs: 0.5rem;
-  --space-xxs:0.7rem;
-  --space-sm: 1rem;
-  --space-md: 1.5rem;
-  --space-lg: 2rem;
-  --space-xl: 3rem;
-  --grid-desktop-gap: 20px;
-  --grid-mobile-gap: 15px;
-
-  /* --- Shape Definition --- */
-  --radius-button: 0px; /* Traditional clean e-commerce edge */
-  --radius-card: 4px;
-  --transition-smooth: 0.25s ease-in-out;
+  --color_ink: #30302c;
+  --color_muted: #74736d;
+  --color_soft: #f4f3ed;
+  --color_panel: #eeede5;
+  --color_line: #d9d8d0;
+  --color_white: #ffffff;
+  --color_red: #d74d42;
+  --font_heading: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font_body: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font_serif: Georgia, "Times New Roman", serif;
+  --container_width: 1440px;
+  --transition_base: 180ms ease;
 }
 
-/* ==========================================================================
-   2. GLOBAL HYBRID RESET & ENFORCED RESPONSIVENESS
-   ========================================================================== */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -65,226 +27,124 @@ html {
 }
 
 body {
-  font-family: var(--font-body);
-  background-color: var(--color-base-background);
-  color: var(--color-base-text);
-  line-height: 1.6;
+  min-width: 320px;
+  font-family: var(--font_body);
+  color: var(--color_ink);
+  background: #fafaf6;
+  line-height: 1.35;
+  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
-.texan_container{
-    max-width: 1460px;
-    width: 100%;
-    margin: 0 auto;
-    
+
+body.texan_nav_open {
+  overflow: hidden;
 }
-/* Fluid responsive rules for rich media banners */
-img, video {
+
+img,
+svg,
+picture {
   display: block;
+}
+
+img {
   width: 100%;
   height: auto;
-  object-fit: cover;
 }
 
-/* Avoid absolute scaling issues across viewports */
-iframe, embed {
-  max-width: 100%;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-/* ==========================================================================
-   3. UNIVERSAL E-COMMERCE BUTTON ARCHITECTURE
-   ========================================================================== */
-.btn {
+button,
+input {
+  font: inherit;
+}
+
+button {
+  color: inherit;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color_red);
+  outline-offset: 3px;
+}
+
+.texan_container {
+  width: min(100% - 2rem, var(--container_width));
+  margin-inline: auto;
+}
+
+.texan_screen_reader {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.texan_button,
+.texan_outline_link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  padding: 12px 28px;
-  font-family: var(--font-heading);
-  font-size: var(--text-sm);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  border-radius: var(--radius-button);
-  transition: all var(--transition-smooth);
-  cursor: pointer;
-  text-decoration: none;
-  border: 1px solid transparent;
-  min-height: 48px; /* High mobile accessibility index */
-  width: 100%;
-}
-
-@media (min-width: 768px) {
-  .btn { width: auto; } /* Auto width on desktop */
-}
-
-/* Variant: Primary Add To Cart / Checkout Actions */
-.btn--primary {
-  background-color: var(--color-base-accent);
-  color: #ffffff;
-}
-.btn--primary:hover {
-  background-color: var(--color-base-accent-hover);
-}
-
-/* Variant: Secondary Options / Outline Actions */
-.btn--secondary {
-  background-color: transparent;
-  color: var(--color-base-text);
-  border-color: var(--color-base-text);
-}
-.btn--secondary:hover {
-  background-color: var(--color-base-text);
-  color: var(--color-base-background);
-}
-
-/* Variant: Disabled/Out of Stock */
-.btn:disabled, .btn[disabled] {
-  background-color: var(--neutral-200);
-  color: var(--neutral-800);
-  cursor: not-allowed;
-  border-color: transparent;
-}
-
-/* ==========================================================================
-   4. MODULAR RESPONSIVE CARD ARCHITECTURE (Product & Collection Layouts)
-   ========================================================================== */
-.card {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  background: var(--color-base-background);
-  border-radius: var(--radius-card);
-  position: relative;
-  overflow: hidden;
-  text-decoration: none;
-  color: inherit;
-}
-
-.card__media {
-  position: relative;
-  width: 100%;
-  padding-bottom: 125%; /* Fixed 4:5 E-commerce ratio prevents layout shifts */
-  overflow: hidden;
-  background-color: var(--neutral-100);
-}
-
-.card__media img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transition: transform var(--transition-smooth);
-}
-
-/* Shopify Secondary Hover Image Flip Pattern */
-.card:hover .card__media img:nth-child(2) {
-  opacity: 1;
-}
-.card:hover .card__media img:first-child {
-  transform: scale(1.03);
-}
-
-.card__info {
-  padding: var(--space-sm) 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-xs);
-  flex-grow: 1;
-}
-
-.card__badge {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background-color: var(--color-sale-badge);
-  color: #ffffff;
-  padding: 4px 8px;
-  font-size: var(--text-xs);
+  min-height: 2rem;
+  width: fit-content;
+  border: 1px solid currentColor;
+  border-radius: 2px;
+  background: transparent;
+  font-size: 0.62rem;
   font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
-  z-index: 2;
+  transition:
+    color var(--transition_base),
+    background var(--transition_base),
+    transform var(--transition_base);
 }
 
-.card__title {
-  font-family: var(--font-heading);
-  font-size: var(--text-base);
-  font-weight: 500;
+.texan_button {
+  padding: 0.68rem 1rem;
 }
 
-.card__price-wrapper {
-  display: flex;
-  gap: var(--space-xs);
-  align-items: center;
+.texan_outline_link {
+  padding: 0.62rem 0.9rem;
 }
 
-.price--sale { color: var(--color-sale-badge); font-weight: 600; }
-.price--compare { text-decoration: line-through; color: var(--neutral-800); font-size: var(--text-sm); }
-
-/* ==========================================================================
-   5. ZERO-DEPENDENCY CAROUSEL ARCHITECTURE (Pure CSS Swiping)
-   ========================================================================== */
-.carousel {
-  position: relative;
-  width: 100%;
+.texan_button:hover,
+.texan_outline_link:hover {
+  transform: translateY(-1px);
 }
 
-.carousel__track {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  scrollbar-width: none; /* Hide scrollbars for modern design layers */
-  gap: var(--grid-mobile-gap);
-  padding-bottom: var(--space-sm);
+.texan_button_light {
+  color: var(--color_ink);
+  background: var(--color_white);
+  border-color: var(--color_white);
 }
 
-.carousel__track::-webkit-scrollbar {
-  display: none;
-}
-
-.carousel__slide {
-  flex: 0 0 calc(100% - 40px); /* Show peek of next slide on mobile viewports */
-  scroll-snap-align: start;
-}
-
-/* Smooth layout shifts from mobile swiping to structured desktop grids */
-@media (min-width: 768px) {
-  .carousel__track {
-    gap: var(--grid-desktop-gap);
-  }
-  .carousel__slide {
-    flex: 0 0 calc(33.333% - (var(--grid-desktop-gap) * 2 / 3)); /* 3-column split grid */
+@media (min-width: 1600px) {
+  .texan_container {
+    width: min(100% - 3rem, 1520px);
   }
 }
 
-@media (min-width: 1200px) {
-  .carousel__slide {
-    flex: 0 0 calc(25% - (var(--grid-desktop-gap) * 3 / 4)); /* 4-column split grid */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }
-
-/* ==========================================================================
-   6. GRID LAYOUT INFRASTRUCTURE
-   ========================================================================== */
-.shopify-section-wrapper {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: var(--space-md) var(--space-sm);
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-  gap: var(--grid-mobile-gap);
-}
-
-@media (min-width: 600px) { .grid--2-col-tablet { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (min-width: 990px) { .grid--4-col-desktop { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-
-/* ==========================================================================
-   7. UTILITY ENGINE
-   ========================================================================== */
-.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
-.visually-hidden { display: none !important; }
-
