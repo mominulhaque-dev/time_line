@@ -5,6 +5,8 @@
   /* --- Primitive Color Palette (To be linked to Shopify Schema settings) --- */
   --neutral-100: #f4f4f4;
   --neutral-200: #e2e2e2;
+  --neutral-300: #000000cc;
+  --neutral-400: #0000007A;
   --neutral-800: #2b2b2b;
   --neutral-900: #121212;
 
@@ -66,9 +68,8 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 .texan_container{
-    max-width: 1450px;
+    max-width: 1460px;
     width: 100%;
-    padding: 10px;
     margin: 0 auto;
     
 }

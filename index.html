@@ -4,20 +4,142 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Texan Clone</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/homepage.css">
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/homepage.css" />
   </head>
   <body>
     <header class="texan_header texan_container">
+      <!-- desktop version -->
       <nav class="texan_nav">
         <div class="texan_nav__top">
           <div class="texan_nav__brand_links">
-            <a href="/suppliment.html" class="texan_nav__brand_link_active">Supplements</a>
-            <a href="/skincare.html" class="texan_nav__brand_ink">Skincare</a>
+            <a href="#" class="texan_nav__brand_link_active">Supplements</a>
+            <a href="#" class="texan_nav__brand_ink">Skincare</a>
           </div>
 
-          <div class="texan_nav__logo-block">
-            <a href="#" class="texan_nav__logo-link" aria-label="Texan homepage">
+          <div class="texan_nav_mobile_device_logo_action">
+            <div class="texan_nav__logo_block">
+              <a
+                href="#"
+                class="texan_nav__logo-link"
+                aria-label="Texan homepage"
+              >
+                <svg
+                  viewBox="0 0 173 24"
+                  focusable="false"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="texan_nav__logo-icon"
+                  data-sentry-element="texanLogo"
+                  data-sentry-source-file="Header.tsx"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M121.49 0h3.017v23.426h-3.017V0zm10.558 0h-3.016v3.306h3.016V0zm0 5.704h-3.016v17.722h3.016V5.704zm20.38 6.696v11.026h-3.017V12.471c0-2.972-1.691-4.725-4.635-4.725-3.273 0-5.187 2.22-5.187 5.978v9.702h-3.017V5.704h3.017v6.086h.073c0-4.044 2.317-6.445 6.18-6.445 4.158 0 6.586 2.615 6.586 7.054zm-35.463.898H74.972v2.178h41.993v-2.178zM7.491 20.49c-.845 0-1.533-.667-1.533-1.492V7.888h4.525V5.704H5.96V0H2.943v5.704H0v2.184h2.943v11.135c0 2.431 2.027 4.403 4.525 4.403h3.017v-2.935H7.491zM163.906 5.345c-5.298 0-8.461 3.402-8.461 9.236 0 5.8 3.163 9.2 8.461 9.2 4.532 0 7.592-2.26 8.34-6.13h-2.997c-.619 2.375-2.574 3.803-5.343 3.803-3.182 0-5.169-2.188-5.451-5.98h13.873v-.891c.002-5.836-3.124-9.238-8.422-9.238zm0 2.327c3.056 0 5.018 2.057 5.38 5.624h-10.797c.362-3.567 2.361-5.624 5.417-5.624zM18.025 5.704h-3.017v17.722h3.017V5.704zm32.519 6.516v11.206h-3.017V12.292c0-2.865-1.655-4.547-4.451-4.547-3.164 0-5.041 2.149-5.041 5.8v9.881h-3.017V12.292c0-2.865-1.618-4.547-4.452-4.547-3.163 0-5.002 2.149-5.002 5.8v9.881H22.55V5.704h3.017v5.943h.073c0-3.973 2.244-6.3 6.07-6.3 4.01 0 6.327 2.505 6.327 6.3h.073c0-3.973 2.245-6.3 6.034-6.3 4.046-.002 6.4 2.541 6.4 6.873zm11.478-6.875c-5.297 0-8.461 3.402-8.461 9.236 0 5.8 3.163 9.2 8.461 9.2 4.532 0 7.592-2.26 8.34-6.13h-2.996c-.62 2.375-2.575 3.803-5.344 3.803-3.182 0-5.17-2.188-5.451-5.98h13.873v-.891c.002-5.836-3.124-9.238-8.422-9.238zm0 2.327c3.056 0 5.018 2.057 5.38 5.624H56.605c.365-3.567 2.361-5.624 5.417-5.624zM18.025 0h-3.017v3.306h3.017V0z"
+                  ></path>
+                </svg>
+              </a>
+            </div>
+
+            <div class="texan_nav__actions">
+              <ul class="texan_nav__actions_list">
+                <li class="texan_nav__action_item">
+                  <a
+                    href="#"
+                    class="texan_nav__action_link texan_nav__profile-link"
+                  >
+                    <svg
+                      viewBox="0 0 20 20"
+                      focusable="false"
+                      class="user_profile_icon"
+                      xmlns="http://www.w3.org/2000/svg"
+                      aria-hidden="true"
+                      width="24px"
+                      height="24px"
+                    >
+                      <path
+                        d="M16.6668 17.5V15.8333C16.6668 14.9493 16.3156 14.1014 15.6905 13.4763C15.0654 12.8512 14.2176 12.5 13.3335 12.5H6.66683C5.78277 12.5 4.93493 12.8512 4.30981 13.4763C3.68469 14.1014 3.3335 14.9493 3.3335 15.8333V17.5M13.3332 6.33333C13.3332 8.17428 11.8408 9.66667 9.99984 9.66667C8.15889 9.66667 6.6665 8.17428 6.6665 6.33333C6.6665 4.49238 8.15889 3 9.99984 3C11.8408 3 13.3332 4.49238 13.3332 6.33333Z"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        vector-effect="non-scaling-stroke"
+                      ></path>
+                    </svg>
+                  </a>
+                </li>
+                <li class="texan_nav__action-item">
+                  <button
+                    class="texan_nav__action_link texan_nav__icon_button texan_nav__search_button"
+                    type="button"
+                    aria-label="Search"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      fill="currentColor"
+                      class="bi bi-search"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"
+                      />
+                    </svg>
+                  </button>
+                </li>
+                <li class="texan_nav__action_link texan_nav__action_item">
+                  <button class="texan_nav__cart_button" type="button">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      fill="currentColor"
+                      class="bi bi-bag-plus"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5"
+                      />
+                      <path
+                        d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"
+                      />
+                    </svg>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <ul class="texan_nav__main_list">
+          <li class="texan_nav__main_item">
+            <a href="#" class="texan_nav__main_link">Shop</a>
+          </li>
+          <li class="texan_nav__main_item">
+            <a href="#" class="texan_nav__main_link">Skin Care</a>
+          </li>
+          <li class="texan_nav__main_item">
+            <a href="#" class="texan_nav__main_link">About</a>
+          </li>
+          <li class="texan_nav__main_item">
+            <a href="#" class="texan_nav__main_link">Longevity Game</a>
+          </li>
+        </ul>
+      </nav>
+      <!-- moblie version -->
+      <!-- <nav class="texan_nav">
+        <div class="texan_nav__top">
+          <div class="texan_nav__brand_links">
+            <a href="#" class="texan_nav__brand_link_active">Supplements</a>
+            <a href="#" class="texan_nav__brand_ink">Skincare</a>
+          </div>
+
+          <div class="texan_nav__logo_block">
+            <a
+              href="#"
+              class="texan_nav__logo-link"
+              aria-label="Texan homepage"
+            >
               <svg
                 viewBox="0 0 173 24"
                 focusable="false"
@@ -35,37 +157,90 @@
           </div>
 
           <div class="texan_nav__actions">
-            <ul class="texan_nav__actions-list">
-              <li class="texan_nav__action-item">
-                <a href="#" class="texan_nav__action-link texan_nav__profile-link">Profile</a>
+            <ul class="texan_nav__actions_list">
+              <li class="texan_nav__action_item">
+                <a
+                  href="#"
+                  class="texan_nav__action_link texan_nav__profile-link"
+                >
+                  <svg
+                    viewBox="0 0 20 20"
+                    focusable="false"
+                    class="user_profile_icon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                    width="24px"
+                    height="24px"
+                  >
+                    <path
+                      d="M16.6668 17.5V15.8333C16.6668 14.9493 16.3156 14.1014 15.6905 13.4763C15.0654 12.8512 14.2176 12.5 13.3335 12.5H6.66683C5.78277 12.5 4.93493 12.8512 4.30981 13.4763C3.68469 14.1014 3.3335 14.9493 3.3335 15.8333V17.5M13.3332 6.33333C13.3332 8.17428 11.8408 9.66667 9.99984 9.66667C8.15889 9.66667 6.6665 8.17428 6.6665 6.33333C6.6665 4.49238 8.15889 3 9.99984 3C11.8408 3 13.3332 4.49238 13.3332 6.33333Z"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      vector-effect="non-scaling-stroke"
+                    ></path>
+                  </svg>
+                </a>
               </li>
               <li class="texan_nav__action-item">
-                <button class="texan_nav__icon-button texan_nav__search-button" type="button" aria-label="Search">
-                  Search
+                <button
+                  class="texan_nav__action_link texan_nav__icon_button texan_nav__search_button"
+                  type="button"
+                  aria-label="Search"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="currentColor"
+                    class="bi bi-search"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"
+                    />
+                  </svg>
                 </button>
               </li>
-              <li class="texan_nav__action-item">
-                <button class="texan_nav__cart-button" type="button">Cart</button>
+              <li class="texan_nav__action_link texan_nav__action_item">
+                <button class="texan_nav__cart_button" type="button">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="currentColor"
+                    class="bi bi-bag-plus"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5"
+                    />
+                    <path
+                      d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"
+                    />
+                  </svg>
+                </button>
               </li>
             </ul>
           </div>
         </div>
 
-        <ul class="texan_nav__main-list">
-          <li class="texan_nav__main-item">
-            <a href="#" class="texan_nav__main-link">Shop</a>
+        <ul class="texan_nav__main_list">
+          <li class="texan_nav__main_item">
+            <a href="#" class="texan_nav__main_link">Shop</a>
           </li>
-          <li class="texan_nav__main-item">
-            <a href="#" class="texan_nav__main-link">Skin Care</a>
+          <li class="texan_nav__main_item">
+            <a href="#" class="texan_nav__main_link">Skin Care</a>
           </li>
-          <li class="texan_nav__main-item">
-            <a href="#" class="texan_nav__main-link">About</a>
+          <li class="texan_nav__main_item">
+            <a href="#" class="texan_nav__main_link">About</a>
           </li>
-          <li class="texan_nav__main-item">
-            <a href="#" class="texan_nav__main-link">Longevity Game</a>
+          <li class="texan_nav__main_item">
+            <a href="#" class="texan_nav__main_link">Longevity Game</a>
           </li>
         </ul>
-      </nav>
+      </nav> -->
     </header>
 
     <main class="texan_main">
@@ -73,7 +248,10 @@
         <div class="hero__content">
           <p class="hero__eyebrow">Crafted for longevity</p>
           <h1 class="hero__title">Wellness and skincare with purpose</h1>
-          <p class="hero__copy">Discover premium formulas, clean ingredients, and a seamless shopping experience designed for modern self-care.</p>
+          <p class="hero__copy">
+            Discover premium formulas, clean ingredients, and a seamless
+            shopping experience designed for modern self-care.
+          </p>
           <div class="hero__actions">
             <a href="#" class="hero__cta">Explore products</a>
             <a href="#" class="hero__secondary-link">Learn more</a>
@@ -83,7 +261,9 @@
     </main>
 
     <footer class="texan_footer">
-      <p class="texan_footer__text">&copy; 2026 Texan Clone. All rights reserved.</p>
+      <p class="texan_footer__text">
+        &copy; 2026 Texan Clone. All rights reserved.
+      </p>
     </footer>
   </body>
 </html>
