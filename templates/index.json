@@ -89,32 +89,32 @@
         "m1": {
           "type": "metric",
           "settings": {
-            "value": "18",
-            "label": "Years of research",
+            "value": "150,000+",
+            "label": "Orders Delivered",
             "text": "In collaboration with the Swiss Federal Institute of Technology of Lausanne."
           }
         },
         "m2": {
           "type": "metric",
           "settings": {
-            "value": "25",
-            "label": "Human clinical trials",
+            "value": "98%",
+            "label": "Customer Satisfaction",
             "text": "Completed and ongoing gold standard clinical trials involving over 1000 participants."
           }
         },
         "m3": {
           "type": "metric",
           "settings": {
-            "value": "500+",
-            "label": "Studies on Urolithin A",
+            "value": "25+",
+            "label": "Clinical Ingredients",
             "text": "Scientists have extensively explored the effectiveness of Urolithin A on health."
           }
         },
         "m4": {
           "type": "metric",
           "settings": {
-            "value": "80",
-            "label": "Patents",
+            "value": "4.9★",
+            "label": "Average Rating",
             "text": "Our proprietary ingredient Mitopure is protected under US patents."
           }
         }
