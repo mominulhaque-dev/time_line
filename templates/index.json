@@ -373,7 +373,9 @@
         },
         "a4": {
           "type": "avatar",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/5b501065befb37c8272dacfd4f3c75893e919621-200x200.png"
+          }
         }
       },
       "block_order": [
@@ -384,7 +386,7 @@
       ],
       "settings": {
         "heading": "Recommended By Health Professionals",
-        "image": "shopify://shop_images/Seb4fd0b72cc24ea9a295464310eb7802g.webp",
+        "image": "shopify://shop_images/fbc30d8ccb055c79cd35b2ab9e7c82f6158b52b0-800x1000.png",
         "quote": "<p>“The latest clinical studies crystallize how Mitopure can be a real game-changer for human health.”</p>",
         "author": "Dr. Johan Auwerx MD, PhD",
         "author_role": "Scientific Advisor"
