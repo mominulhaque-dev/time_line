@@ -203,8 +203,8 @@
         "r1": {
           "type": "row",
           "settings": {
-            "feature": "Directly activates mitophagy",
-            "cell_1": "●",
+            "feature": "Clinically Dosed",
+            "cell_1": "✅",
             "cell_2": "○",
             "cell_3": "○",
             "cell_4": "○",
@@ -215,8 +215,8 @@
         "r2": {
           "type": "row",
           "settings": {
-            "feature": "Targets a root cause of age-related cellular energy decline",
-            "cell_1": "●",
+            "feature": "Third Party Tested",
+            "cell_1": "✅",
             "cell_2": "Partial",
             "cell_3": "Partial",
             "cell_4": "○",
@@ -227,8 +227,8 @@
         "r3": {
           "type": "row",
           "settings": {
-            "feature": "Benefits without changing exercise routine",
-            "cell_1": "●",
+            "feature": "Made in USA",
+            "cell_1": "✅",
             "cell_2": "○",
             "cell_3": "●",
             "cell_4": "○",
@@ -239,8 +239,8 @@
         "r4": {
           "type": "row",
           "settings": {
-            "feature": "Complete human clinical trials",
-            "cell_1": "●",
+            "feature": "No Artificial Fillers",
+            "cell_1": "✅",
             "cell_2": "Limited",
             "cell_3": "●",
             "cell_4": "●",
