@@ -293,8 +293,9 @@
         "rv1": {
           "type": "video",
           "settings": {
+            "image": "shopify://shop_images/Sb8f68a68e838461a8d67dcdc24ee494fq.jpg",
             "alt": "",
-            "video_url": ""
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/83f89185d5f14d988f419c5285f259bb.mp4"
           }
         },
         "rv2": {
