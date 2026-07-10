@@ -30,37 +30,37 @@
         "q1": {
           "type": "quote",
           "settings": {
-            "text": "\"Game changer for your energy and health\""
+            "text": "★★★★★ Rated by 25,000+ Customers"
           }
         },
         "q2": {
           "type": "quote",
           "settings": {
-            "text": "Ines"
+            "text": "Doctor Formulated"
           }
         },
         "q3": {
           "type": "quote",
           "settings": {
-            "text": "\"It works!\""
+            "text": "Third Party Tested"
           }
         },
         "q4": {
           "type": "quote",
           "settings": {
-            "text": "Sarasara"
+            "text": "Made in USA"
           }
         },
         "q5": {
           "type": "quote",
           "settings": {
-            "text": "\"This supplement is the future\""
+            "text": "Free Shipping $75+"
           }
         },
         "q6": {
           "type": "quote",
           "settings": {
-            "text": "Zachary"
+            "text": "30 Day Guarantee"
           }
         },
         "q7": {
@@ -126,9 +126,9 @@
         "m4"
       ],
       "settings": {
-        "heading": "<p>Time to give your cells new life with high-performance products powered by <em>mitopure</em>, our powerful ingredient that unlocks a precise dose of the rare Urolithin A molecule and promotes healthy aging.</p>",
+        "heading": "<p>Your health isn't built overnight.</p><p>Every capsule is designed with clinically researched ingredients to help support energy, healthy aging, recovery, immunity, and everyday performance—without unnecessary fillers.</p>",
         "link_label": "Discover our science",
-        "link": ""
+        "link": "shopify://collections/all"
       }
     },
     "science": {
