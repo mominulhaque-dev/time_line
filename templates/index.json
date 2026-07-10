@@ -12,12 +12,14 @@
     "hero": {
       "type": "hero-banner",
       "settings": {
+        "image": "shopify://shop_images/imgi_518_104ff16cf8433dc318c3d00fae1f1ccf28d11cb3-2640x1760.jpg",
         "overlay_opacity": 40,
         "eyebrow_prefix": "Powered by",
         "eyebrow_highlight": "mitopure",
         "heading": "No other supplement does this.",
         "text": "Award-winning clinically proven Urolithin A products.",
         "button_label": "Shop now",
+        "button_link": "",
         "badge_number": "#1",
         "badge_text": "Doctor recommended Urolithin A brand"
       }
@@ -77,7 +79,9 @@
         "q6",
         "q7"
       ],
-      "settings": {}
+      "settings": {
+        "speed": 40
+      }
     },
     "intro": {
       "type": "intro-metrics",
@@ -121,7 +125,11 @@
         "m3",
         "m4"
       ],
-      "settings": {}
+      "settings": {
+        "heading": "<p>Time to give your cells new life with high-performance products powered by <em>mitopure</em>, our powerful ingredient that unlocks a precise dose of the rare Urolithin A molecule and promotes healthy aging.</p>",
+        "link_label": "Discover our science",
+        "link": ""
+      }
     },
     "science": {
       "type": "science-panel",
@@ -177,7 +185,17 @@
         "t3",
         "t4"
       ],
-      "settings": {}
+      "settings": {
+        "anchor": "texan_science",
+        "eyebrow": "mitopure",
+        "eyebrow_note": "Gold-standard clinical trial",
+        "legend_a": "Placebo",
+        "legend_b": "Mitopure supplements",
+        "card_heading": "Hear from our scientists",
+        "card_text": "About how Mitopure renews cells",
+        "card_link_label": "Watch now",
+        "card_link": ""
+      }
     },
     "compare": {
       "type": "comparison-table",
@@ -190,7 +208,8 @@
             "cell_2": "○",
             "cell_3": "○",
             "cell_4": "○",
-            "cell_5": "Partial"
+            "cell_5": "Partial",
+            "cell_6": ""
           }
         },
         "r2": {
@@ -201,7 +220,8 @@
             "cell_2": "Partial",
             "cell_3": "Partial",
             "cell_4": "○",
-            "cell_5": "Partial"
+            "cell_5": "Partial",
+            "cell_6": ""
           }
         },
         "r3": {
@@ -212,7 +232,8 @@
             "cell_2": "○",
             "cell_3": "●",
             "cell_4": "○",
-            "cell_5": "●"
+            "cell_5": "●",
+            "cell_6": ""
           }
         },
         "r4": {
@@ -223,7 +244,8 @@
             "cell_2": "Limited",
             "cell_3": "●",
             "cell_4": "●",
-            "cell_5": "Limited"
+            "cell_5": "Limited",
+            "cell_6": ""
           }
         }
       },
@@ -233,19 +255,32 @@
         "r3",
         "r4"
       ],
-      "settings": {}
+      "settings": {
+        "eyebrow": "Compare us to other supplements",
+        "eyebrow_pill": "Urolithin A",
+        "heading": "The Ultimate Longevity Powerhouse",
+        "col_1": "Mitopure",
+        "col_2": "NAD+",
+        "col_3": "CoQ10",
+        "col_4": "Creatine",
+        "col_5": "Spermidine",
+        "col_6": ""
+      }
     },
     "products": {
       "type": "featured-products",
       "settings": {
+        "anchor": "texan_shop",
         "heading": "Products powered by Mitopure",
         "link_label": "Shop all",
+        "collection": "",
         "products_to_show": 3,
         "show_quick_add": true,
         "show_promo": true,
         "promo_eyebrow": "mitopure",
         "promo_heading": "Now available as Skincare",
-        "promo_link_label": "Shop skincare"
+        "promo_link_label": "Shop skincare",
+        "promo_link": ""
       }
     },
     "logos": {
@@ -257,32 +292,44 @@
       "blocks": {
         "rv1": {
           "type": "video",
-          "settings": {}
+          "settings": {
+            "alt": "",
+            "video_url": ""
+          }
         },
         "rv2": {
           "type": "quote",
           "settings": {
-            "quote": "Excellent supplement"
+            "quote": "Excellent supplement",
+            "author": "Verified buyer"
           }
         },
         "rv3": {
           "type": "video",
-          "settings": {}
+          "settings": {
+            "alt": "",
+            "video_url": ""
+          }
         },
         "rv4": {
           "type": "quote",
           "settings": {
-            "quote": "Increased Strength and Energy"
+            "quote": "Increased Strength and Energy",
+            "author": "Verified buyer"
           }
         },
         "rv5": {
           "type": "video",
-          "settings": {}
+          "settings": {
+            "alt": "",
+            "video_url": ""
+          }
         },
         "rv6": {
           "type": "quote",
           "settings": {
-            "quote": "My stamina is returning..."
+            "quote": "My stamina is returning...",
+            "author": "Verified buyer"
           }
         }
       },
@@ -294,7 +341,12 @@
         "rv5",
         "rv6"
       ],
-      "settings": {}
+      "settings": {
+        "anchor": "texan_reviews",
+        "heading": "Loved by our community",
+        "link_label": "Read all reviews",
+        "link": ""
+      }
     },
     "expert": {
       "type": "expert-quote",
@@ -322,13 +374,20 @@
         "a3",
         "a4"
       ],
-      "settings": {}
+      "settings": {
+        "heading": "Find out why the experts trust Urolithin A from Timeline",
+        "quote": "<p>“The latest clinical studies crystallize how Mitopure can be a real game-changer for human health.”</p>",
+        "author": "Dr. Johan Auwerx MD, PhD",
+        "author_role": "Scientific Advisor"
+      }
     },
     "news": {
       "type": "news-blog",
       "settings": {
+        "anchor": "texan_news",
         "heading": "Latest news",
         "link_label": "Our blog",
+        "blog": "",
         "posts_to_show": 4
       }
     }
