@@ -398,7 +398,7 @@
         "anchor": "texan_news",
         "heading": "Latest news",
         "link_label": "Our blog",
-        "blog": "",
+        "blog": "news",
         "posts_to_show": 4
       }
     }
