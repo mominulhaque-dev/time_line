@@ -273,7 +273,7 @@
         "anchor": "texan_shop",
         "heading": "Products powered by Mitopure",
         "link_label": "Shop all",
-        "collection": "",
+        "collection": "iphone",
         "products_to_show": 3,
         "show_quick_add": true,
         "show_promo": true,
