@@ -355,15 +355,21 @@
       "blocks": {
         "a1": {
           "type": "avatar",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/28dd101626c16670736402e02f8c508ac43c4a43-200x200.png"
+          }
         },
         "a2": {
           "type": "avatar",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/28dd101626c16670736402e02f8c508ac43c4a43-200x200_1.png"
+          }
         },
         "a3": {
           "type": "avatar",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/b485b93561e51f71971486b8536327613ab6fe13-200x200.png"
+          }
         },
         "a4": {
           "type": "avatar",
