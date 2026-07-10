@@ -137,7 +137,7 @@
         "t1": {
           "type": "tab",
           "settings": {
-            "tab_label": "Renewal",
+            "tab_label": "Ingredient",
             "stat_heading": "Mitochondrial renewal increases by +39% after 16 weeks over placebo",
             "stat_note": "See study details",
             "delta": "+39%",
@@ -148,7 +148,7 @@
         "t2": {
           "type": "tab",
           "settings": {
-            "tab_label": "Strength",
+            "tab_label": "Absorption",
             "stat_heading": "Muscle strength improved by +12% in clinical testing",
             "stat_note": "See study details",
             "delta": "+12%",
@@ -159,7 +159,7 @@
         "t3": {
           "type": "tab",
           "settings": {
-            "tab_label": "Energy",
+            "tab_label": "Cellular Support",
             "stat_heading": "Cellular energy markers rose significantly over placebo",
             "stat_note": "See study details",
             "delta": "+28%",
@@ -170,7 +170,7 @@
         "t4": {
           "type": "tab",
           "settings": {
-            "tab_label": "Bioavailability",
+            "tab_label": "Daily Energy",
             "stat_heading": "6x more bioavailable than dietary sources of Urolithin A",
             "stat_note": "See study details",
             "delta": "6x",
