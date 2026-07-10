@@ -46,7 +46,7 @@
         "logo_text_left": "time",
         "logo_text_right": "line",
         "menu": "main-menu",
-        "secondary_menu": "main-menu",
+        "secondary_menu": "",
         "sticky": true,
         "enable_search": true
       }
