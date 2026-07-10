@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "type": "header",
   "name": "Header group",
@@ -5,22 +14,46 @@
     "announcement-bar": {
       "type": "announcement-bar",
       "blocks": {
-        "msg-1": { "type": "message", "settings": { "text": "Free shipping on orders over $100" } },
-        "msg-2": { "type": "message", "settings": { "text": "Award-winning, clinically proven Urolithin A" } }
+        "msg-1": {
+          "type": "message",
+          "settings": {
+            "text": "Free shipping on orders over $100",
+            "link": ""
+          }
+        },
+        "msg-2": {
+          "type": "message",
+          "settings": {
+            "text": "Award-winning, clinically proven Urolithin A",
+            "link": ""
+          }
+        }
       },
-      "block_order": ["msg-1", "msg-2"],
-      "settings": { "rotate": true }
+      "block_order": [
+        "msg-1",
+        "msg-2"
+      ],
+      "settings": {
+        "bg": "#30302c",
+        "fg": "#ffffff",
+        "rotate": true
+      }
     },
     "header": {
       "type": "header",
       "settings": {
+        "logo": "shopify://shop_images/28dd101626c16670736402e02f8c508ac43c4a43-200x200.png",
         "logo_text_left": "time",
         "logo_text_right": "line",
         "menu": "main-menu",
+        "secondary_menu": "main-menu",
         "sticky": true,
         "enable_search": true
       }
     }
   },
-  "order": ["announcement-bar", "header"]
+  "order": [
+    "announcement-bar",
+    "header"
+  ]
 }
