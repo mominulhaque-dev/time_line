@@ -1,126 +1,13 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
-  "sections": {
-    "hero": {
-      "type": "hero-banner",
-      "settings": {
-        "overlay_opacity": 40,
-        "eyebrow_prefix": "Powered by",
-        "eyebrow_highlight": "mitopure",
-        "heading": "No other supplement does this.",
-        "text": "Award-winning clinically proven Urolithin A products.",
-        "button_label": "Shop now",
-        "badge_number": "#1",
-        "badge_text": "Doctor recommended Urolithin A brand"
-      }
-    },
-    "press_ticker": {
-      "type": "press-ticker",
-      "blocks": {
-        "q1": { "type": "quote", "settings": { "text": "\"Game changer for your energy and health\"" } },
-        "q2": { "type": "quote", "settings": { "text": "Ines" } },
-        "q3": { "type": "quote", "settings": { "text": "\"It works!\"" } },
-        "q4": { "type": "quote", "settings": { "text": "Sarasara" } },
-        "q5": { "type": "quote", "settings": { "text": "\"This supplement is the future\"" } },
-        "q6": { "type": "quote", "settings": { "text": "Zachary" } },
-        "q7": { "type": "quote", "settings": { "text": "\"It's a game changer\"" } }
-      },
-      "block_order": ["q1", "q2", "q3", "q4", "q5", "q6", "q7"]
-    },
-    "intro": {
-      "type": "intro-metrics",
-      "blocks": {
-        "m1": { "type": "metric", "settings": { "value": "18", "label": "Years of research", "text": "In collaboration with the Swiss Federal Institute of Technology of Lausanne." } },
-        "m2": { "type": "metric", "settings": { "value": "25", "label": "Human clinical trials", "text": "Completed and ongoing gold standard clinical trials involving over 1000 participants." } },
-        "m3": { "type": "metric", "settings": { "value": "500+", "label": "Studies on Urolithin A", "text": "Scientists have extensively explored the effectiveness of Urolithin A on health." } },
-        "m4": { "type": "metric", "settings": { "value": "80", "label": "Patents", "text": "Our proprietary ingredient Mitopure is protected under US patents." } }
-      },
-      "block_order": ["m1", "m2", "m3", "m4"]
-    },
-    "science": {
-      "type": "science-panel",
-      "blocks": {
-        "t1": { "type": "tab", "settings": { "tab_label": "Renewal", "stat_heading": "Mitochondrial renewal increases by +39% after 16 weeks over placebo", "stat_note": "See study details", "delta": "+39%", "placebo_percent": 35, "mitopure_percent": 92 } },
-        "t2": { "type": "tab", "settings": { "tab_label": "Strength", "stat_heading": "Muscle strength improved by +12% in clinical testing", "stat_note": "See study details", "delta": "+12%", "placebo_percent": 40, "mitopure_percent": 70 } },
-        "t3": { "type": "tab", "settings": { "tab_label": "Energy", "stat_heading": "Cellular energy markers rose significantly over placebo", "stat_note": "See study details", "delta": "+28%", "placebo_percent": 38, "mitopure_percent": 85 } },
-        "t4": { "type": "tab", "settings": { "tab_label": "Bioavailability", "stat_heading": "6x more bioavailable than dietary sources of Urolithin A", "stat_note": "See study details", "delta": "6x", "placebo_percent": 20, "mitopure_percent": 95 } }
-      },
-      "block_order": ["t1", "t2", "t3", "t4"]
-    },
-    "compare": {
-      "type": "comparison-table",
-      "blocks": {
-        "r1": { "type": "row", "settings": { "feature": "Directly activates mitophagy", "cell_1": "●", "cell_2": "○", "cell_3": "○", "cell_4": "○", "cell_5": "Partial" } },
-        "r2": { "type": "row", "settings": { "feature": "Targets a root cause of age-related cellular energy decline", "cell_1": "●", "cell_2": "Partial", "cell_3": "Partial", "cell_4": "○", "cell_5": "Partial" } },
-        "r3": { "type": "row", "settings": { "feature": "Benefits without changing exercise routine", "cell_1": "●", "cell_2": "○", "cell_3": "●", "cell_4": "○", "cell_5": "●" } },
-        "r4": { "type": "row", "settings": { "feature": "Complete human clinical trials", "cell_1": "●", "cell_2": "Limited", "cell_3": "●", "cell_4": "●", "cell_5": "Limited" } }
-      },
-      "block_order": ["r1", "r2", "r3", "r4"]
-    },
-    "products": {
-      "type": "featured-products",
-      "settings": {
-        "heading": "Products powered by Mitopure",
-        "link_label": "Shop all",
-        "products_to_show": 3,
-        "show_quick_add": true,
-        "show_promo": true,
-        "promo_eyebrow": "mitopure",
-        "promo_heading": "Now available as Skincare",
-        "promo_link_label": "Shop skincare"
-      }
-    },
-    "logos": {
-      "type": "logo-marquee",
-      "blocks": {
-        "l1": { "type": "logo", "settings": { "text": "Forbes" } },
-        "l2": { "type": "logo", "settings": { "text": "Financial Times" } },
-        "l3": { "type": "logo", "settings": { "text": "Popular Science" } },
-        "l4": { "type": "logo", "settings": { "text": "Runner's World" } },
-        "l5": { "type": "logo", "settings": { "text": "Medical News Today" } }
-      },
-      "block_order": ["l1", "l2", "l3", "l4", "l5"]
-    },
-    "reviews": {
-      "type": "reviews-strip",
-      "blocks": {
-        "rv1": { "type": "video" },
-        "rv2": { "type": "quote", "settings": { "quote": "Excellent supplement" } },
-        "rv3": { "type": "video" },
-        "rv4": { "type": "quote", "settings": { "quote": "Increased Strength and Energy" } },
-        "rv5": { "type": "video" },
-        "rv6": { "type": "quote", "settings": { "quote": "My stamina is returning..." } }
-      },
-      "block_order": ["rv1", "rv2", "rv3", "rv4", "rv5", "rv6"]
-    },
-    "expert": {
-      "type": "expert-quote",
-      "blocks": {
-        "a1": { "type": "avatar" },
-        "a2": { "type": "avatar" },
-        "a3": { "type": "avatar" },
-        "a4": { "type": "avatar" }
-      },
-      "block_order": ["a1", "a2", "a3", "a4"]
-    },
-    "news": {
-      "type": "news-blog",
-      "settings": {
-        "heading": "Latest news",
-        "link_label": "Our blog",
-        "posts_to_show": 4
-      }
-    }
-  },
-  "order": [
-    "hero",
-    "press_ticker",
-    "intro",
-    "science",
-    "compare",
-    "products",
-    "logos",
-    "reviews",
-    "expert",
-    "news"
-  ]
+  "sections": {},
+  "order": []
 }
