@@ -11,14 +11,6 @@
         sizes: '100vw',
         alt: section.settings.image.alt | default: section.settings.heading | escape
     }}
-  {%- else -%}
-    <img
-      src="{{ 'texan_timeline_hero_reference.jpg' | asset_url }}"
-      alt="{{ section.settings.heading | escape }}"
-      width="1760"
-      height="1594"
-      fetchpriority="high"
-    >
   {%- endif -%}
 
   <div class="texan_hero_overlay" style="--overlay: {{ section.settings.overlay_opacity | divided_by: 100.0 }};">

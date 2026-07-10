@@ -43,8 +43,6 @@
         {%- if section.settings.card_image != blank -%}
           {%- assign card_alt = section.settings.card_heading | escape -%}
           {{ section.settings.card_image | image_url: width: 200 | image_tag: loading: 'lazy', widths: '80, 120, 200', alt: card_alt }}
-        {%- else -%}
-          <img src="{{ 'imgi_481_b0194f0b6220d027b3045e916805df1486a7cded-1200x1200.png' | asset_url }}" alt="" width="200" height="200" loading="lazy">
         {%- endif -%}
         <div>
           <h3>{{ section.settings.card_heading }}</h3>

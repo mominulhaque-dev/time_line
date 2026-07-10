@@ -8,19 +8,13 @@
       {%- if section.settings.image != blank -%}
         {%- assign expert_alt = section.settings.author | default: section.settings.heading | escape -%}
         {{ section.settings.image | image_url: width: 920 | image_tag: loading: 'lazy', widths: '320, 480, 640, 920', sizes: '(min-width: 760px) 23rem, 100vw', alt: expert_alt }}
-      {%- else -%}
-        <img src="{{ 'image_time_line2.png' | asset_url }}" alt="{{ section.settings.author | escape }}" width="920" height="920" loading="lazy">
       {%- endif -%}
     </div>
     <blockquote data_texan_reveal>
       {%- if section.blocks.size > 0 -%}
         <div class="texan_avatar_row" aria-hidden="true">
           {%- for block in section.blocks -%}
-            {%- if block.settings.image != blank -%}
-              {{ block.settings.image | image_url: width: 84 | image_tag: loading: 'lazy', alt: '' }}
-            {%- else -%}
-              <span></span>
-            {%- endif -%}
+            <span></span>
           {%- endfor -%}
         </div>
       {%- endif -%}
