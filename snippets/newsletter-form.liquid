@@ -14,7 +14,7 @@
         id="texan_newsletter_email"
         type="email"
         name="contact[email]"
-        placeholder="{{ placeholder | default: 'general.newsletter.placeholder' | t }}"
+        placeholder="{% if placeholder != blank %}{{ placeholder }}{% else %}{{ 'general.newsletter.placeholder' | t }}{% endif %}"
         autocomplete="email"
         required
       >

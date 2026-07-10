@@ -1,20 +1,21 @@
 {%- comment -%}
   Renders a single swatch input. Uses Shopify native swatch (color/image) when
-  the option has swatch data, else a text pill.
-  Params: option, value, input_name, input_id, checked (bool), disabled (bool)
+  the option value has swatch data, else a text pill.
+  Params: option, value (product_option_value), input_name, input_id, checked, disabled
 {%- endcomment -%}
 {%- liquid
+  assign value_text = value.name | default: value
   assign swatch = value.swatch
 -%}
 <label
   class="texan_swatch{% if swatch %} texan_swatch_visual{% else %} texan_swatch_text{% endif %}{% if disabled %} texan_swatch_disabled{% endif %}"
-  title="{{ value | escape }}"
+  title="{{ value_text | escape }}"
 >
   <input
     type="radio"
     name="{{ input_name }}"
     id="{{ input_id }}"
-    value="{{ value | escape }}"
+    value="{{ value_text | escape }}"
     class="texan_screen_reader"
     {% if checked %}checked{% endif %}
     {% if disabled %}disabled{% endif %}
@@ -24,6 +25,6 @@
   {%- elsif swatch.color -%}
     <span class="texan_swatch_chip" style="background-color:{{ swatch.color }}"></span>
   {%- else -%}
-    <span class="texan_swatch_label">{{ value }}</span>
+    <span class="texan_swatch_label">{{ value_text }}</span>
   {%- endif -%}
 </label>

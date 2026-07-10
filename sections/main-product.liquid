@@ -19,20 +19,33 @@
               {% unless forloop.first %}hidden{% endunless %}
             >
               {%- assign m_alt = media.alt | default: product.title | escape -%}
-              {%- if media.media_type == 'image' -%}
-                {{
-                  media
-                  | image_url: width: 1200
-                  | image_tag:
-                    loading: forloop.first | default: false,
-                    widths: '400, 600, 800, 1200, 1600',
-                    sizes: '(min-width: 900px) 45vw, 100vw',
-                    class: 'texan_zoomable',
-                    alt: m_alt
-                }}
-              {%- else -%}
-                {{ media | media_tag: image_size: '1200x' }}
-              {%- endif -%}
+              {%- liquid
+                assign media_loading = 'lazy'
+                if forloop.first
+                  assign media_loading = 'eager'
+                endif
+              -%}
+              {%- case media.media_type -%}
+                {%- when 'image' -%}
+                  {{
+                    media
+                    | image_url: width: 1200
+                    | image_tag:
+                      loading: media_loading,
+                      widths: '400, 600, 800, 1200, 1600',
+                      sizes: '(min-width: 900px) 45vw, 100vw',
+                      class: 'texan_zoomable',
+                      alt: m_alt
+                  }}
+                {%- when 'external_video' -%}
+                  {{ media | external_video_tag }}
+                {%- when 'video' -%}
+                  {{ media | video_tag: controls: true, image_size: '1200x' }}
+                {%- when 'model' -%}
+                  {{ media | model_viewer_tag }}
+                {%- else -%}
+                  {{ media | image_url: width: 1200 | image_tag: loading: 'lazy', alt: m_alt }}
+              {%- endcase -%}
             </div>
           {%- endfor -%}
         {%- else -%}
@@ -92,10 +105,7 @@
                       {%- for value in option.values -%}
                         {%- liquid
                           assign input_id = section.id | append: '-' | append: option.position | append: '-' | append: forloop.index0
-                          assign is_checked = false
-                          if option.selected_value == value
-                            assign is_checked = true
-                          endif
+                          assign is_checked = value.selected
                         -%}
                         {% render 'swatch',
                           option: option,

@@ -34,11 +34,11 @@
 <div class="texan_contact_grid">
   <div class="texan_field">
     <label for="texan_addr_country_{{ form.id }}">Country / region</label>
-    <select id="texan_addr_country_{{ form.id }}" name="address[country]" data-default="{{ form.country }}">{{ all_country_option_tags }}</select>
+    <select id="texan_addr_country_{{ form.id }}" name="address[country]" autocomplete="country">{{ all_country_option_tags }}</select>
   </div>
-  <div class="texan_field" data-province-wrap>
+  <div class="texan_field">
     <label for="texan_addr_province_{{ form.id }}">Province / state</label>
-    <select id="texan_addr_province_{{ form.id }}" name="address[province]" data-default="{{ form.province }}"></select>
+    <input id="texan_addr_province_{{ form.id }}" type="text" name="address[province]" value="{{ form.province }}" autocomplete="address-level1">
   </div>
 </div>
 <div class="texan_field">

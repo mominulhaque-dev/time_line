@@ -18,7 +18,8 @@
 -%}
 <div class="texan_price{% if compare > price %} texan_price_on_sale{% endif %}">
   {%- if product_or_variant.price_varies and use_variant != true -%}
-    <span class="texan_price_from">{{ 'products.product.from_price' | t: price: price | money }}</span>
+    {%- assign price_money = price | money -%}
+    <span class="texan_price_from">{{ 'products.product.from_price' | t: price: price_money }}</span>
   {%- else -%}
     <span class="texan_price_current">{{ price | money }}</span>
   {%- endif -%}
